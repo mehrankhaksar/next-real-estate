@@ -24,7 +24,7 @@ const Header = () => {
   return (
     <header
       className={`sticky top-0 text-primary-foreground bg-primary z-40 transition-all duration-300 ${
-        scroll ? "py-3 shadow-lg" : "py-6"
+        scroll ? "py-3 shadow-lg" : "py-5"
       }`}
     >
       <div className="container mx-auto">

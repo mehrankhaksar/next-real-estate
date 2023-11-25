@@ -13,7 +13,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={YekanBakh.className}>
+      <body
+        className={`w-full h-screen flex flex-col justify-between gap-10 overflow-y-auto overflow-x-hidden ${YekanBakh.className}`}
+        suppressHydrationWarning={true}
+      >
         <Header />
         {children}
         <Footer />

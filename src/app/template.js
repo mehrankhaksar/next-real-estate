@@ -1,6 +1,10 @@
 "use client";
 
+import NextAuthProvider from "@/providers/NextAuthProvider";
+
 import { motion } from "framer-motion";
+
+import { Toaster } from "@/components/ui/toaster";
 
 import useProgressScroll from "@/hooks/useProgressScroll";
 
@@ -20,8 +24,9 @@ export default function template({ children }) {
   const completion = useProgressScroll();
 
   return (
-    <>
+    <NextAuthProvider>
       <motion.main
+        className="flex-1"
         variants={templateVariants}
         initial="initial"
         animate="animate"
@@ -32,7 +37,7 @@ export default function template({ children }) {
         className="w-1 fixed top-0 right-0 bottom-0 bg-blue-500 transition-all duration-700 z-50"
         style={{ transform: `translateY(${completion - 100}%)` }}
       />
-      <div className="h-[1000px]"></div>
-    </>
+      <Toaster />
+    </NextAuthProvider>
   );
 }
