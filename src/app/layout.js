@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 import "./globals.css";
+import NextAuthProvider from "@/providers/NextAuthProvider";
 
 export const metadata = {
   title: "Create Next App",
@@ -14,12 +15,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`w-full h-screen flex flex-col justify-between gap-10 overflow-y-auto overflow-x-hidden ${YekanBakh.className}`}
+        className={`overflow-y-auto overflow-x-hidden ${YekanBakh.className}`}
         suppressHydrationWarning={true}
       >
-        <Header />
-        {children}
-        <Footer />
+        <NextAuthProvider>
+          <Header />
+          {children}
+          <Footer />
+        </NextAuthProvider>
       </body>
     </html>
   );

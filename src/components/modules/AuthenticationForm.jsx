@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 import { useForm } from "react-hook-form";
@@ -9,23 +10,23 @@ import { signUpFormSchema, signInFormSchema } from "@/schemas/formValidations";
 
 import { signIn } from "next-auth/react";
 
-import { Form } from "../ui/form";
-import { Button } from "../ui/button";
-import { useToast } from "../ui/use-toast";
-import { cn } from "@/lib/utils";
+import toast from "react-hot-toast";
 
-import TextInput from "./TextInput";
+import { Form } from "../ui/form";
+
+import CustomTextInput from "./CustomTextInput";
+import CustomButton from "./CustomButton";
 
 const AuthenticationForm = ({ signUp = false }) => {
+  const router = useRouter();
+
   const form = useForm({
-    resolver: zodResolver(signIn ? signInFormSchema : signUpFormSchema),
+    resolver: zodResolver(signUp ? signUpFormSchema : signInFormSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
-
-  const { toast } = useToast();
 
   const onSubmit = async (values) => {
     if (signUp) {
@@ -35,6 +36,13 @@ const AuthenticationForm = ({ signUp = false }) => {
         headers: { "Content-Type": "application/json" },
       });
       const data = await res.json();
+      if (data.message) {
+        form.reset();
+        toast.success(data.message);
+        router.push("/sign-in");
+      } else {
+        toast.error(data.error);
+      }
     } else {
       const res = await signIn("credentials", {
         email: values.email,
@@ -42,16 +50,11 @@ const AuthenticationForm = ({ signUp = false }) => {
         redirect: false,
       });
       if (res.error) {
-        toast({
-          variant: "destructive",
-          title: res.error,
-        });
+        toast.error(res.error);
       } else {
         form.reset();
-        toast({
-          className: cn(`text-primary-foreground bg-primary border-none`),
-          title: "با موفقیت وارد حساب خود شدید.",
-        });
+        toast.success("با موفقیت وارد حساب خود شدید");
+        router.replace("/dashboard");
       }
     }
   };
@@ -59,27 +62,21 @@ const AuthenticationForm = ({ signUp = false }) => {
   return (
     <Form {...form}>
       <form
-        className="max-w-[300px] w-full space-y-5 bg-white mx-auto p-5 border-2 border-solid border-primary rounded-md shadow-md shadow-primary"
+        className="max-w-[300px] w-full space-y-5 bg-white p-5 border-2 border-solid border-primary rounded-md shadow-md shadow-primary"
         noValidate
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <h2 className="h2 text-primary text-center">
           فرم {signUp ? "ثبت نام" : "ورود"}
         </h2>
-        <TextInput name="email" form={form} label="ایمیل" type="email" />
-        <TextInput
+        <CustomTextInput name="email" form={form} label="ایمیل" type="email" />
+        <CustomTextInput
           name="password"
           form={form}
           label="رمز عبور"
           type="password"
         />
-        <Button
-          className="w-full text-base font-bold"
-          type="submit"
-          disabled={form.formState.isSubmitting}
-        >
-          {signUp ? "ثبت نام" : "ورود"}
-        </Button>
+        <CustomButton signUp={signUp} disabled={form.formState.isSubmitting} />
         <div className="flex justify-center items-center gap-1 font-medium">
           حساب {signUp ? "دارید" : "ندارید"}؟
           <Link

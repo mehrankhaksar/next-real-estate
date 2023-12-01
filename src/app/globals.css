@@ -56,6 +56,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  section {
+    @apply h-full;
+  }
 }
 
 .h2 {
@@ -63,5 +66,5 @@
 }
 
 .description {
-  @apply text-sm font-light text-primary-foreground text-justify;
+  @apply text-sm text-justify lg:text-base;
 }

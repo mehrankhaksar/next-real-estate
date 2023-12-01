@@ -1,27 +1,22 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 import { motion } from "framer-motion";
-import { usePathname } from "next/navigation";
 
 const underlineVariants = {
   initial: { y: "-100%" },
   animate: { y: 0, transition: { type: "tween" } },
 };
 
-const links = [
-  {
-    pathname: "/",
-    name: "صفحه اصلی",
-  },
-  {
-    pathname: "/advertisements",
-    name: "آگهی‌ها",
-  },
-];
-
-const Nav = ({ containerStyles, linkStyles, underlineStyles }) => {
+const Nav = ({
+  links,
+  containerStyles,
+  linkStyles,
+  activeLinkStyles,
+  layoutId,
+}) => {
   const pathname = usePathname();
 
   return (
@@ -30,14 +25,20 @@ const Nav = ({ containerStyles, linkStyles, underlineStyles }) => {
         <Link className={linkStyles} href={item.pathname} key={index}>
           {item.pathname === pathname && (
             <motion.span
-              className={underlineStyles}
-              variants={underlineVariants}
+              className={activeLinkStyles}
+              variants={layoutId === "active-underline" && underlineVariants}
               initial="initial"
               animate="animate"
-              layoutId="underline"
+              layoutId={layoutId}
             />
           )}
-          {item.name}
+          <span
+            className={`relative ${
+              item.pathname === pathname && "text-primary-foreground"
+            }`}
+          >
+            {item.label}
+          </span>
         </Link>
       ))}
     </nav>

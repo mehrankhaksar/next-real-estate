@@ -5,9 +5,10 @@ import {
   FormControl,
   FormMessage,
 } from "../ui/form";
+
 import { Input } from "../ui/input";
 
-const TextInput = ({ name, form, label, type }) => {
+const CustomTextInput = ({ name, form, label, type }) => {
   return (
     <FormField
       name={name}
@@ -25,4 +26,4 @@ const TextInput = ({ name, form, label, type }) => {
   );
 };
 
-export default TextInput;
+export default CustomTextInput;

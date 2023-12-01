@@ -6,7 +6,7 @@ import User from "@/models/User";
 
 import { verifyPassword } from "@/utils/auth";
 
-const authOptions = {
+export const authOptions = {
   session: { strategy: "jwt" },
   providers: [
     CredentialsProvider({
