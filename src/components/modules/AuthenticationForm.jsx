@@ -3,6 +3,8 @@
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+import { Form } from "../ui/form";
+
 import { useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,8 +13,6 @@ import { signUpFormSchema, signInFormSchema } from "@/schemas/formValidations";
 import { signIn } from "next-auth/react";
 
 import toast from "react-hot-toast";
-
-import { Form } from "../ui/form";
 
 import CustomTextInput from "./CustomTextInput";
 import CustomButton from "./CustomButton";
@@ -62,7 +62,7 @@ const AuthenticationForm = ({ signUp = false }) => {
   return (
     <Form {...form}>
       <form
-        className="max-w-[300px] w-full space-y-5 bg-white p-5 border-2 border-solid border-primary rounded-md shadow-md shadow-primary"
+        className="max-w-[300px] w-full space-y-5 bg-primary-foreground p-5 border-2 border-solid border-primary rounded-md shadow-md shadow-primary"
         noValidate
         onSubmit={form.handleSubmit(onSubmit)}
       >
@@ -76,7 +76,9 @@ const AuthenticationForm = ({ signUp = false }) => {
           label="رمز عبور"
           type="password"
         />
-        <CustomButton signUp={signUp} disabled={form.formState.isSubmitting} />
+        <CustomButton disabled={form.formState.isSubmitting}>
+          {signUp ? "ثبت نام" : "ورود"}
+        </CustomButton>
         <div className="flex justify-center items-center gap-1 font-medium">
           حساب {signUp ? "دارید" : "ندارید"}؟
           <Link

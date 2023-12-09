@@ -2,14 +2,14 @@ import { Button } from "../ui/button";
 
 import Loader from "./Loader";
 
-const CustomButton = ({ signUp, disabled }) => {
+const CustomButton = ({ containerStyles, disabled, children }) => {
   return (
     <Button
-      className="w-full text-base font-bold"
+      className={`w-full text-base font-bold ${containerStyles}`}
       type="submit"
       disabled={disabled}
     >
-      {disabled ? <Loader /> : signUp ? "ثبت نام" : "ورود"}
+      {disabled ? <Loader /> : children}
     </Button>
   );
 };

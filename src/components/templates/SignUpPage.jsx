@@ -2,9 +2,11 @@ import AuthenticationForm from "../modules/AuthenticationForm";
 
 const SignUpPage = () => {
   return (
-    <section>
-      <div className="h-full container flex justify-center items-center mx-auto">
-        <AuthenticationForm signUp={true} />
+    <section className="w-full h-[calc(100vh-85px)]">
+      <div className="w-full h-full container mx-auto">
+        <div className="w-full h-full flex justify-center items-center">
+          <AuthenticationForm signUp />
+        </div>
       </div>
     </section>
   );

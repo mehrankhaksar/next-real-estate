@@ -13,7 +13,10 @@ const signUpFormSchema = z.object({
 });
 
 const signInFormSchema = z.object({
-  email: z.string().email("ایمیل خود را وارد کنید"),
+  email: z
+    .string()
+    .min(1, { message: "ایمیل خود را وارد کنید" })
+    .email("ایمیل معتبر وارد کنید"),
   password: z.string().min(5, { message: "رمز عبور خود را وارد کنید" }),
 });
 

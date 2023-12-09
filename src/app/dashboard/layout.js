@@ -10,8 +10,8 @@ export default async function Layout({ children }) {
   if (!session) redirect("/sign-in");
 
   return (
-    <div className="h-full container mx-auto">
-      <div className="h-full flex gap-5 py-10">
+    <div className="w-full h-full container mx-auto">
+      <div className="flex gap-5 py-10">
         <Sidebar user={session.user} />
         {children}
       </div>

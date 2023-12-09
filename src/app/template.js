@@ -24,7 +24,7 @@ export default function template({ children }) {
 
   return (
     <motion.main
-      className="h-[calc(100vh-85px)]"
+      className="min-h-screen"
       variants={templateVariants}
       initial="initial"
       animate="animate"
