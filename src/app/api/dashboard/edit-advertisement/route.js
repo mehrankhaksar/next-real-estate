@@ -1,15 +1,14 @@
 import Advertisement from "@/models/Advertisement";
 import User from "@/models/User";
 import connectDB from "@/utils/connectDB";
-import { Types } from "mongoose";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
-export async function POST(req) {
+export async function PATCH(req) {
   const session = await getServerSession(req);
   if (!session)
     return NextResponse.json(
-      { error: "لطفا وارد حساب کاربری خود شوید" },
+      { error: "لطفا وارد حساب خود شوید" },
       { status: 401 }
     );
 
@@ -17,6 +16,7 @@ export async function POST(req) {
     await connectDB();
 
     const {
+      _id,
       title,
       province,
       city,
@@ -38,28 +38,34 @@ export async function POST(req) {
         { status: 404 }
       );
 
+    const advertisement = await Advertisement.findOne({ _id });
+
+    if (!user._id.equals(advertisement.userId))
+      return NextResponse.json(
+        { error: "دسترسی شما به این آگهی محدود شده است" },
+        { status: 401 }
+      );
+
     const newAmenities = amenities.filter((item) => item !== "");
     const newRule = rules.filter((item) => item !== "");
 
-    const newAdvertisement = await Advertisement.create({
-      title,
-      province,
-      city,
-      address,
-      phoneNumber,
-      price,
-      realEstate,
-      description,
-      category,
-      amenities: newAmenities,
-      rules: newRule,
-      constructionDate,
-      userId: new Types.ObjectId(user._id),
-    });
-    console.log(newAdvertisement);
+    advertisement.title = title;
+    advertisement.province = province;
+    advertisement.city = city;
+    advertisement.address = address;
+    advertisement.phoneNumber = phoneNumber;
+    advertisement.price = price;
+    advertisement.realEstate = realEstate;
+    advertisement.description = description;
+    advertisement.category = category;
+    advertisement.amenities = newAmenities;
+    advertisement.rules = newRule;
+    advertisement.constructionDate = constructionDate;
+
+    await advertisement.save();
     return NextResponse.json(
-      { message: "آگهی با موفقیت ثبت شد." },
-      { status: 201 }
+      { message: "آگهی با موفقیت ویرایش شد" },
+      { status: 200 }
     );
   } catch (err) {
     console.log(err);

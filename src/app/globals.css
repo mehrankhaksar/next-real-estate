@@ -59,6 +59,9 @@
   section {
     @apply h-full;
   }
+  a {
+    @apply block;
+  }
 }
 
 .h2 {

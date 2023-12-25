@@ -20,54 +20,84 @@ import CustomTextInputList from "./CustomTextInputList";
 import CustomDatePicker from "./CustomDatePicker";
 import CustomButton from "./CustomButton";
 
-const AddAdvertisementForm = ({ formStyles }) => {
-  const [filteredCities, SetFilteredCities] = React.useState([]);
+const AddAdvertisementForm = ({ advertisement, formStyles }) => {
+  const [filteredCities, setFilteredCities] = React.useState([]);
 
   const router = useRouter();
 
   const form = useForm({
     defaultValues: {
       title: "",
-      provinces: "",
-      cities: "",
-      address: "",
-      phoneNumber: "",
       price: "",
+      phoneNumber: "",
+      province: advertisement?.province || provinces[0].value,
+      city: "",
+      address: "",
       realEstate: "",
-      category: "",
+      description: "",
+      category: "villa",
       amenities: [],
       rules: [],
       constructionDate: new Date(),
     },
   });
 
-  const onSubmit = async (values) => {
-    const res = await fetch("/api/dashboard/add-advertisement", {
-      method: "POST",
-      body: JSON.stringify(values),
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = await res.json();
-
-    if (data.message) {
-      form.reset();
-      toast.success(data.message);
-      router.push("/dashboard/my-advertisements");
-    } else {
-      toast.error(data.error);
+  React.useEffect(() => {
+    if (advertisement) {
+      form.reset({
+        ...advertisement,
+        constructionDate: new Date(advertisement.constructionDate),
+      });
     }
-  };
+  }, []);
 
   React.useEffect(() => {
     const province = provinces.find(
-      (item) => item.name === form.getValues("provinces")
+      (item) => item.name === form.getValues("province")
     );
 
     const filteredCities = cities.filter(
       (item) => item.province_id === province?.id
     );
-    SetFilteredCities([...filteredCities]);
-  }, [form.watch("provinces")]);
+    setFilteredCities([...filteredCities]);
+  }, [form.watch("province")]);
+
+  const onSubmit = async (values) => {
+    console.log(values);
+    if (advertisement) {
+      const res = await fetch("/api/dashboard/edit-advertisement", {
+        method: "PATCH",
+        body: JSON.stringify(values),
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await res.json();
+
+      if (data.message) {
+        form.reset();
+        toast.success(data.message);
+        router.push("/dashboard/my-advertisements");
+        router.refresh();
+      } else {
+        toast.error(data.error);
+      }
+    } else {
+      const res = await fetch("/api/dashboard/add-advertisement", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await res.json();
+
+      if (data.message) {
+        form.reset();
+        toast.success(data.message);
+        router.push("/dashboard/my-advertisements");
+        router.refresh();
+      } else {
+        toast.error(data.error);
+      }
+    }
+  };
 
   return (
     <Form {...form}>
@@ -76,52 +106,36 @@ const AddAdvertisementForm = ({ formStyles }) => {
         noValidate
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        <CustomTextInput
-          name="title"
-          form={form}
-          label="عنوان آگهی"
-          type="text"
-        />
-        <CustomTextInput
-          name="phoneNumber"
-          form={form}
-          label="شماره تماس"
-          type="text"
-        />
+        <CustomTextInput name="title" form={form} label="عنوان آگهی" />
         <CustomTextInput
           name="price"
           form={form}
           label="قیمت (تومان)"
-          type="text"
+          type="number"
         />
+        <CustomTextInput name="phoneNumber" form={form} label="شماره تماس" />
         <CustomSelect
-          name="provinces"
+          name="province"
           form={form}
           label="استان"
           list={provinces}
         />
         {filteredCities.length ? (
           <CustomSelect
-            name="cities"
+            name="city"
             form={form}
             label="شهر"
             list={filteredCities}
           />
         ) : null}
-        <CustomTextInput name="address" form={form} label="آدرس" type="text" />
-        <CustomTextInput
-          name="realEstate"
-          form={form}
-          label="بنگاه"
-          type="text"
-        />
+        <CustomTextInput name="address" form={form} label="آدرس" />
+        <CustomTextInput name="realEstate" form={form} label="بنگاه" />
         <CustomTextInput
           name="description"
           form={form}
           containerStyles="col-span-full"
           label="توضیخات"
           textarea
-          type="text"
         />
         <CustomRadioButton
           name="category"
@@ -154,7 +168,7 @@ const AddAdvertisementForm = ({ formStyles }) => {
           containerStyles="col-span-full"
           disabled={form.formState.isSubmitting}
         >
-          ثبت آگهی
+          {advertisement ? "ویرایش" : "ثبت"} آگهی
         </CustomButton>
       </form>
     </Form>

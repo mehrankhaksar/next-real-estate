@@ -1,10 +1,10 @@
 import { YekanBakh } from "@/utils/fonts";
 
+import NextAuthProvider from "@/providers/NextAuthProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 import "./globals.css";
-import NextAuthProvider from "@/providers/NextAuthProvider";
 
 export const metadata = {
   title: "Create Next App",
@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`w-full min-h-screen flex flex-col justify-between overflow-y-auto overflow-x-hidden ${YekanBakh.className}`}
+        className={`w-full min-h-screen flex flex-col justify-between overflow-x-hidden ${YekanBakh.className}`}
         suppressHydrationWarning={true}
       >
         <NextAuthProvider>

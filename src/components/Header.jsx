@@ -24,17 +24,17 @@ const headerLinks = [
 ];
 
 const Header = () => {
-  const { data } = useSession();
-
   const [scroll, setScroll] = React.useState(false);
 
   React.useEffect(() => {
     const isScrolled = window.addEventListener("scroll", () => {
-      window.scrollY > 25 ? setScroll(true) : setScroll(false);
+      window.scrollY > 50 ? setScroll(true) : setScroll(false);
     });
 
     return window.removeEventListener("scroll", isScrolled);
   }, []);
+
+  const { data } = useSession();
 
   return (
     <header

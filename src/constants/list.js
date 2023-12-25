@@ -1,3 +1,29 @@
+const headerLinks = [
+  {
+    pathname: "/",
+    label: "صفحه اصلی",
+  },
+  {
+    pathname: "/advertisements",
+    label: "آگهی‌ها",
+  },
+];
+
+const sidebarLinks = [
+  {
+    pathname: "/dashboard",
+    label: "حساب کاربری",
+  },
+  {
+    pathname: "/dashboard/my-advertisements",
+    label: "آگهی‌های من",
+  },
+  {
+    pathname: "/dashboard/add-advertisement",
+    label: "ثبت آگهی",
+  },
+];
+
 const provinces = [
   {
     id: 1,
@@ -6892,4 +6918,4 @@ const radioItemsList = [
   },
 ];
 
-export { provinces, cities, radioItemsList };
+export { headerLinks, sidebarLinks, provinces, cities, radioItemsList };

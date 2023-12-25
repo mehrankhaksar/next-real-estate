@@ -1,6 +1,6 @@
 import { Button } from "../ui/button";
 
-import Loader from "./Loader";
+import { DotsLoader } from "./Loaders";
 
 const CustomButton = ({ containerStyles, disabled, children }) => {
   return (
@@ -9,7 +9,7 @@ const CustomButton = ({ containerStyles, disabled, children }) => {
       type="submit"
       disabled={disabled}
     >
-      {disabled ? <Loader /> : children}
+      {disabled ? <DotsLoader /> : children}
     </Button>
   );
 };

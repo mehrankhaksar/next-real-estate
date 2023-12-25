@@ -20,5 +20,5 @@ export default async function Dashboard() {
 
   const user = await User.findOne({ email: session.user.email });
 
-  return <DashboardPage user={user} />;
+  return <DashboardPage user={JSON.parse(JSON.stringify(user))} />;
 }

@@ -6,29 +6,31 @@ const advertisementSchema = new Schema(
       type: String,
       required: true,
     },
-    provinces: {
-      type: String,
-      required: true,
-    },
-    cities: {
-      type: String,
-      required: true,
-    },
-    address: {
-      type: String,
+    price: {
+      type: Number,
       required: true,
     },
     phoneNumber: {
       type: String,
       required: true,
     },
-    price: {
+    province: {
+      type: String,
+      required: true,
+    },
+    city: {
+      type: String,
+    },
+    address: {
       type: String,
       required: true,
     },
     realEstate: {
       type: String,
       required: true,
+    },
+    description: {
+      type: String,
     },
     category: {
       type: String,

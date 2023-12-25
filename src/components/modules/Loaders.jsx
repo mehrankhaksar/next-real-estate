@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-const Loader = () => {
+const DotsLoader = () => {
   return (
     <div className="inline-flex items-center gap-1.5">
       <motion.span
@@ -45,4 +45,20 @@ const Loader = () => {
   );
 };
 
-export default Loader;
+const SpinnerLoader = () => {
+  return (
+    <motion.div
+      animate={{
+        rotate: [0, 360],
+        transition: {
+          repeat: Infinity,
+          duration: 1,
+          ease: "linear",
+        },
+      }}
+      className="w-full h-full border-4 border-solid border-secondary border-t-primary rounded-full"
+    />
+  );
+};
+
+export { DotsLoader, SpinnerLoader };

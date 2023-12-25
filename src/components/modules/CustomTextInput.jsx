@@ -8,6 +8,8 @@ import {
 import { Textarea } from "../ui/textarea";
 import { Input } from "../ui/input";
 
+import { p2e } from "@/utils/numberConverter";
+
 const CustomTextInput = ({
   name,
   form,
@@ -19,7 +21,6 @@ const CustomTextInput = ({
   return (
     <FormField
       name={name}
-      control={form.control}
       render={({ field }) => (
         <FormItem className={containerStyles}>
           <FormLabel className="text-base font-extrabold">{label}</FormLabel>
@@ -27,11 +28,16 @@ const CustomTextInput = ({
             {textarea ? (
               <Textarea
                 className="h-[150px] resize-none"
-                type={type}
+                onChange={(e) => form.setValue(name, p2e(e.target.value))}
                 {...field}
               />
             ) : (
-              <Input type={type} {...field} />
+              <Input
+                type={type}
+                min={name === "price" ? 1 : null}
+                onChange={(e) => form.setValue(name, p2e(e.target.value))}
+                {...field}
+              />
             )}
           </FormControl>
           <FormMessage />
