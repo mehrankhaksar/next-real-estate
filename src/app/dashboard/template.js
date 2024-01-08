@@ -17,7 +17,7 @@ const templateVariants = {
 export default function Template({ children }) {
   return (
     <main className="flex-1 bg-primary-foreground p-5 rounded-lg shadow-md shadow-primary">
-      <motion.div variants={templateVariants}>{children}</motion.div>
+      <motion.section variants={templateVariants}>{children}</motion.section>
     </main>
   );
 }

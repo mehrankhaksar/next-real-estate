@@ -10,18 +10,7 @@ import { Button } from "./ui/button";
 
 import { LogIn, UserCircle } from "lucide-react";
 
-import Nav from "./Nav";
-
-const headerLinks = [
-  {
-    pathname: "/",
-    label: "صفحه اصلی",
-  },
-  {
-    pathname: "/advertisements",
-    label: "آگهی‌ها",
-  },
-];
+import HeaderNav from "./HeaderNav";
 
 const Header = () => {
   const [scroll, setScroll] = React.useState(false);
@@ -39,18 +28,12 @@ const Header = () => {
   return (
     <header
       className={`flex items-center sticky top-0 text-primary-foreground bg-primary z-40 transition-all duration-300 ${
-        scroll ? "h-[65px] shadow-lg" : "h-[85px]"
+        scroll ? "py-2.5 shadow-lg" : "py-5"
       }`}
     >
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
-          <Nav
-            links={headerLinks}
-            containerStyles="flex items-center gap-5"
-            linkStyles="relative font-medium"
-            activeLinkStyles="w-full h-0.5 absolute ring-0 bottom-0 bg-primary-foreground rounded-sm"
-            layoutId="active-underline"
-          />
+          <HeaderNav />
           <Link href="sign-in">
             {data ? (
               <Button

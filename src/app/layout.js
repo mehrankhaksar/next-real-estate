@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
       <body
-        className={`w-full min-h-screen flex flex-col justify-between overflow-x-hidden ${YekanBakh.className}`}
+        className={`w-full h-screen flex flex-col justify-between overflow-y-auto overflow-x-hidden ${YekanBakh.className}`}
         suppressHydrationWarning={true}
       >
         <NextAuthProvider>

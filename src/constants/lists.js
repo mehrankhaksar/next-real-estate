@@ -1,28 +1,86 @@
+import { Home, Building, Store, Building2 } from "lucide-react";
+
 const headerLinks = [
   {
-    pathname: "/",
+    href: {
+      pathname: "/",
+    },
     label: "صفحه اصلی",
   },
   {
-    pathname: "/advertisements",
+    href: {
+      pathname: "/advertisements",
+      query: { category: "all" },
+    },
     label: "آگهی‌ها",
   },
 ];
 
 const sidebarLinks = [
   {
-    pathname: "/dashboard",
+    href: {
+      pathname: "/dashboard",
+    },
     label: "حساب کاربری",
   },
   {
-    pathname: "/dashboard/my-advertisements",
+    href: {
+      pathname: "/dashboard/my-advertisements",
+    },
     label: "آگهی‌های من",
   },
   {
-    pathname: "/dashboard/add-advertisement",
+    href: {
+      pathname: "/dashboard/add-advertisement",
+    },
     label: "ثبت آگهی",
   },
 ];
+
+const categoriesLink = [
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "all" },
+    },
+    label: "همه",
+  },
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "villa" },
+    },
+    label: "ویلا",
+  },
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "apartment" },
+    },
+    label: "آپارتمان",
+  },
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "store" },
+    },
+    label: "مغازه",
+  },
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "office" },
+    },
+    label: "دفتر",
+  },
+];
+
+const categoriesIcons = {
+  villa: { icon: <Home size={17} />, label: "ویلا" },
+  apartment: { icon: <Building size={17} />, label: "آپارتمان" },
+  store: { icon: <Store size={17} />, label: "مغازه" },
+  office: { icon: <Building2 size={17} />, label: "دفتر" },
+};
 
 const provinces = [
   {
@@ -6918,4 +6976,12 @@ const radioItemsList = [
   },
 ];
 
-export { headerLinks, sidebarLinks, provinces, cities, radioItemsList };
+export {
+  headerLinks,
+  sidebarLinks,
+  categoriesLink,
+  categoriesIcons,
+  provinces,
+  cities,
+  radioItemsList,
+};

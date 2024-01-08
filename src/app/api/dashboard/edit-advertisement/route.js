@@ -1,8 +1,10 @@
-import Advertisement from "@/models/Advertisement";
-import User from "@/models/User";
-import connectDB from "@/utils/connectDB";
-import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+
+import { getServerSession } from "next-auth";
+
+import connectDB from "@/utils/connectDB";
+import User from "@/models/User";
+import Advertisement from "@/models/Advertisement";
 
 export async function PATCH(req) {
   const session = await getServerSession(req);

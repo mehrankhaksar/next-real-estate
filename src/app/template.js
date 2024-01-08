@@ -12,7 +12,7 @@ const templateVariants = {
     opacity: 1,
     transition: {
       when: "beforeChildren",
-      type: "linear",
+      ease: "linear",
       delay: 0.2,
       duration: 0.4,
     },
@@ -24,7 +24,7 @@ export default function template({ children }) {
 
   return (
     <motion.main
-      className="min-h-screen"
+      className="flex-1 py-10"
       variants={templateVariants}
       initial="initial"
       animate="animate"

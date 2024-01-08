@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 import { FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
@@ -9,12 +7,6 @@ import { Button } from "../ui/button";
 import { Trash2, Plus } from "lucide-react";
 
 const CustomTextInputList = ({ form, name, containerStyles, label }) => {
-  React.useEffect(() => {
-    const newArray = form.getValues(name).filter((item) => item !== "");
-
-    form.setValue(name, [...newArray]);
-  }, [form.formState.isSubmitting]);
-
   const handleAdd = () => {
     form.setValue(name, [...form.getValues(name), ""]);
   };

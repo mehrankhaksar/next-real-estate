@@ -25,7 +25,7 @@ const CustomSelect = ({ name, form, label, list }) => {
             </SelectTrigger>
             <SelectContent>
               {list.map((item) => (
-                <SelectItem value={item.value} key={item.id}>
+                <SelectItem value={item.name} key={item.id}>
                   {item.name}
                 </SelectItem>
               ))}

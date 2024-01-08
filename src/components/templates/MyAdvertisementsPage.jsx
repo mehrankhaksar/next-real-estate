@@ -2,7 +2,7 @@ import DashboardAdvertisementCard from "../modules/DashboardAdvertisementCard";
 
 const MyAdvertisementsPage = ({ userAdvertisementsList }) => {
   return (
-    <div className="flex flex-wrap gap-5">
+    <div className="grid grid-cols-4 gap-y-10 gap-x-5">
       {userAdvertisementsList.length ? (
         userAdvertisementsList.map((item) => (
           <DashboardAdvertisementCard advertisement={item} key={item._id} />

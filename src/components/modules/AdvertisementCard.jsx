@@ -1,12 +1,14 @@
 import Link from "next/link";
+
+import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
+import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 import { Home, Building, Store, Building2, MapPin } from "lucide-react";
-import { Separator } from "../ui/separator";
-import { sp } from "@/utils/numberConverter";
 
-const AdvertisementCard = ({ title, category, province, city, price }) => {
+import { e2p, sp } from "@/utils/numberConverter";
+
+const AdvertisementCard = ({ _id, title, category, province, city, price }) => {
   const categoriesIcons = {
     villa: <Home size={20} />,
     apartment: <Building size={20} />,
@@ -15,10 +17,10 @@ const AdvertisementCard = ({ title, category, province, city, price }) => {
   };
 
   return (
-    <Card className="w-[250px] shadow shadow-primary">
+    <Card className="shadow shadow-primary">
       <CardHeader>
         <div className="flex justify-between items-center text-primary">
-          <CardTitle>{title}</CardTitle>
+          <CardTitle>{e2p(title)}</CardTitle>
           <span className="bg-primary/25 p-1.5 rounded-md">
             {categoriesIcons[category]}
           </span>
@@ -36,7 +38,7 @@ const AdvertisementCard = ({ title, category, province, city, price }) => {
           </span>
           تومان
         </div>
-        <Link href="/">
+        <Link href={`/advertisements/${_id}`}>
           <Button className="font-bold" type="button">
             مشاهده آگهی
           </Button>

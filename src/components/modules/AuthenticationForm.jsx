@@ -1,7 +1,9 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
+
+import { motion } from "framer-motion";
 
 import { Form } from "../ui/form";
 
@@ -17,8 +19,24 @@ import toast from "react-hot-toast";
 import CustomTextInput from "./CustomTextInput";
 import CustomButton from "./CustomButton";
 
+const formVariants = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: {
+      delay: 0.4,
+      duration: 0.4,
+      ease: "linear",
+    },
+  },
+  exit: {
+    opacity: 0,
+  },
+};
+
 const AuthenticationForm = ({ signUp = false }) => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const form = useForm({
     resolver: zodResolver(signUp ? signUpFormSchema : signInFormSchema),
@@ -61,8 +79,10 @@ const AuthenticationForm = ({ signUp = false }) => {
 
   return (
     <Form {...form}>
-      <form
-        className="max-w-[300px] w-full space-y-5 bg-primary-foreground p-5 border-2 border-solid border-primary rounded-md shadow-md shadow-primary"
+      <motion.form
+        className="max-w-[300px] space-y-5 bg-primary-foreground mx-auto p-5 border-2 border-solid border-primary rounded-md shadow-md shadow-primary"
+        variants={formVariants}
+        key={pathname}
         noValidate
         onSubmit={form.handleSubmit(onSubmit)}
       >
@@ -88,7 +108,7 @@ const AuthenticationForm = ({ signUp = false }) => {
             {signUp ? "ورود" : "ثبت نام"}
           </Link>
         </div>
-      </form>
+      </motion.form>
     </Form>
   );
 };

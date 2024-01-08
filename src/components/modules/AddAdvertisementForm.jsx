@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 
 import toast from "react-hot-toast";
 
-import { provinces, cities, radioItemsList } from "@/constants/list";
+import { provinces, cities, radioItemsList } from "@/constants/lists";
 
 import CustomTextInput from "./CustomTextInput";
 import CustomSelect from "./CustomSelect";
@@ -30,7 +30,7 @@ const AddAdvertisementForm = ({ advertisement, formStyles }) => {
       title: "",
       price: "",
       phoneNumber: "",
-      province: advertisement?.province || provinces[0].value,
+      province: advertisement?.province || provinces[0].name,
       city: "",
       address: "",
       realEstate: "",
@@ -63,7 +63,6 @@ const AddAdvertisementForm = ({ advertisement, formStyles }) => {
   }, [form.watch("province")]);
 
   const onSubmit = async (values) => {
-    console.log(values);
     if (advertisement) {
       const res = await fetch("/api/dashboard/edit-advertisement", {
         method: "PATCH",
