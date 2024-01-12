@@ -16,7 +16,7 @@ const useProgressScroll = () => {
     };
 
     window.addEventListener("scroll", updateScrollCompletion);
-
+    
     return () => window.removeEventListener("scroll", updateScrollCompletion);
   }, []);
 

@@ -35,6 +35,12 @@ const sidebarLinks = [
     },
     label: "ثبت آگهی",
   },
+  {
+    href: {
+      pathname: "/dashboard/admin/publish",
+    },
+    label: "انتشار آگهی",
+  },
 ];
 
 const categoriesLink = [
@@ -76,10 +82,10 @@ const categoriesLink = [
 ];
 
 const categoriesIcons = {
-  villa: { icon: <Home size={17} />, label: "ویلا" },
-  apartment: { icon: <Building size={17} />, label: "آپارتمان" },
-  store: { icon: <Store size={17} />, label: "مغازه" },
-  office: { icon: <Building2 size={17} />, label: "دفتر" },
+  villa: { icon: <Home size={25} />, label: "ویلا" },
+  apartment: { icon: <Building size={25} />, label: "آپارتمان" },
+  store: { icon: <Store size={25} />, label: "مغازه" },
+  office: { icon: <Building2 size={25} />, label: "دفتر" },
 };
 
 const provinces = [

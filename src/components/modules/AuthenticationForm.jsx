@@ -80,7 +80,7 @@ const AuthenticationForm = ({ signUp = false }) => {
   return (
     <Form {...form}>
       <motion.form
-        className="max-w-[300px] space-y-5 bg-primary-foreground mx-auto p-5 border-2 border-solid border-primary rounded-md shadow-md shadow-primary"
+        className="max-w-[300px] space-y-5 bg-white mx-auto p-5 border-2 border-solid border-primary rounded-md shadow shadow-primary"
         variants={formVariants}
         key={pathname}
         noValidate

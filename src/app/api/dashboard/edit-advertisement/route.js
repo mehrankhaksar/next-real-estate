@@ -20,17 +20,17 @@ export async function PATCH(req) {
     const {
       _id,
       title,
+      price,
+      phoneNumber,
       province,
       city,
       address,
-      phoneNumber,
-      price,
       realEstate,
       description,
       category,
+      constructionDate,
       amenities,
       rules,
-      constructionDate,
     } = await req.json();
 
     const user = await User.findOne({ email: session.user.email });
@@ -41,8 +41,7 @@ export async function PATCH(req) {
       );
 
     const advertisement = await Advertisement.findOne({ _id });
-
-    if (!user._id.equals(advertisement.userId))
+    if (user.role !== "ADMIN" && !user._id.equals(advertisement.userId))
       return NextResponse.json(
         { error: "دسترسی شما به این آگهی محدود شده است" },
         { status: 401 }
@@ -52,17 +51,17 @@ export async function PATCH(req) {
     const newRule = rules.filter((item) => item !== "");
 
     advertisement.title = title;
+    advertisement.price = price;
+    advertisement.phoneNumber = phoneNumber;
     advertisement.province = province;
     advertisement.city = city;
     advertisement.address = address;
-    advertisement.phoneNumber = phoneNumber;
-    advertisement.price = price;
     advertisement.realEstate = realEstate;
     advertisement.description = description;
     advertisement.category = category;
+    advertisement.constructionDate = constructionDate;
     advertisement.amenities = newAmenities;
     advertisement.rules = newRule;
-    advertisement.constructionDate = constructionDate;
 
     await advertisement.save();
     return NextResponse.json(

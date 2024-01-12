@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { useSession } from "next-auth/react";
 
+import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 import { Button } from "./ui/button";
 
 import { LogIn, UserCircle } from "lucide-react";
@@ -36,16 +37,15 @@ const Header = () => {
           <HeaderNav />
           <Link href="sign-in">
             {data ? (
-              <Button
-                className="h-fit py-1.5 px-1.5 rounded-full"
-                variant="secondary"
-                type="button"
-              >
-                <UserCircle size={30} />
-              </Button>
+              <Avatar className="flex justify-center items-center text-secondary-foreground">
+                <AvatarImage />
+                <AvatarFallback>
+                  <UserCircle size={30} />
+                </AvatarFallback>
+              </Avatar>
             ) : (
               <Button
-                className="gap-1.5 text-base font-bold"
+                className="flex items-center gap-1 text-base font-bold text-secondary-foreground"
                 variant="secondary"
                 type="button"
               >

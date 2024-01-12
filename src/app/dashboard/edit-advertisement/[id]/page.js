@@ -1,6 +1,7 @@
-import EditAdvertisementPage from "@/components/templates/EditAdvertisementPage";
-import Advertisement from "@/models/Advertisement";
 import connectDB from "@/utils/connectDB";
+import Advertisement from "@/models/Advertisement";
+
+import EditAdvertisementPage from "@/components/templates/EditAdvertisementPage";
 
 export default async function EditAdvertisement({ params: { id } }) {
   try {

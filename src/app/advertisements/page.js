@@ -10,7 +10,9 @@ export default async function Advertisements({ searchParams }) {
     console.log(err);
   }
 
-  const advertisements = await Advertisement.find().select("-userId");
+  const advertisements = await Advertisement.find({ isPublished: true }).select(
+    "-userId"
+  );
 
   let finalData = [];
   if (searchParams.category) {

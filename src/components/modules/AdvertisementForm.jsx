@@ -20,7 +20,7 @@ import CustomTextInputList from "./CustomTextInputList";
 import CustomDatePicker from "./CustomDatePicker";
 import CustomButton from "./CustomButton";
 
-const AddAdvertisementForm = ({ advertisement, formStyles }) => {
+const AdvertisementForm = ({ advertisement }) => {
   const [filteredCities, setFilteredCities] = React.useState([]);
 
   const router = useRouter();
@@ -74,7 +74,6 @@ const AddAdvertisementForm = ({ advertisement, formStyles }) => {
       if (data.message) {
         form.reset();
         toast.success(data.message);
-        router.push("/dashboard/my-advertisements");
         router.refresh();
       } else {
         toast.error(data.error);
@@ -90,8 +89,8 @@ const AddAdvertisementForm = ({ advertisement, formStyles }) => {
       if (data.message) {
         form.reset();
         toast.success(data.message);
-        router.push("/dashboard/my-advertisements");
         router.refresh();
+        router.push("/dashboard/my-advertisements");
       } else {
         toast.error(data.error);
       }
@@ -101,17 +100,12 @@ const AddAdvertisementForm = ({ advertisement, formStyles }) => {
   return (
     <Form {...form}>
       <form
-        className={formStyles}
+        className="grid grid-cols-2 gap-5"
         noValidate
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <CustomTextInput name="title" form={form} label="عنوان آگهی" />
-        <CustomTextInput
-          name="price"
-          form={form}
-          label="قیمت (تومان)"
-          type="number"
-        />
+        <CustomTextInput name="price" form={form} label="قیمت (تومان)" />
         <CustomTextInput name="phoneNumber" form={form} label="شماره تماس" />
         <CustomSelect
           name="province"
@@ -139,7 +133,6 @@ const AddAdvertisementForm = ({ advertisement, formStyles }) => {
         <CustomRadioButton
           name="category"
           form={form}
-          containerStyles="col-start-1"
           label="دسته بندی"
           radioItemsList={radioItemsList}
         />
@@ -152,16 +145,10 @@ const AddAdvertisementForm = ({ advertisement, formStyles }) => {
           <CustomTextInputList
             form={form}
             name="amenities"
-            containerStyles="w-full flex flex-col"
             label="امکانات رفاهی"
           />
           <Separator orientation="vertical" />
-          <CustomTextInputList
-            form={form}
-            name="rules"
-            containerStyles="w-full flex flex-col"
-            label="قوانین"
-          />
+          <CustomTextInputList form={form} name="rules" label="قوانین" />
         </div>
         <CustomButton
           containerStyles="col-span-full"
@@ -174,4 +161,4 @@ const AddAdvertisementForm = ({ advertisement, formStyles }) => {
   );
 };
 
-export default AddAdvertisementForm;
+export default AdvertisementForm;

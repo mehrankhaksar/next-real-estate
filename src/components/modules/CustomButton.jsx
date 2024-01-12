@@ -5,7 +5,7 @@ import { DotsLoader } from "./Loaders";
 const CustomButton = ({ containerStyles, disabled, children }) => {
   return (
     <Button
-      className={`w-full text-base font-bold ${containerStyles}`}
+      className={`w-full text-base font-extrabold ${containerStyles}`}
       type="submit"
       disabled={disabled}
     >

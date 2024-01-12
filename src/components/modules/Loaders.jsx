@@ -3,49 +3,41 @@
 import { motion } from "framer-motion";
 
 const DotsLoader = () => {
+  const transition = {
+    repeat: Infinity,
+    repeatType: "mirror",
+    duration: 0.5,
+    ease: "easeInOut",
+  };
+
   return (
     <div className="inline-flex items-center gap-1.5">
       <motion.span
-        className="w-3 h-3 inline-block bg-primary-foreground rounded-full"
+        className="dot"
         animate={{
           scale: [0.85, 1.15],
         }}
-        transition={{
-          repeat: Infinity,
-          repeatType: "mirror",
-          duration: 0.5,
-          ease: "easeInOut",
-        }}
+        transition={transition}
       />
       <motion.span
-        className="w-3 h-3 inline-block bg-primary-foreground rounded-full"
+        className="dot"
         animate={{
           scale: [1.15, 0.55],
         }}
-        transition={{
-          repeat: Infinity,
-          repeatType: "mirror",
-          duration: 0.5,
-          ease: "easeInOut",
-        }}
+        transition={transition}
       />
       <motion.span
-        className="w-3 h-3 inline-block bg-primary-foreground rounded-full"
+        className="dot"
         animate={{
           scale: [0.85, 1.15],
         }}
-        transition={{
-          repeat: Infinity,
-          repeatType: "mirror",
-          duration: 0.5,
-          ease: "easeInOut",
-        }}
+        transition={transition}
       />
     </div>
   );
 };
 
-const SpinnerLoader = () => {
+const SpinnerLoader = ({ color }) => {
   return (
     <motion.div
       animate={{
@@ -56,7 +48,7 @@ const SpinnerLoader = () => {
           ease: "linear",
         },
       }}
-      className="w-full h-full border-4 border-solid border-secondary border-t-primary rounded-full"
+      className={`w-full h-full border-4 border-solid border-white ${color} rounded-full`}
     />
   );
 };

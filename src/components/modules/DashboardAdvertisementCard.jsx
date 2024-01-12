@@ -2,24 +2,49 @@
 
 import React from "react";
 
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+
 import { Button } from "../ui/button";
 
 import toast from "react-hot-toast";
 
-import { useRouter } from "next/navigation";
-import { Trash, PenSquare } from "lucide-react";
+import { CheckCircle2, Trash, PenSquare } from "lucide-react";
 
-import AdvertisementCard from "./AdvertisementCard";
-import Link from "next/link";
 import { SpinnerLoader } from "./Loaders";
+import AdvertisementCard from "./AdvertisementCard";
 
-const DashboardAdvertisementCard = ({ advertisement }) => {
-  const [loading, setLoading] = React.useState(false);
+const DashboardAdvertisementCard = ({ role, advertisement }) => {
+  const [loading, setLoading] = React.useState({
+    publish: false,
+    remove: false,
+  });
 
   const router = useRouter();
 
+  const handlePublish = async () => {
+    setLoading({ ...loading, publish: true });
+
+    const res = await fetch(
+      `/api/dashboard/publish-advertisement/${advertisement._id}`,
+      {
+        method: "PATCH",
+      }
+    );
+    const data = await res.json();
+
+    setLoading({ ...loading, publish: false });
+
+    if (data.message) {
+      toast.success(data.message);
+      router.refresh();
+    } else {
+      toast.error(data.error);
+    }
+  };
+
   const handleRemove = async () => {
-    setLoading(true);
+    setLoading({ ...loading, remove: true });
 
     const res = await fetch(
       `/api/dashboard/remove-advertisement/${advertisement._id}`,
@@ -29,7 +54,7 @@ const DashboardAdvertisementCard = ({ advertisement }) => {
     );
     const data = await res.json();
 
-    setLoading(false);
+    setLoading({ ...loading, remove: false });
 
     if (data.message) {
       toast.success(data.message);
@@ -42,13 +67,30 @@ const DashboardAdvertisementCard = ({ advertisement }) => {
   return (
     <div className="relative">
       <div className="flex items-center gap-1.5 absolute -top-4 left-0">
+        {role === "ADMIN" ? (
+          <Button
+            className="w-8 h-8 bg-green-500 p-1.5 rounded-full hover:bg-green-600"
+            type="button"
+            onClick={handlePublish}
+          >
+            {loading.publish ? (
+              <SpinnerLoader color="border-t-green-500" />
+            ) : (
+              <CheckCircle2 size={20} />
+            )}
+          </Button>
+        ) : null}
         <Button
           className="w-8 h-8 p-1.5 rounded-full"
           variant="destructive"
           type="button"
           onClick={handleRemove}
         >
-          {loading ? <SpinnerLoader /> : <Trash size={15} />}
+          {loading.remove ? (
+            <SpinnerLoader color="border-t-destructive" />
+          ) : (
+            <Trash size={15} />
+          )}
         </Button>
         <Link href={`/dashboard/edit-advertisement/${advertisement._id}`}>
           <Button className="w-8 h-8 p-1.5 rounded-full">

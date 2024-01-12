@@ -10,16 +10,24 @@ const AdvertisementDetailsPage = ({ advertisement }) => {
 
   const itemsList = (list) => {
     return (
-      <ul className="space-y-1.5">
-        {list.map((item, index) => (
-          <li
-            className="font-semibold list-disc marker:text-primary"
-            key={index}
-          >
-            {item}
-          </li>
-        ))}
-      </ul>
+      <div>
+        {list.length ? (
+          <ul className="space-y-1.5">
+            {list.map((item, index) => (
+              <li
+                className="font-semibold list-disc marker:text-primary"
+                key={index}
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="inline-block text-sm font-medium text-destructive-foreground bg-destructive p-1.5 rounded">
+            موردی ذکر نشده است
+          </p>
+        )}
+      </div>
     );
   };
 
@@ -27,11 +35,11 @@ const AdvertisementDetailsPage = ({ advertisement }) => {
     <section>
       <div className="container mx-auto">
         <div className="flex gap-5">
-          <div className="flex-1 space-y-5 bg-primary-foreground p-5 rounded-xl shadow-md shadow-primary">
-            <div className="space-y-2.5">
-              <h3 className="h3 text-primary">{title}</h3>
-              <div className="flex items-center gap-1.5 text-sm font-semibold text-muted-foreground">
-                <MapPin size={17} />
+          <div className="flex-1 space-y-5 bg-primary-foreground p-5 rounded-xl shadow shadow-primary transition-all ease-in">
+            <div className="space-y-1.5">
+              <h2 className="h2 text-primary">{title}</h2>
+              <div className="flex items-center gap-1 text-sm font-bold text-muted-foreground">
+                <MapPin className="text-primary" size={18} />
                 {province}, {city}
               </div>
             </div>

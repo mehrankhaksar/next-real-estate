@@ -7,7 +7,7 @@ const advertisementSchema = new Schema(
       required: true,
     },
     price: {
-      type: Number,
+      type: String,
       required: true,
     },
     phoneNumber: {
@@ -37,6 +37,10 @@ const advertisementSchema = new Schema(
       enum: ["villa", "apartment", "store", "office"],
       required: true,
     },
+    constructionDate: {
+      type: Date,
+      required: true,
+    },
     amenities: {
       type: [String],
       default: [],
@@ -45,9 +49,9 @@ const advertisementSchema = new Schema(
       type: [String],
       default: [],
     },
-    constructionDate: {
-      type: Date,
-      required: true,
+    isPublished: {
+      type: Boolean,
+      default: false,
     },
     userId: {
       type: Schema.Types.ObjectId,

@@ -11,10 +11,7 @@ const containerVariants = {
   animate: {
     opacity: 1,
     transition: {
-      when: "beforeChildren",
-      ease: "linear",
-      delay: 0.2,
-      duration: 0.4,
+      ease: "easeIn",
     },
   },
   exit: { opacity: 0 },
@@ -28,10 +25,8 @@ const layoutVariants = {
     opacity: 1,
     transition: {
       when: "beforeChildren",
-      staggerChildren: 1,
+      staggerChildren: 0.25,
       ease: "linear",
-      delay: 0.15,
-      duration: 0.3,
     },
   },
 };
@@ -43,9 +38,7 @@ const cardVariants = {
   animate: {
     opacity: 1,
     transition: {
-      ease: "linear",
-      delay: 0.15,
-      duration: 0.3,
+      ease: "easeIn",
     },
   },
 };

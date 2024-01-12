@@ -1,25 +1,19 @@
 import {
   FormField,
   FormItem,
-  FormControl,
   FormLabel,
+  FormControl,
   FormMessage,
 } from "../ui/form";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 
-const CustomRadioButton = ({
-  name,
-  form,
-  containerStyles,
-  label,
-  radioItemsList,
-}) => {
+const CustomRadioButton = ({ name, form, label, radioItemsList }) => {
   return (
     <FormField
       name={name}
       control={form.control}
       render={({ field }) => (
-        <FormItem className={containerStyles}>
+        <FormItem>
           <FormLabel className="text-base font-extrabold">{label}</FormLabel>
           <FormControl>
             <RadioGroup
@@ -30,7 +24,7 @@ const CustomRadioButton = ({
             >
               {radioItemsList.map((item, index) => (
                 <div
-                  className="flex items-center gap-1.5 text-primary bg-primary/20 py-3 px-3 rounded"
+                  className="flex items-center gap-1.5 text-primary bg-primary/20 p-3 rounded"
                   key={index}
                 >
                   <RadioGroupItem

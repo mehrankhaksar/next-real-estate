@@ -6,13 +6,13 @@ import User from "@/models/User";
 import MyAdvertisementsPage from "@/components/templates/MyAdvertisementsPage";
 
 export default async function MyAdvertisements() {
+  const session = await getServerSession(authOptions);
+
   try {
     await connectDB();
   } catch (err) {
     console.log(err);
   }
-
-  const session = await getServerSession(authOptions);
 
   const [user] = await User.aggregate([
     { $match: { email: session.user.email } },

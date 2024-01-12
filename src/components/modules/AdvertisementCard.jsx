@@ -8,7 +8,7 @@ import { Home, Building, Store, Building2, MapPin } from "lucide-react";
 
 import { e2p, sp } from "@/utils/numberConverter";
 
-const AdvertisementCard = ({ _id, title, category, province, city, price }) => {
+const AdvertisementCard = ({ title, category, province, city, price, _id }) => {
   const categoriesIcons = {
     villa: <Home size={20} />,
     apartment: <Building size={20} />,
@@ -32,8 +32,8 @@ const AdvertisementCard = ({ _id, title, category, province, city, price }) => {
           <MapPin size={18} />
           {province}, {city}
         </div>
-        <div className="flex items-center gap-1.5">
-          <span className="text-secondary-foreground font-extrabold">
+        <div className="flex items-center gap-1">
+          <span className="font-extrabold text-secondary-foreground">
             {sp(price)}
           </span>
           تومان

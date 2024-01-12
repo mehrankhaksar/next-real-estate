@@ -2,13 +2,15 @@ import DashboardAdvertisementCard from "../modules/DashboardAdvertisementCard";
 
 const MyAdvertisementsPage = ({ userAdvertisementsList }) => {
   return (
-    <div className="grid grid-cols-4 gap-y-10 gap-x-5">
+    <div>
       {userAdvertisementsList.length ? (
-        userAdvertisementsList.map((item) => (
-          <DashboardAdvertisementCard advertisement={item} key={item._id} />
-        ))
+        <div className="grid grid-cols-4 gap-y-10 gap-x-5">
+          {userAdvertisementsList.map((item) => (
+            <DashboardAdvertisementCard advertisement={item} key={item._id} />
+          ))}
+        </div>
       ) : (
-        <p className="font-bold text-destructive-foreground bg-destructive py-1.5 px-3 rounded shadow shadow-destructive">
+        <p className="inline-block font-bold text-destructive-foreground bg-destructive py-1.5 px-3 rounded-md shadow-md shadow-destructive">
           آگهی ثبت نشده است
         </p>
       )}

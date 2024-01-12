@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 import { getServerSession } from "next-auth";
 
 import connectDB from "@/utils/connectDB";
@@ -6,15 +7,16 @@ import User from "@/models/User";
 import Advertisement from "@/models/Advertisement";
 
 export async function DELETE(req, context) {
+  const session = await getServerSession(req);
+  if (!session)
+    return NextResponse.json(
+      { error: "لطفا وارد حساب خود شوید" },
+      { status: 401 }
+    );
+
   try {
     await connectDB();
 
-    const session = await getServerSession(req);
-    if (!session)
-      return NextResponse.json(
-        { error: "لطفا وارد حساب خود شوید" },
-        { status: 401 }
-      );
     const user = await User.findOne({ email: session.user.email });
     if (!user)
       return NextResponse.json(
@@ -25,7 +27,7 @@ export async function DELETE(req, context) {
     const { id } = context.params;
 
     const advertisement = await Advertisement.findOne({ _id: id });
-    if (!user._id.equals(advertisement.userId))
+    if (user.role !== "ADMIN" && !user._id.equals(advertisement.userId))
       return NextResponse.json(
         { error: "دسترسی شما به این آگهی محدود شده است" },
         { status: 403 }

@@ -12,9 +12,9 @@ const templateVariants = {
     opacity: 1,
     transition: {
       when: "beforeChildren",
-      ease: "linear",
       delay: 0.2,
       duration: 0.4,
+      ease: "linear",
     },
   },
 };

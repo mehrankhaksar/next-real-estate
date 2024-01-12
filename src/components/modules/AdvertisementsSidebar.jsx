@@ -4,10 +4,11 @@ import Link from "next/link";
 
 import { motion } from "framer-motion";
 
+import { Separator } from "../ui/separator";
+
 import { Filter } from "lucide-react";
 
 import { categoriesLink } from "@/constants/lists";
-import { Separator } from "../ui/separator";
 
 const AdvertisementsSidebar = ({ category }) => {
   return (
@@ -17,21 +18,21 @@ const AdvertisementsSidebar = ({ category }) => {
         دسته بندی
       </h3>
       <Separator className="bg-secondary-foreground my-1.5" />
-      <nav className="space-y-2.5">
+      <nav className="space-y-1.5">
         {categoriesLink.map((item, index) => (
           <Link
-            className="relative text-sm font-semibold text-center py-1.5 rounded-md overflow-hidden"
+            className="relative text-sm font-bold text-center py-1.5 rounded-md overflow-hidden"
             href={item.href}
             key={index}
           >
             {Object.values(item.href.query).toString() === category && (
-              <motion.span
+              <motion.div
                 className="absolute inset-0 bg-primary"
                 layoutId="active-pill"
               />
             )}
             <span
-              className={`relative ${
+              className={`relative z-10 ${
                 Object.values(item.href.query).toString() === category &&
                 "text-primary-foreground"
               }`}

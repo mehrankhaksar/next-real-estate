@@ -20,11 +20,10 @@ export async function POST(req) {
 
     const hashedPassword = await hashPassword(password);
 
-    const newUser = await User.create({
+    await User.create({
       email: email,
       password: hashedPassword,
     });
-    console.log(newUser);
     return NextResponse.json(
       { message: "حساب کاربری با موفقیت ساخته شد" },
       { status: 201 }

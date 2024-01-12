@@ -1,4 +1,10 @@
-import { FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
+import {
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from "../ui/form";
 import {
   Select,
   SelectTrigger,
@@ -15,22 +21,24 @@ const CustomSelect = ({ name, form, label, list }) => {
       render={({ field }) => (
         <FormItem>
           <FormLabel className="text-base font-semibold">{label}</FormLabel>
-          <Select
-            dir="rtl"
-            defaultValue={field.value}
-            onValueChange={field.onChange}
-          >
-            <SelectTrigger className="shadow shadow-primary">
-              <SelectValue placeholder={label} />
-            </SelectTrigger>
-            <SelectContent>
-              {list.map((item) => (
-                <SelectItem value={item.name} key={item.id}>
-                  {item.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <FormControl>
+            <Select
+              dir="rtl"
+              defaultValue={field.value}
+              onValueChange={field.onChange}
+            >
+              <SelectTrigger className="shadow shadow-primary">
+                <SelectValue placeholder={label} />
+              </SelectTrigger>
+              <SelectContent>
+                {list.map((item) => (
+                  <SelectItem value={item.name} key={item.id}>
+                    {item.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </FormControl>
           <FormMessage />
         </FormItem>
       )}

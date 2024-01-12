@@ -6,10 +6,9 @@ import connectDB from "@/utils/connectDB";
 import User from "@/models/User";
 import Advertisement from "@/models/Advertisement";
 
-import { Types } from "mongoose";
-
-export async function POST(req) {
+export async function PATCH(req, context) {
   const session = await getServerSession(req);
+
   if (!session)
     return NextResponse.json(
       { error: "لطفا وارد حساب کاربری خود شوید" },
@@ -19,20 +18,7 @@ export async function POST(req) {
   try {
     await connectDB();
 
-    const {
-      title,
-      price,
-      phoneNumber,
-      province,
-      city,
-      address,
-      realEstate,
-      description,
-      category,
-      constructionDate,
-      amenities,
-      rules,
-    } = await req.json();
+    const { id } = context.params;
 
     const user = await User.findOne({ email: session.user.email });
     if (!user)
@@ -41,30 +27,22 @@ export async function POST(req) {
         { status: 404 }
       );
 
-    const newAmenities = amenities.filter((item) => item !== "");
-    const newRule = rules.filter((item) => item !== "");
+    if (user.role !== "ADMIN")
+      return NextResponse.json(
+        { error: "دسترسی شما محدود شده است" },
+        { status: 403 }
+      );
 
-    await Advertisement.create({
-      title,
-      price,
-      phoneNumber,
-      province,
-      city,
-      address,
-      realEstate,
-      description,
-      category,
-      constructionDate,
-      amenities: newAmenities,
-      rules: newRule,
-      userId: new Types.ObjectId(user._id),
-    });
+    const advertisement = await Advertisement.findOne({ _id: id });
+
+    advertisement.isPublished = true;
+    advertisement.save();
+
     return NextResponse.json(
-      { message: "آگهی با موفقیت ثبت شد" },
-      { status: 201 }
+      { message: "آگهی با موفقیت منتشر شد" },
+      { status: 200 }
     );
   } catch (err) {
-    console.log(err);
     return NextResponse.json(
       { error: "خطایی در سرور رخ داده است" },
       { status: 500 }
