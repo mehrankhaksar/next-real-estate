@@ -41,6 +41,8 @@ const AuthenticationForm = ({ signUp = false }) => {
   const form = useForm({
     resolver: zodResolver(signUp ? signUpFormSchema : signInFormSchema),
     defaultValues: {
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
     },
@@ -54,6 +56,7 @@ const AuthenticationForm = ({ signUp = false }) => {
         headers: { "Content-Type": "application/json" },
       });
       const data = await res.json();
+
       if (data.message) {
         form.reset();
         toast.success(data.message);
@@ -67,6 +70,7 @@ const AuthenticationForm = ({ signUp = false }) => {
         password: values.password,
         redirect: false,
       });
+
       if (res.error) {
         toast.error(res.error);
       } else {
@@ -80,7 +84,7 @@ const AuthenticationForm = ({ signUp = false }) => {
   return (
     <Form {...form}>
       <motion.form
-        className="max-w-[300px] space-y-5 bg-white mx-auto p-5 border-2 border-solid border-primary rounded-md shadow shadow-primary"
+        className="max-w-[300px] space-y-4 bg-white mx-auto p-5 border-2 border-solid border-primary rounded-md shadow shadow-primary"
         variants={formVariants}
         key={pathname}
         noValidate
@@ -89,6 +93,22 @@ const AuthenticationForm = ({ signUp = false }) => {
         <h2 className="h2 text-primary text-center">
           فرم {signUp ? "ثبت نام" : "ورود"}
         </h2>
+        {signUp ? (
+          <div className="flex items-center gap-2.5">
+            <CustomTextInput
+              name="firstName"
+              form={form}
+              label="نام"
+              type="text"
+            />
+            <CustomTextInput
+              name="lastName"
+              form={form}
+              label="نام خانوادگی"
+              type="text"
+            />
+          </div>
+        ) : null}
         <CustomTextInput name="email" form={form} label="ایمیل" type="email" />
         <CustomTextInput
           name="password"

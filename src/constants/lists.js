@@ -41,6 +41,25 @@ const sidebarLinks = [
     },
     label: "انتشار آگهی",
   },
+  {
+    href: {
+      pathname: "/dashboard/admin/users",
+    },
+    label: "کاربران",
+  },
+];
+
+const roles = [
+  {
+    id: 1,
+    name: "ادمین",
+    value: "ADMIN",
+  },
+  {
+    id: 2,
+    name: "کاربر",
+    value: "USER",
+  },
 ];
 
 const categoriesLink = [
@@ -6985,6 +7004,7 @@ const radioItemsList = [
 export {
   headerLinks,
   sidebarLinks,
+  roles,
   categoriesLink,
   categoriesIcons,
   provinces,

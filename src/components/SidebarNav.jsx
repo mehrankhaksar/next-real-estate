@@ -15,7 +15,8 @@ const SidebarNav = ({ role }) => {
       {sidebarLinks.map((item, index) => (
         <Link
           className={`relative text-sm font-semibold text-center py-1.5 rounded-md overflow-hidden ${
-            item.label === "انتشار آگهی" && role !== "ADMIN" && "hidden"
+            item.label === "انتشار آگهی" ||
+            (item.label === "کاربران" && role !== "ADMIN" && "hidden")
           }`}
           href={item.href}
           key={index}

@@ -23,7 +23,7 @@ const CustomTextInput = ({
       control={form.control}
       render={({ field }) => (
         <FormItem className={containerStyles}>
-          <FormLabel className="text-base font-extrabold">{label}</FormLabel>
+          <FormLabel className="text-base font-semibold">{label}</FormLabel>
           <FormControl className="shadow shadow-primary">
             {textarea ? (
               <Textarea

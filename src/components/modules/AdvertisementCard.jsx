@@ -7,6 +7,7 @@ import { Button } from "../ui/button";
 import { Home, Building, Store, Building2, MapPin } from "lucide-react";
 
 import { e2p, sp } from "@/utils/numberConverter";
+import { provinces } from "@/constants/lists";
 
 const AdvertisementCard = ({ title, category, province, city, price, _id }) => {
   const categoriesIcons = {
@@ -14,6 +15,10 @@ const AdvertisementCard = ({ title, category, province, city, price, _id }) => {
     apartment: <Building size={20} />,
     store: <Store size={20} />,
     office: <Building2 size={20} />,
+  };
+
+  const findName = (list, value) => {
+    return list.find((item) => item.value === value).name;
   };
 
   return (
@@ -30,7 +35,7 @@ const AdvertisementCard = ({ title, category, province, city, price, _id }) => {
       <CardContent className="space-y-2.5 font-semibold text-muted-foreground">
         <div className="flex items-center gap-1 text-sm">
           <MapPin size={18} />
-          {province}, {city}
+          {findName(provinces, province)}, {city}
         </div>
         <div className="flex items-center gap-1">
           <span className="font-extrabold text-secondary-foreground">

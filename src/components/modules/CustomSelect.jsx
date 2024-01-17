@@ -19,7 +19,7 @@ const CustomSelect = ({ name, form, label, list }) => {
       name={name}
       control={form.control}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className={`${!label && "space-y-0"}`}>
           <FormLabel className="text-base font-semibold">{label}</FormLabel>
           <FormControl>
             <Select
@@ -32,7 +32,7 @@ const CustomSelect = ({ name, form, label, list }) => {
               </SelectTrigger>
               <SelectContent>
                 {list.map((item) => (
-                  <SelectItem value={item.name} key={item.id}>
+                  <SelectItem value={item.value} key={item.id}>
                     {item.name}
                   </SelectItem>
                 ))}

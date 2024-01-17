@@ -3,6 +3,14 @@ import * as z from "zod";
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
 const signUpFormSchema = z.object({
+  firstName: z
+    .string()
+    .min(3, "")
+    .refine((value) => value !== "", { message: "نام الزامی است" }),
+  lastName: z
+    .string()
+    .min(3, "")
+    .refine((value) => value !== "", { message: "نام خانوادگی الزامی است" }),
   email: z
     .string()
     .email("آدرس ایمیل نامعتبر است")

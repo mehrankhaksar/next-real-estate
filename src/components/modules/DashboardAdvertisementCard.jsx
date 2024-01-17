@@ -26,7 +26,7 @@ const DashboardAdvertisementCard = ({ role, advertisement }) => {
     setLoading({ ...loading, publish: true });
 
     const res = await fetch(
-      `/api/dashboard/publish-advertisement/${advertisement._id}`,
+      `/api/dashboard/admin/publish-advertisement/${advertisement._id}`,
       {
         method: "PATCH",
       }

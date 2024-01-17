@@ -30,7 +30,7 @@ const AdvertisementForm = ({ advertisement }) => {
       title: "",
       price: "",
       phoneNumber: "",
-      province: advertisement?.province || provinces[0].name,
+      province: advertisement?.province || provinces[0].value,
       city: "",
       address: "",
       realEstate: "",
@@ -53,7 +53,7 @@ const AdvertisementForm = ({ advertisement }) => {
 
   React.useEffect(() => {
     const province = provinces.find(
-      (item) => item.name === form.getValues("province")
+      (item) => item.value === form.getValues("province")
     );
 
     const filteredCities = cities.filter(
