@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 
 import { Home, Building, Store, Building2, MapPin } from "lucide-react";
 
-import { e2p, sp } from "@/utils/numberConverter";
+import { e2p, findName, sp } from "@/utils/helperFunctions";
 import { provinces } from "@/constants/lists";
 
 const AdvertisementCard = ({ title, category, province, city, price, _id }) => {
@@ -15,10 +15,6 @@ const AdvertisementCard = ({ title, category, province, city, price, _id }) => {
     apartment: <Building size={20} />,
     store: <Store size={20} />,
     office: <Building2 size={20} />,
-  };
-
-  const findName = (list, value) => {
-    return list.find((item) => item.value === value).name;
   };
 
   return (

@@ -12,9 +12,10 @@ import {
 } from "../ui/dialog";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
-import UserCardForm from "./UserCardForm";
 
-const UserCardDialog = ({ user }) => {
+import UserDialogForm from "./UserDialogForm";
+
+const UserDialog = ({ user }) => {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -30,10 +31,10 @@ const UserCardDialog = ({ user }) => {
           </DialogDescription>
         </DialogHeader>
         <Separator />
-        <UserCardForm user={user} setOpen={setOpen} />
+        <UserDialogForm user={user} setOpen={setOpen} />
       </DialogContent>
     </Dialog>
   );
 };
 
-export default UserCardDialog;
+export default UserDialog;

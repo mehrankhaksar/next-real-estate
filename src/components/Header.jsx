@@ -4,16 +4,17 @@ import React from "react";
 
 import Link from "next/link";
 
-import { useSession } from "next-auth/react";
-
 import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 import { Button } from "./ui/button";
 
 import { LogIn, UserCircle } from "lucide-react";
 
 import HeaderNav from "./HeaderNav";
+import CustomDropdownMenu from "./modules/CustomDropdownMenu";
+import CustomAvatar from "./modules/CustomAvatar";
+import { dashboardLinks } from "@/constants/lists";
 
-const Header = () => {
+const Header = ({ user }) => {
   const [scroll, setScroll] = React.useState(false);
 
   React.useEffect(() => {
@@ -24,8 +25,6 @@ const Header = () => {
     return window.removeEventListener("scroll", isScrolled);
   }, []);
 
-  const { data } = useSession();
-
   return (
     <header
       className={`flex items-center sticky top-0 text-primary-foreground bg-primary z-40 transition-all duration-300 ${
@@ -35,15 +34,12 @@ const Header = () => {
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
           <HeaderNav />
-          <Link href="sign-in">
-            {data ? (
-              <Avatar className="flex justify-center items-center text-secondary-foreground">
-                <AvatarImage />
-                <AvatarFallback>
-                  <UserCircle size={30} />
-                </AvatarFallback>
-              </Avatar>
-            ) : (
+          {user ? (
+            <CustomDropdownMenu user={user} links={dashboardLinks}>
+              <CustomAvatar badgeStyles="hidden" user={user} />
+            </CustomDropdownMenu>
+          ) : (
+            <Link href="/sign-in">
               <Button
                 className="flex items-center gap-1 text-base font-bold text-secondary-foreground"
                 variant="secondary"
@@ -52,8 +48,8 @@ const Header = () => {
                 ورود
                 <LogIn size={18} />
               </Button>
-            )}
-          </Link>
+            </Link>
+          )}
         </div>
       </div>
     </header>

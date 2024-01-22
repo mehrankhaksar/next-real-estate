@@ -5,18 +5,19 @@ import Link from "next/link";
 
 import { motion } from "framer-motion";
 
-import { sidebarLinks } from "@/constants/lists";
+import { dashboardLinks } from "@/constants/lists";
 
 const SidebarNav = ({ role }) => {
   const pathname = usePathname();
 
   return (
     <nav className="space-y-1.5">
-      {sidebarLinks.map((item, index) => (
+      {dashboardLinks.map((item, index) => (
         <Link
           className={`relative text-sm font-semibold text-center py-1.5 rounded-md overflow-hidden ${
-            item.label === "انتشار آگهی" ||
-            (item.label === "کاربران" && role !== "ADMIN" && "hidden")
+            (item.label === "انتشار آگهی" || item.label === "کاربران") &&
+            role !== "ADMIN" &&
+            "hidden"
           }`}
           href={item.href}
           key={index}

@@ -16,6 +16,7 @@ export default async function Users() {
     await connectDB();
   } catch (err) {
     console.log(err);
+    throw new Error("خطایی در سرور رخ داده است");
   }
 
   const user = await User.findOne({ email: session.user.email });
@@ -25,9 +26,9 @@ export default async function Users() {
     email: { $ne: session.user.email },
   });
 
-  const sortedUsers = filteredUsers.sort((a, b) =>
+  const finalUsers = filteredUsers.sort((a, b) =>
     a.role === "ADMIN" ? -1 : b.role === "ADMIN" ? 1 : 0
   );
 
-  return <UsersPage users={JSON.parse(JSON.stringify(sortedUsers))} />;
+  return <UsersPage users={JSON.parse(JSON.stringify(finalUsers))} />;
 }

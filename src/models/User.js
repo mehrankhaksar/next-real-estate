@@ -1,6 +1,9 @@
 import { Schema, models, model } from "mongoose";
 
 const userSchema = new Schema({
+  avatar: {
+    type: String,
+  },
   firstName: {
     type: String,
     required: true,

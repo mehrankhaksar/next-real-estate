@@ -6,7 +6,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 
 import { Building, Phone, Calendar } from "lucide-react";
 
-import { e2p, sp } from "@/utils/numberConverter";
+import { e2p, sp } from "@/utils/helperFunctions";
 
 import { categoriesIcons } from "@/constants/lists";
 

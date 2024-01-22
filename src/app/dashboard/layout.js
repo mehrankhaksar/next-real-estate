@@ -7,6 +7,7 @@ import connectDB from "@/utils/connectDB";
 import User from "@/models/User";
 
 import Sidebar from "@/components/Sidebar";
+import { signOut } from "next-auth/react";
 
 export default async function Layout({ children }) {
   const session = await getServerSession(authOptions);

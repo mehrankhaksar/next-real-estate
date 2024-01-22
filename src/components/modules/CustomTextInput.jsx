@@ -8,7 +8,7 @@ import {
 import { Textarea } from "../ui/textarea";
 import { Input } from "../ui/input";
 
-import { e2p, p2e } from "@/utils/numberConverter";
+import { e2p, p2e } from "@/utils/helperFunctions";
 
 const CustomTextInput = ({
   name,

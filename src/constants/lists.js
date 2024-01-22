@@ -16,7 +16,7 @@ const headerLinks = [
   },
 ];
 
-const sidebarLinks = [
+const dashboardLinks = [
   {
     href: {
       pathname: "/dashboard",
@@ -7003,7 +7003,7 @@ const radioItemsList = [
 
 export {
   headerLinks,
-  sidebarLinks,
+  dashboardLinks,
   roles,
   categoriesLink,
   categoriesIcons,
