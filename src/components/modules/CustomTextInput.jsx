@@ -16,6 +16,7 @@ const CustomTextInput = ({
   containerStyles,
   label,
   textarea = false,
+  type = "text",
 }) => {
   return (
     <FormField
@@ -33,6 +34,7 @@ const CustomTextInput = ({
               />
             ) : (
               <Input
+                type={type}
                 value={e2p(field.value)}
                 onChange={(e) => field.onChange(p2e(e.target.value))}
               />

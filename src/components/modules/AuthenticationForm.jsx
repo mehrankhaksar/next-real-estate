@@ -95,18 +95,8 @@ const AuthenticationForm = ({ signUp = false }) => {
         </h2>
         {signUp ? (
           <div className="flex items-center gap-2.5">
-            <CustomTextInput
-              name="firstName"
-              form={form}
-              label="نام"
-              type="text"
-            />
-            <CustomTextInput
-              name="lastName"
-              form={form}
-              label="نام خانوادگی"
-              type="text"
-            />
+            <CustomTextInput name="firstName" form={form} label="نام" />
+            <CustomTextInput name="lastName" form={form} label="نام خانوادگی" />
           </div>
         ) : null}
         <CustomTextInput name="email" form={form} label="ایمیل" type="email" />

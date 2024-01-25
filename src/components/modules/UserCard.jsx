@@ -2,30 +2,60 @@
 
 import React from "react";
 
-import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import {
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
-  CardFooter,
+  CardContent,
 } from "../ui/card";
-import { Button } from "../ui/button";
-import { Separator } from "../ui/separator";
+import { Form } from "../ui/form";
+
+import { useForm } from "react-hook-form";
 
 import toast from "react-hot-toast";
 
-import { Trash } from "lucide-react";
+import { roles } from "@/constants/lists";
 
-import { SpinnerLoader } from "./Loaders";
+import RemoveButton from "./RemoveButton";
 import CustomAvatar from "./CustomAvatar";
-import UserDialog from "./UserDialog";
+import CustomSelect from "./CustomSelect";
 
 const UserCard = ({ user }) => {
   const [loading, setLoading] = React.useState(false);
 
-  const pathname = usePathname();
+  const router = useRouter();
+
+  const form = useForm({
+    defaultValues: {
+      role: user.role,
+    },
+  });
+
+  React.useEffect(() => {
+    const fetchAPI = async () => {
+      const res = await fetch(
+        `/api/dashboard/admin/change-user-role/${user._id}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(form.getValues("role")),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      const data = await res.json();
+      if (data.message) {
+        toast.success(data.message);
+        router.refresh();
+      } else {
+        toast.error(data.error);
+      }
+    };
+
+    if (form.formState.isDirty) fetchAPI();
+  }, [form.watch("role")]);
 
   const handleRemove = async () => {
     setLoading(true);
@@ -47,26 +77,17 @@ const UserCard = ({ user }) => {
 
   return (
     <Card className="relative">
-      {pathname === "/dashboard/admin/users" ? (
-        <Button
-          className="w-8 h-8 absolute -top-2.5 -left-2.5 p-1.5 rounded-full"
-          variant="destructive"
-          type="button"
-          onClick={handleRemove}
-        >
-          {loading ? (
-            <SpinnerLoader color="border-t-destructive" />
-          ) : (
-            <Trash size={15} />
-          )}
-        </Button>
-      ) : null}
+      <RemoveButton
+        containerStyles="-top-2.5 -left-2.5"
+        loading={loading}
+        handleRemove={handleRemove}
+      />
       <CardHeader>
         <div className="flex flex-col items-center gap-1.5">
           <CustomAvatar
-            badgeStyles="top-2.5 left-2.5 text-sm"
+            badgeStyles="-top-2.5 -left-2.5 text-sm"
             user={user}
-            avatarStyles="w-44 h-44 text-4xl"
+            avatarStyles="w-20 h-20 text-2xl"
           />
           <CardTitle className="flex items-center gap-1.5 font-extrabold text-primary">
             {user.firstName} {user.lastName}
@@ -76,10 +97,11 @@ const UserCard = ({ user }) => {
           </CardDescription>
         </div>
       </CardHeader>
-      <Separator className="mb-5" />
-      <CardFooter>
-        <UserDialog user={user} />
-      </CardFooter>
+      <CardContent>
+        <Form {...form}>
+          <CustomSelect name="role" form={form} list={roles} />
+        </Form>
+      </CardContent>
     </Card>
   );
 };

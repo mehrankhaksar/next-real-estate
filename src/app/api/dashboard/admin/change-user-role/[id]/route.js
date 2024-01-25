@@ -9,7 +9,7 @@ export async function PATCH(req, context) {
   const session = await getServerSession(req);
   if (!session)
     return NextResponse.json(
-      { error: "لطفا وارد حساب کاربری خود شوید" },
+      { error: "وارد حساب کاربری خود شوید" },
       { status: 401 }
     );
 
@@ -26,25 +26,24 @@ export async function PATCH(req, context) {
     const { id } = context.params;
 
     const user = await User.findOne({ _id: id });
+
     if (!user)
       return NextResponse.json(
         { error: "حساب کاربری یافت نشد" },
         { status: 404 }
       );
 
-    const { firstName, lastName, email, role } = await req.json();
+    const role = await req.json();
 
-    user.firstName = firstName;
-    user.lastName = lastName;
-    user.email = email;
     user.role = role;
 
-    await user.save();
+    user.save();
     return NextResponse.json(
-      { message: "اطلاعات کاربر با موفقیت ویرایش شد" },
+      { message: "نقش کاربر با موفقیت تغییر کرد" },
       { status: 200 }
     );
   } catch (err) {
+    console.log(err);
     return NextResponse.json(
       { error: "خطایی در سرور رخ داده است" },
       { status: 500 }

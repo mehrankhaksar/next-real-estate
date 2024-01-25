@@ -10,13 +10,16 @@ import {
   DropdownMenuItem,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
+
 import SignOutButton from "./SignOutButton";
 
 const CustomDropdownMenu = ({ children, user, links }) => {
   return (
     <DropdownMenu dir="rtl">
       <DropdownMenuTrigger asChild>
-        <Button className="w-fit p-0 rounded-full">{children}</Button>
+        <Button className="w-fit p-0 rounded-full focus-visible:ring-0 focus-visible:ring-offset-0">
+          {children}
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="text-center">
         <DropdownMenuLabel>{`${user.firstName} ${user.lastName}`}</DropdownMenuLabel>

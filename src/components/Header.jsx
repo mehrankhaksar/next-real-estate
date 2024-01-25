@@ -4,14 +4,13 @@ import React from "react";
 
 import Link from "next/link";
 
-import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 import { Button } from "./ui/button";
 
-import { LogIn, UserCircle } from "lucide-react";
+import { LogIn } from "lucide-react";
 
 import HeaderNav from "./HeaderNav";
-import CustomDropdownMenu from "./modules/CustomDropdownMenu";
 import CustomAvatar from "./modules/CustomAvatar";
+import CustomDropdownMenu from "./modules/CustomDropdownMenu";
 import { dashboardLinks } from "@/constants/lists";
 
 const Header = ({ user }) => {
@@ -36,7 +35,11 @@ const Header = ({ user }) => {
           <HeaderNav />
           {user ? (
             <CustomDropdownMenu user={user} links={dashboardLinks}>
-              <CustomAvatar badgeStyles="hidden" user={user} />
+              <CustomAvatar
+                badgeStyles="hidden"
+                user={user}
+                avatarStyles="text-muted-foreground"
+              />
             </CustomDropdownMenu>
           ) : (
             <Link href="/sign-in">

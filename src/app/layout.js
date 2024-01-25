@@ -25,7 +25,7 @@ export default async function RootLayout({ children }) {
     console.log(err);
   }
 
-  const user = await User.findOne({ email: session.user.email });
+  const user = await User.findOne({ email: session?.user.email });
 
   return (
     <html dir="rtl" lang="fa">
@@ -34,7 +34,7 @@ export default async function RootLayout({ children }) {
         suppressHydrationWarning={true}
       >
         <NextAuthProvider>
-          <Header user={user} />
+          <Header user={JSON.parse(JSON.stringify(user))} />
           {children}
           <Footer />
         </NextAuthProvider>

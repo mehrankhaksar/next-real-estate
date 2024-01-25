@@ -9,7 +9,7 @@ export async function PATCH(req) {
   const session = await getServerSession(req);
   if (!session)
     return NextResponse.json(
-      { error: "لطفا وارد حساب کاربری خود شوید" },
+      { error: "وارد حساب کاربری خود شوید" },
       { status: 401 }
     );
 

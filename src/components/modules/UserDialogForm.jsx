@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 import { useRouter, usePathname } from "next/navigation";
 
 import { Form } from "../ui/form";
@@ -12,12 +14,15 @@ import toast from "react-hot-toast";
 
 import { roles } from "@/constants/lists";
 
+import RemoveButton from "./RemoveButton";
 import CustomImageInput from "./CustomImageInput";
 import CustomTextInput from "./CustomTextInput";
 import CustomSelect from "./CustomSelect";
 import CustomButton from "./CustomButton";
 
 const UserDialogForm = ({ user, setOpen }) => {
+  const [avatar, setAvatar] = React.useState("");
+
   const router = useRouter();
   const pathname = usePathname();
 
@@ -30,6 +35,10 @@ const UserDialogForm = ({ user, setOpen }) => {
       role: user.role,
     },
   });
+
+  React.useEffect(() => {
+    setAvatar(form.getValues("avatar"));
+  }, [form.watch("avatar")]);
 
   const onSubmit = async (values) => {
     const res = await fetch("/api/dashboard/edit-user-information", {
@@ -56,21 +65,27 @@ const UserDialogForm = ({ user, setOpen }) => {
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <div className="col-span-full flex items-center gap-5">
-          <Avatar className="w-36 h-36 mx-auto relative">
-            <CustomImageInput
-              name="avatar"
-              form={form}
-              containerStyles="space-y-0"
-              inputStyles="w-full h-full absolute opacity-0 cursor-pointer z-10"
+          <div className="relative">
+            <RemoveButton
+              containerStyles="absolute top-0 left-0 z-20"
+              handleRemove={() => form.setValue("avatar", "")}
             />
-            <AvatarImage
-              src={user.avatar}
-              alt={`${user.firstName} ${user.lastName}`}
-            />
-            <AvatarFallback className="text-3xl font-extrabold">
-              {user.firstName[0]} {user.lastName[0]}
-            </AvatarFallback>
-          </Avatar>
+            <Avatar className="w-36 h-36 relative">
+              <CustomImageInput
+                name="avatar"
+                form={form}
+                containerStyles="space-y-0"
+                inputStyles="w-full h-full absolute opacity-0 cursor-pointer z-10"
+              />
+              <AvatarImage
+                src={avatar}
+                alt={`${user.firstName} ${user.lastName}`}
+              />
+              <AvatarFallback className="text-3xl font-extrabold">
+                {user.firstName[0]} {user.lastName[0]}
+              </AvatarFallback>
+            </Avatar>
+          </div>
           <div className="w-full space-y-2.5">
             <CustomTextInput name="firstName" form={form} label="نام" />
             <CustomTextInput name="lastName" form={form} label="نام خانوادگی" />
