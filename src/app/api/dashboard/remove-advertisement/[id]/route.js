@@ -9,7 +9,10 @@ import Advertisement from "@/models/Advertisement";
 export async function DELETE(req, context) {
   const session = await getServerSession(req);
   if (!session)
-    return NextResponse.json({ error: "وارد حساب خود شوید" }, { status: 401 });
+    return NextResponse.json(
+      { error: "وارد حساب کاربری خود شوید" },
+      { status: 401 }
+    );
 
   try {
     await connectDB();

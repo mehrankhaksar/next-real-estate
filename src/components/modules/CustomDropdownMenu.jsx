@@ -17,7 +17,7 @@ const CustomDropdownMenu = ({ children, user, links }) => {
   return (
     <DropdownMenu dir="rtl">
       <DropdownMenuTrigger asChild>
-        <Button className="w-fit p-0 rounded-full focus-visible:ring-0 focus-visible:ring-offset-0">
+        <Button className="w-fit p-0 rounded-full focus-visible:ring-offset-0">
           {children}
         </Button>
       </DropdownMenuTrigger>

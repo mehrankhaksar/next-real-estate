@@ -6,8 +6,7 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 import connectDB from "@/utils/connectDB";
 import User from "@/models/User";
 
-import Sidebar from "@/components/Sidebar";
-import { signOut } from "next-auth/react";
+import DashboardSidebar from "@/components/DashboardSidebar";
 
 export default async function Layout({ children }) {
   const session = await getServerSession(authOptions);
@@ -15,18 +14,18 @@ export default async function Layout({ children }) {
 
   try {
     await connectDB();
+
+    const user = await User.findOne({ email: session.user.email });
+
+    return (
+      <div className="container mx-auto">
+        <div className="flex gap-2.5 sm:gap-5">
+          <DashboardSidebar user={JSON.parse(JSON.stringify(user))} />
+          {children}
+        </div>
+      </div>
+    );
   } catch (err) {
     console.log(err);
   }
-
-  const user = await User.findOne({ email: session.user.email });
-
-  return (
-    <div className="container mx-auto">
-      <div className="flex gap-5">
-        <Sidebar user={JSON.parse(JSON.stringify(user))} />
-        {children}
-      </div>
-    </div>
-  );
 }

@@ -9,7 +9,7 @@ const templateVariants = {
     transition: {
       delay: 0.25,
       duration: 0.5,
-      ease: "linear",
+      ease: "easeIn",
     },
   },
 };

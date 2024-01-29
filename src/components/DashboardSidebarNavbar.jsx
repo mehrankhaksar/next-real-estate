@@ -7,14 +7,14 @@ import { motion } from "framer-motion";
 
 import { dashboardLinks } from "@/constants/lists";
 
-const SidebarNav = ({ role }) => {
+const DashboardSidebarNavbar = ({ role }) => {
   const pathname = usePathname();
 
   return (
     <nav className="space-y-1.5">
       {dashboardLinks.map((item, index) => (
         <Link
-          className={`relative text-sm font-semibold text-center py-1.5 rounded-md overflow-hidden ${
+          className={`relative text-sm font-semibold py-2 sm:px-4 rounded-md overflow-hidden ${
             (item.label === "انتشار آگهی" || item.label === "کاربران") &&
             role !== "ADMIN" &&
             "hidden"
@@ -23,22 +23,23 @@ const SidebarNav = ({ role }) => {
           key={index}
         >
           {item.href.pathname === pathname && (
-            <motion.span
+            <motion.div
               className="absolute inset-0 bg-primary"
               layoutId="active-pill"
             />
           )}
-          <span
-            className={`relative z-10 ${
+          <div
+            className={`flex justify-center items-center gap-1.5 relative z-10 ${
               item.href.pathname === pathname && "text-primary-foreground"
             }`}
           >
-            {item.label}
-          </span>
+            {item.icon}
+            <span className="hidden sm:inline-block">{item.label}</span>
+          </div>
         </Link>
       ))}
     </nav>
   );
 };
 
-export default SidebarNav;
+export default DashboardSidebarNavbar;

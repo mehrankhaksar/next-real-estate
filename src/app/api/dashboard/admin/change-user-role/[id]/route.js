@@ -26,7 +26,6 @@ export async function PATCH(req, context) {
     const { id } = context.params;
 
     const user = await User.findOne({ _id: id });
-
     if (!user)
       return NextResponse.json(
         { error: "حساب کاربری یافت نشد" },

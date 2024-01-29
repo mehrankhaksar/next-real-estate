@@ -1,6 +1,12 @@
 import Link from "next/link";
 
-import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "../ui/card";
 import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
 
@@ -11,25 +17,25 @@ import { provinces } from "@/constants/lists";
 
 const AdvertisementCard = ({ title, category, province, city, price, _id }) => {
   const categoriesIcons = {
-    villa: <Home size={20} />,
-    apartment: <Building size={20} />,
-    store: <Store size={20} />,
-    office: <Building2 size={20} />,
+    villa: <Home />,
+    apartment: <Building />,
+    store: <Store />,
+    office: <Building2 />,
   };
 
   return (
     <Card className="shadow shadow-primary">
       <CardHeader>
-        <div className="flex justify-between items-center text-primary">
+        <div className="flex justify-between items-center gap-5 text-primary">
           <CardTitle>{e2p(title)}</CardTitle>
           <span className="bg-primary/25 p-1.5 rounded-md">
             {categoriesIcons[category]}
           </span>
         </div>
       </CardHeader>
-      <Separator className="bg-primary mb-5" />
-      <CardContent className="space-y-2.5 font-semibold text-muted-foreground">
-        <div className="flex items-center gap-1 text-sm">
+      <Separator className="bg-primary mb-1.5" />
+      <CardContent className="space-y-1.5 font-semibold text-muted-foreground p-2.5">
+        <div className="flex items-center gap-1">
           <MapPin size={18} />
           {findName(provinces, province)}, {city}
         </div>
@@ -39,12 +45,14 @@ const AdvertisementCard = ({ title, category, province, city, price, _id }) => {
           </span>
           تومان
         </div>
-        <Link href={`/advertisements/${_id}`}>
+      </CardContent>
+      <CardFooter className="flex justify-center items-center p-2.5 pt-1.5">
+        <Link className="w-full" href={`/advertisements/${_id}`}>
           <Button className="font-bold" type="button">
             مشاهده آگهی
           </Button>
         </Link>
-      </CardContent>
+      </CardFooter>
     </Card>
   );
 };

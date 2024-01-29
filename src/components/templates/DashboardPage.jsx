@@ -10,7 +10,7 @@ const DashboardPage = ({ user }) => {
         <p className="description">
           آگهی‌های خود را ثبت کنید تا هزاران نفر آن را مشاهده کنند.
         </p>
-        <div className="inline-flex items-center gap-1.5 text-sm text-white bg-green-500 py-1.5 px-3 rounded-md shadow-md shadow-green-500">
+        <div className="inline-flex items-center gap-1.5 text-sm font-medium text-white bg-green-500 py-1.5 px-3 rounded-md shadow-md shadow-green-500">
           تاریخ عضویت:
           <span className="font-bold">
             {new Date(user.createdAt).toLocaleDateString("fa-IR")}

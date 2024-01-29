@@ -89,8 +89,8 @@ const AdvertisementForm = ({ advertisement }) => {
       if (data.message) {
         form.reset();
         toast.success(data.message);
-        router.refresh();
         router.push("/dashboard/my-advertisements");
+        router.refresh();
       } else {
         toast.error(data.error);
       }
@@ -100,7 +100,7 @@ const AdvertisementForm = ({ advertisement }) => {
   return (
     <Form {...form}>
       <form
-        className="grid grid-cols-2 gap-5"
+        className="grid gap-2.5 sm:grid-cols-2 sm:gap-5"
         noValidate
         onSubmit={form.handleSubmit(onSubmit)}
       >
@@ -141,13 +141,13 @@ const AdvertisementForm = ({ advertisement }) => {
           form={form}
           label="تاریخ ساخت"
         />
-        <div className="col-span-full flex gap-10 mb-5">
+        <div className="col-span-full flex flex-col sm:flex-row gap-5 sm:gap-10 mb-5">
           <CustomTextInputList
             form={form}
             name="amenities"
             label="امکانات رفاهی"
           />
-          <Separator orientation="vertical" />
+          <Separator className="hidden sm:block" orientation="vertical" />
           <CustomTextInputList form={form} name="rules" label="قوانین" />
         </div>
         <CustomButton

@@ -66,7 +66,7 @@ const DashboardAdvertisementCard = ({ role, advertisement }) => {
 
   return (
     <div className="relative">
-      <div className="flex items-center gap-1.5 absolute -top-4 left-0">
+      <div className="flex items-center gap-1.5 absolute -top-4 -left-2">
         {role === "ADMIN" ? (
           <Button
             className="w-8 h-8 bg-green-500 p-1.5 rounded-full hover:bg-green-600"

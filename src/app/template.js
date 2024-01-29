@@ -14,7 +14,7 @@ const templateVariants = {
       when: "beforeChildren",
       delay: 0.2,
       duration: 0.4,
-      ease: "linear",
+      ease: "easeIn",
     },
   },
 };
@@ -24,7 +24,7 @@ export default function template({ children }) {
 
   return (
     <motion.main
-      className="flex-1 py-10"
+      className="flex-1 py-5"
       variants={templateVariants}
       initial="initial"
       animate="animate"

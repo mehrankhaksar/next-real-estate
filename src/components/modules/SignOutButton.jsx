@@ -9,13 +9,13 @@ import { LogOut } from "lucide-react";
 const SignOutButton = () => {
   return (
     <Button
-      className="inline-flex items-center gap-1 text-base font-bold"
+      className="flex items-center gap-1.5 text-base font-bold"
       variant="destructive"
       type="button"
       onClick={signOut}
     >
-      <LogOut size={18} />
-      خروج
+      <LogOut size={18} strokeWidth={3} />
+      <span className="hidden sm:inline-block">خروج</span>
     </Button>
   );
 };

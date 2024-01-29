@@ -10,25 +10,23 @@ import UsersPage from "@/components/templates/UsersPage";
 
 export default async function Users() {
   const session = await getServerSession(authOptions);
-  if (!session) redirect("/dashboard");
 
   try {
     await connectDB();
+
+    const user = await User.findOne({ email: session.user.email });
+    if (user.role !== "ADMIN") redirect("/dashboard");
+
+    const filteredUsers = await User.find({
+      email: { $ne: session.user.email },
+    });
+
+    const finalUsers = filteredUsers.sort((a, b) =>
+      a.role === "ADMIN" ? -1 : b.role === "ADMIN" ? 1 : 0
+    );
+
+    return <UsersPage users={JSON.parse(JSON.stringify(finalUsers))} />;
   } catch (err) {
     console.log(err);
-    throw new Error("خطایی در سرور رخ داده است");
   }
-
-  const user = await User.findOne({ email: session.user.email });
-  if (user.role !== "ADMIN") redirect("/dashboard");
-
-  const filteredUsers = await User.find({
-    email: { $ne: session.user.email },
-  });
-
-  const finalUsers = filteredUsers.sort((a, b) =>
-    a.role === "ADMIN" ? -1 : b.role === "ADMIN" ? 1 : 0
-  );
-
-  return <UsersPage users={JSON.parse(JSON.stringify(finalUsers))} />;
 }

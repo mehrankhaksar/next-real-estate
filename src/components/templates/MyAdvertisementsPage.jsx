@@ -1,18 +1,51 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 import DashboardAdvertisementCard from "../modules/DashboardAdvertisementCard";
 
-const MyAdvertisementsPage = ({ userAdvertisementsList }) => {
+const listVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      when: "beforeChildren",
+      staggerChildren: 0.25,
+      ease: "linear",
+    },
+  },
+};
+
+const itemVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      ease: "easeIn",
+    },
+  },
+};
+
+const MyAdvertisementsPage = ({ userAdvertisements }) => {
   return (
     <div>
-      {userAdvertisementsList.length ? (
-        <div className="grid grid-cols-4 gap-y-10 gap-x-5">
-          {userAdvertisementsList.map((item) => (
-            <DashboardAdvertisementCard advertisement={item} key={item._id} />
+      {userAdvertisements.length ? (
+        <motion.div
+          variants={listVariants}
+          className="grid grid-cols-3 gap-y-10 gap-x-5"
+        >
+          {userAdvertisements.map((item) => (
+            <motion.div variants={itemVariants} key={item._id}>
+              <DashboardAdvertisementCard advertisement={item} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       ) : (
-        <p className="inline-block font-bold text-destructive-foreground bg-destructive py-1.5 px-3 rounded-md shadow-md shadow-destructive">
-          آگهی ثبت نشده است
-        </p>
+        <p className="not-found">آگهی ثبت نشده است</p>
       )}
     </div>
   );

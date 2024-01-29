@@ -7,7 +7,7 @@ const advantages = [
 
 const Footer = () => {
   return (
-    <footer className="text-primary-foreground bg-primary py-6">
+    <footer className="text-primary-foreground bg-primary py-5">
       <div className="container mx-auto">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-20">
           <div className="space-y-2.5">
@@ -25,7 +25,7 @@ const Footer = () => {
           </div>
           <ul className="min-w-fit list-disc">
             {advantages.map((item, index) => (
-              <li className="font-medium" key={index}>
+              <li className="font-semibold" key={index}>
                 {item}
               </li>
             ))}

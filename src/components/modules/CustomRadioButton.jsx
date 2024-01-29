@@ -17,14 +17,14 @@ const CustomRadioButton = ({ name, form, label, radioItemsList }) => {
           <FormLabel className="text-base font-extrabold">{label}</FormLabel>
           <FormControl>
             <RadioGroup
-              className="flex items-center gap-5"
+              className="grid grid-cols-2 sm:grid-cols-4"
               dir="rtl"
               defaultValue={field.value}
               onValueChange={field.onChange}
             >
               {radioItemsList.map((item, index) => (
                 <div
-                  className="flex items-center gap-1.5 text-primary bg-primary/20 p-3 rounded"
+                  className="flex justify-center items-center gap-1.5 text-primary bg-primary/20 p-3 rounded"
                   key={index}
                 >
                   <RadioGroupItem

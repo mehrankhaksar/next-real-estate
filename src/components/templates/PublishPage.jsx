@@ -14,9 +14,7 @@ const PublishPage = ({ role, advertisements }) => {
           ))}
         </div>
       ) : (
-        <p className="inline-block font-bold text-destructive-foreground bg-destructive py-1.5 px-3 rounded-md shadow-md shadow-destructive">
-          آگهی یافت نشد
-        </p>
+        <p className="not-found">آگهی ثبت نشده است</p>
       )}
     </section>
   );

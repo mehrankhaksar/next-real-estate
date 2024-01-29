@@ -41,7 +41,7 @@ const CustomTextInputList = ({ name, form, label }) => {
             <div className="space-y-2.5">
               {field.value.length
                 ? field.value.map((item, index) => (
-                    <div className="flex items-center gap-2.5" key={index}>
+                    <div className="flex items-center gap-1.5" key={index}>
                       <Input
                         className="shadow shadow-primary"
                         value={item}
@@ -53,7 +53,7 @@ const CustomTextInputList = ({ name, form, label }) => {
                         type="button"
                         onClick={() => handleRemove(field, index)}
                       >
-                        <Trash2 size={20} />
+                        <Trash2 size={16} />
                       </Button>
                     </div>
                   ))
@@ -67,7 +67,7 @@ const CustomTextInputList = ({ name, form, label }) => {
             onClick={() => handleAdd(field)}
           >
             افزودن
-            <Plus size={18} />
+            <Plus size={16} strokeWidth={3} />
           </Button>
         </FormItem>
       )}

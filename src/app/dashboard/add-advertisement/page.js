@@ -1,7 +1,5 @@
 import AddAdvertisementPage from "@/components/templates/AddAdvertisementPage";
 
-const AddAdvertisement = () => {
+export default function AddAdvertisement() {
   return <AddAdvertisementPage />;
-};
-
-export default AddAdvertisement;
+}

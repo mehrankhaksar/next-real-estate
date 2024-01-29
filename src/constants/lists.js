@@ -1,4 +1,15 @@
-import { Home, Building, Store, Building2 } from "lucide-react";
+import {
+  UserCircle,
+  Bookmark,
+  BookmarkPlus,
+  ListChecks,
+  Users,
+  Home,
+  Building,
+  Store,
+  Building2,
+  List,
+} from "lucide-react";
 
 const headerLinks = [
   {
@@ -16,39 +27,6 @@ const headerLinks = [
   },
 ];
 
-const dashboardLinks = [
-  {
-    href: {
-      pathname: "/dashboard",
-    },
-    label: "حساب کاربری",
-  },
-  {
-    href: {
-      pathname: "/dashboard/my-advertisements",
-    },
-    label: "آگهی‌های من",
-  },
-  {
-    href: {
-      pathname: "/dashboard/add-advertisement",
-    },
-    label: "ثبت آگهی",
-  },
-  {
-    href: {
-      pathname: "/dashboard/admin/publish",
-    },
-    label: "انتشار آگهی",
-  },
-  {
-    href: {
-      pathname: "/dashboard/admin/users",
-    },
-    label: "کاربران",
-  },
-];
-
 const roles = [
   {
     id: 1,
@@ -62,12 +40,51 @@ const roles = [
   },
 ];
 
+const dashboardLinks = [
+  {
+    href: {
+      pathname: "/dashboard",
+    },
+    icon: <UserCircle />,
+    label: "حساب کاربری",
+  },
+  {
+    href: {
+      pathname: "/dashboard/my-advertisements",
+    },
+    icon: <Bookmark />,
+    label: "آگهی‌های من",
+  },
+  {
+    href: {
+      pathname: "/dashboard/add-advertisement",
+    },
+    icon: <BookmarkPlus />,
+    label: "ثبت آگهی",
+  },
+  {
+    href: {
+      pathname: "/dashboard/admin/publish",
+    },
+    icon: <ListChecks />,
+    label: "انتشار آگهی",
+  },
+  {
+    href: {
+      pathname: "/dashboard/admin/users",
+    },
+    icon: <Users />,
+    label: "کاربران",
+  },
+];
+
 const categoriesLink = [
   {
     href: {
       pathname: "/advertisements",
       query: { category: "all" },
     },
+    icon: <List />,
     label: "همه",
   },
   {
@@ -75,6 +92,7 @@ const categoriesLink = [
       pathname: "/advertisements",
       query: { category: "villa" },
     },
+    icon: <Home />,
     label: "ویلا",
   },
   {
@@ -82,6 +100,7 @@ const categoriesLink = [
       pathname: "/advertisements",
       query: { category: "apartment" },
     },
+    icon: <Building />,
     label: "آپارتمان",
   },
   {
@@ -89,6 +108,7 @@ const categoriesLink = [
       pathname: "/advertisements",
       query: { category: "store" },
     },
+    icon: <Store />,
     label: "مغازه",
   },
   {
@@ -96,6 +116,7 @@ const categoriesLink = [
       pathname: "/advertisements",
       query: { category: "office" },
     },
+    icon: <Building2 />,
     label: "دفتر",
   },
 ];

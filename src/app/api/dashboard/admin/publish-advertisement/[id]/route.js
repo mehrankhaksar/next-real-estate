@@ -35,8 +35,8 @@ export async function PATCH(req, context) {
     const advertisement = await Advertisement.findOne({ _id: id });
 
     advertisement.isPublished = true;
-    advertisement.save();
 
+    advertisement.save();
     return NextResponse.json(
       { message: "آگهی با موفقیت منتشر شد" },
       { status: 200 }

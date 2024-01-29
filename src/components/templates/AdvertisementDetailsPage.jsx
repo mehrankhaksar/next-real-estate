@@ -2,6 +2,9 @@ import { Separator } from "../ui/separator";
 
 import { MapPin } from "lucide-react";
 
+import { e2p, findName } from "@/utils/helperFunctions";
+import { provinces, cities } from "@/constants/lists";
+
 import AdvertisementDetailsSidebar from "../modules/AdvertisementDetailsSidebar";
 
 const AdvertisementDetailsPage = ({ advertisement }) => {
@@ -15,7 +18,7 @@ const AdvertisementDetailsPage = ({ advertisement }) => {
           <ul className="space-y-1.5">
             {list.map((item, index) => (
               <li
-                className="font-semibold list-disc marker:text-primary"
+                className="text-sm font-semibold list-disc marker:text-primary"
                 key={index}
               >
                 {item}
@@ -23,9 +26,7 @@ const AdvertisementDetailsPage = ({ advertisement }) => {
             ))}
           </ul>
         ) : (
-          <p className="inline-block text-sm font-medium text-destructive-foreground bg-destructive p-1.5 rounded">
-            موردی ذکر نشده است
-          </p>
+          <p className="not-found text-sm">موردی ذکر نشده است</p>
         )}
       </div>
     );
@@ -34,13 +35,13 @@ const AdvertisementDetailsPage = ({ advertisement }) => {
   return (
     <section>
       <div className="container mx-auto">
-        <div className="flex gap-5">
-          <div className="flex-1 space-y-5 bg-primary-foreground p-5 rounded-xl shadow shadow-primary transition-all ease-in">
+        <div className="flex flex-col sm:flex-row gap-5">
+          <div className="flex-1 space-y-5 bg-primary-foreground p-5 rounded-xl shadow shadow-primary">
             <div className="space-y-1.5">
-              <h2 className="h2 text-primary">{title}</h2>
-              <div className="flex items-center gap-1 text-sm font-bold text-muted-foreground">
-                <MapPin className="text-primary" size={18} />
-                {province}, {city}
+              <h2 className="h2 text-primary">{e2p(title)}</h2>
+              <div className="flex items-center gap-1 font-bold text-muted-foreground">
+                <MapPin className="text-primary" size={20} />
+                {findName(provinces, province)}, {findName(cities, city)}
               </div>
             </div>
             <div>

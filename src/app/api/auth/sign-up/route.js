@@ -11,8 +11,8 @@ export async function POST(req) {
 
     const { firstName, lastName, email, password } = await req.json();
 
-    const user = await User.findOne({ email });
-    if (user)
+    const existingUser = await User.findOne({ email });
+    if (existingUser)
       return NextResponse.json(
         { error: "حساب کاربری وحود دارد" },
         { status: 422 }
@@ -21,9 +21,9 @@ export async function POST(req) {
     const hashedPassword = await hashPassword(password);
 
     await User.create({
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
+      firstName,
+      lastName,
+      email,
       password: hashedPassword,
     });
     return NextResponse.json(

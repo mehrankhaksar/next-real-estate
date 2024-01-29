@@ -18,18 +18,19 @@ const CustomDatePicker = ({ name, form, label }) => {
       name={name}
       control={form.control}
       render={({ field }) => (
-        <FormItem className="flex flex-col">
+        <FormItem>
           <FormLabel className="text-base font-extrabold">{label}</FormLabel>
           <FormControl>
             <DatePicker
               className="rmdp-mobile"
               style={{
+                width: "50%",
                 height: "35px",
-                fontWeight: "bold",
                 border: "none",
                 boxShadow:
                   "0 1px 3px 0 hsl(221.2 83.2% 53.3%), 0 1px 2px -1px hsl(221.2 83.2% 53.3%)",
               }}
+              containerStyle={{ width: "100%" }}
               calendar={persian}
               locale={persian_fa}
               calendarPosition="bottom-right"

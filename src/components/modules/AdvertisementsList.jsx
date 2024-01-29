@@ -11,13 +11,13 @@ const containerVariants = {
   animate: {
     opacity: 1,
     transition: {
-      ease: "easeIn",
+      ease: "easeInOut",
     },
   },
   exit: { opacity: 0 },
 };
 
-const layoutVariants = {
+const listVariants = {
   initial: {
     opacity: 0,
   },
@@ -31,7 +31,7 @@ const layoutVariants = {
   },
 };
 
-const cardVariants = {
+const itemVariants = {
   initial: {
     opacity: 0,
   },
@@ -46,25 +46,23 @@ const cardVariants = {
 const AdvertisementsList = ({ category, advertisements }) => {
   return (
     <motion.div
-      className="flex-1 bg-primary-foreground p-5 rounded-xl shadow shadow-primary"
+      className="flex-1 bg-primary-foreground p-2.5 sm:p-5 rounded-xl shadow shadow-primary"
       variants={containerVariants}
       key={category}
     >
       {advertisements.length ? (
         <motion.div
-          className="grid grid-cols-4 gap-5"
-          variants={layoutVariants}
+          className="grid gap-5 md:grid-cols-2 lg:grid-cols-3"
+          variants={listVariants}
         >
           {advertisements.map((item, index) => (
-            <motion.div variants={cardVariants} key={index}>
+            <motion.div variants={itemVariants} key={index}>
               <AdvertisementCard {...item} />
             </motion.div>
           ))}
         </motion.div>
       ) : (
-        <p className="inline-block font-bold text-destructive-foreground bg-destructive py-1.5 px-3 rounded-md">
-          آگهی یافت نشد.
-        </p>
+        <p className="not-found">آگهی ثبت نشده است</p>
       )}
     </motion.div>
   );

@@ -12,16 +12,16 @@ import { categoriesLink } from "@/constants/lists";
 
 const AdvertisementsSidebar = ({ category }) => {
   return (
-    <aside className="h-fit space-y-5 bg-primary-foreground p-5 rounded-xl shadow-md shadow-primary">
-      <h3 className="h3 flex items-center gap-1.5">
-        <Filter className="text-primary" />
-        دسته بندی
+    <aside className="w-fit h-fit space-y-2.5 bg-primary-foreground p-2.5 sm:p-5 rounded-xl shadow shadow-primary">
+      <h3 className="h3 flex max-sm:justify-center sm:items-center sm:gap-1.5">
+        <Filter className="text-primary" size={30} />
+        <span className="hidden sm:inline-block">دسته بندی</span>
       </h3>
-      <Separator className="bg-secondary-foreground my-1.5" />
+      <Separator className="bg-secondary-foreground" />
       <nav className="space-y-1.5">
         {categoriesLink.map((item, index) => (
           <Link
-            className="relative text-sm font-bold text-center py-1.5 rounded-md overflow-hidden"
+            className="relative text-sm font-semibold p-2 sm:px-4 rounded-md overflow-hidden"
             href={item.href}
             key={index}
           >
@@ -31,14 +31,15 @@ const AdvertisementsSidebar = ({ category }) => {
                 layoutId="active-pill"
               />
             )}
-            <span
-              className={`relative z-10 ${
+            <div
+              className={`flex justify-center items-center gap-1.5 relative z-10 ${
                 Object.values(item.href.query).toString() === category &&
                 "text-primary-foreground"
               }`}
             >
-              {item.label}
-            </span>
+              {item.icon}
+              <span className="hidden sm:inline-block">{item.label}</span>
+            </div>
           </Link>
         ))}
       </nav>

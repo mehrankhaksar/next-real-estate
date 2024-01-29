@@ -11,23 +11,22 @@ import PublishPage from "@/components/templates/PublishPage";
 
 export default async function Publish() {
   const session = await getServerSession(authOptions);
-  if (!session) redirect("/sign-in");
 
   try {
     await connectDB();
+
+    const user = await User.findOne({ email: session.user.email });
+    if (user.role !== "ADMIN") redirect("/dashboard");
+
+    const advertisements = await Advertisement.find({ isPublished: false });
+
+    return (
+      <PublishPage
+        role={user.role}
+        advertisements={JSON.parse(JSON.stringify(advertisements))}
+      />
+    );
   } catch (err) {
     console.log(err);
   }
-
-  const user = await User.findOne({ email: session.user.email });
-  if (user.role !== "ADMIN") redirect("/dashboard");
-
-  const advertisements = await Advertisement.find({ isPublished: false });
-
-  return (
-    <PublishPage
-      role={user.role}
-      advertisements={JSON.parse(JSON.stringify(advertisements))}
-    />
-  );
 }

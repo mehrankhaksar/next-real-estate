@@ -8,10 +8,11 @@ import { Button } from "./ui/button";
 
 import { LogIn } from "lucide-react";
 
-import HeaderNav from "./HeaderNav";
-import CustomAvatar from "./modules/CustomAvatar";
-import CustomDropdownMenu from "./modules/CustomDropdownMenu";
 import { dashboardLinks } from "@/constants/lists";
+
+import HeaderNav from "./HeaderNav";
+import CustomDropdownMenu from "./modules/CustomDropdownMenu";
+import CustomAvatar from "./modules/CustomAvatar";
 
 const Header = ({ user }) => {
   const [scroll, setScroll] = React.useState(false);
@@ -26,7 +27,7 @@ const Header = ({ user }) => {
 
   return (
     <header
-      className={`flex items-center sticky top-0 text-primary-foreground bg-primary z-40 transition-all duration-300 ${
+      className={`flex items-center sticky top-0 text-primary-foreground bg-primary transition-all duration-300 z-40 ${
         scroll ? "py-2.5 shadow-lg" : "py-5"
       }`}
     >
@@ -44,12 +45,12 @@ const Header = ({ user }) => {
           ) : (
             <Link href="/sign-in">
               <Button
-                className="flex items-center gap-1 text-base font-bold text-secondary-foreground"
+                className="flex items-center gap-1.5 text-base font-bold"
                 variant="secondary"
                 type="button"
               >
                 ورود
-                <LogIn size={18} />
+                <LogIn size={17} />
               </Button>
             </Link>
           )}
