@@ -11,14 +11,15 @@ import { useForm } from "react-hook-form";
 
 import toast from "react-hot-toast";
 
-import { provinces, cities, radioItemsList } from "@/constants/lists";
+import { provinces, cities, categories } from "@/constants/lists";
 
 import CustomTextInput from "./CustomTextInput";
 import CustomSelect from "./CustomSelect";
 import CustomRadioButton from "./CustomRadioButton";
-import CustomTextInputList from "./CustomTextInputList";
 import CustomDatePicker from "./CustomDatePicker";
+import CustomTextInputList from "./CustomTextInputList";
 import CustomButton from "./CustomButton";
+import { DotsLoader } from "./CustomLoaders";
 
 const AdvertisementForm = ({ advertisement }) => {
   const [filteredCities, setFilteredCities] = React.useState([]);
@@ -134,7 +135,7 @@ const AdvertisementForm = ({ advertisement }) => {
           name="category"
           form={form}
           label="دسته بندی"
-          radioItemsList={radioItemsList}
+          radioItemsList={categories}
         />
         <CustomDatePicker
           name="constructionDate"
@@ -143,18 +144,29 @@ const AdvertisementForm = ({ advertisement }) => {
         />
         <div className="col-span-full flex flex-col sm:flex-row gap-5 sm:gap-10 mb-5">
           <CustomTextInputList
-            form={form}
             name="amenities"
+            form={form}
+            containerStyles="flex-1"
             label="امکانات رفاهی"
           />
           <Separator className="hidden sm:block" orientation="vertical" />
-          <CustomTextInputList form={form} name="rules" label="قوانین" />
+          <CustomTextInputList
+            name="rules"
+            form={form}
+            containerStyles="flex-1"
+            label="قوانین"
+          />
         </div>
         <CustomButton
           containerStyles="col-span-full"
+          type="submit"
           disabled={form.formState.isSubmitting}
         >
-          {advertisement ? "ویرایش" : "ثبت"} آگهی
+          {form.formState.isSubmitting ? (
+            <DotsLoader />
+          ) : (
+            `${advertisement ? "ویرایش" : "ثبت"} آگهی`
+          )}
         </CustomButton>
       </form>
     </Form>

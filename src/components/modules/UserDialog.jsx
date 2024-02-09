@@ -21,7 +21,7 @@ const UserDialog = ({ user }) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="font-extrabold">ویرایش اطلاعات</Button>
+        <Button className="font-bold">ویرایش اطلاعات</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

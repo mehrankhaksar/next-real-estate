@@ -9,7 +9,6 @@ import {
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
-
 import "react-multi-date-picker/styles/layouts/mobile.css";
 
 const CustomDatePicker = ({ name, form, label }) => {

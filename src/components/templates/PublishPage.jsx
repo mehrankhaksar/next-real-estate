@@ -1,16 +1,12 @@
-import DashboardAdvertisementCard from "../modules/DashboardAdvertisementCard";
+import DashboardCard from "../modules/DashboardCard";
 
-const PublishPage = ({ role, advertisements }) => {
+const PublishPage = ({ advertisements, role }) => {
   return (
     <section>
       {advertisements.length ? (
-        <div className="grid grid-cols-4 gap-y-10 gap-x-5">
+        <div className="list-container">
           {advertisements.map((item, index) => (
-            <DashboardAdvertisementCard
-              role={role}
-              advertisement={item}
-              key={index}
-            />
+            <DashboardCard role={role} advertisement={item} key={index} />
           ))}
         </div>
       ) : (

@@ -17,11 +17,14 @@ import { useForm } from "react-hook-form";
 
 import toast from "react-hot-toast";
 
+import { Trash } from "lucide-react";
+
 import { roles } from "@/constants/lists";
 
-import RemoveButton from "./RemoveButton";
 import CustomAvatar from "./CustomAvatar";
 import CustomSelect from "./CustomSelect";
+import CustomButton from "./CustomButton";
+import { SpinnerLoader } from "./CustomLoaders";
 
 const UserCard = ({ user }) => {
   const [loading, setLoading] = React.useState(false);
@@ -77,11 +80,17 @@ const UserCard = ({ user }) => {
 
   return (
     <Card className="relative">
-      <RemoveButton
-        containerStyles="-top-2.5 -left-2.5"
-        loading={loading}
-        handleRemove={handleRemove}
-      />
+      <CustomButton
+        containerStyles="w-8 h-8 absolute -top-2.5 -left-2.5 p-1.5 rounded-full"
+        variant="destructive"
+        handleClick={handleRemove}
+      >
+        {loading ? (
+          <SpinnerLoader color="border-t-destructive" />
+        ) : (
+          <Trash size={15} />
+        )}
+      </CustomButton>
       <CardHeader>
         <div className="flex flex-col items-center gap-1.5">
           <CustomAvatar
@@ -99,7 +108,12 @@ const UserCard = ({ user }) => {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <CustomSelect name="role" form={form} list={roles} />
+          <CustomSelect
+            name="role"
+            form={form}
+            containerStyles="space-y-0"
+            list={roles}
+          />
         </Form>
       </CardContent>
     </Card>

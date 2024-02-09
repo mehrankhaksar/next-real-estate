@@ -1,15 +1,22 @@
 import { Button } from "../ui/button";
 
-import { DotsLoader } from "./Loaders";
-
-const CustomButton = ({ containerStyles, disabled, children }) => {
+const CustomButton = ({
+  containerStyles,
+  variant,
+  type = "button",
+  disabled,
+  handleClick,
+  children,
+}) => {
   return (
     <Button
-      className={`w-full text-base font-extrabold ${containerStyles}`}
-      type="submit"
+      className={`text-base font-bold ${containerStyles}`}
+      variant={variant}
+      type={type}
       disabled={disabled}
+      onClick={handleClick}
     >
-      {disabled ? <DotsLoader /> : children}
+      {children}
     </Button>
   );
 };

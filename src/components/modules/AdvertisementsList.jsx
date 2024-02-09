@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { parentVariants, childVariants } from "@/utils/variants";
 
 import AdvertisementCard from "./AdvertisementCard";
 
@@ -17,32 +18,6 @@ const containerVariants = {
   exit: { opacity: 0 },
 };
 
-const listVariants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-    transition: {
-      when: "beforeChildren",
-      staggerChildren: 0.25,
-      ease: "linear",
-    },
-  },
-};
-
-const itemVariants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-    transition: {
-      ease: "easeIn",
-    },
-  },
-};
-
 const AdvertisementsList = ({ category, advertisements }) => {
   return (
     <motion.div
@@ -52,11 +27,11 @@ const AdvertisementsList = ({ category, advertisements }) => {
     >
       {advertisements.length ? (
         <motion.div
-          className="grid gap-5 md:grid-cols-2 lg:grid-cols-3"
-          variants={listVariants}
+          className="list-container !gap-y-5"
+          variants={parentVariants}
         >
           {advertisements.map((item, index) => (
-            <motion.div variants={itemVariants} key={index}>
+            <motion.div variants={childVariants} key={index}>
               <AdvertisementCard {...item} />
             </motion.div>
           ))}

@@ -6,11 +6,12 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
 
 import { Trash2, Plus } from "lucide-react";
 
-const CustomTextInputList = ({ name, form, label }) => {
+import CustomButton from "./CustomButton";
+
+const CustomTextInputList = ({ name, form, containerStyles, label }) => {
   const handleAdd = (field) => {
     field.onChange([...field.value, ""]);
   };
@@ -35,7 +36,7 @@ const CustomTextInputList = ({ name, form, label }) => {
       name={name}
       control={form.control}
       render={({ field }) => (
-        <FormItem className="flex-1">
+        <FormItem className={containerStyles}>
           <FormLabel className="text-base font-extrabold">{label}</FormLabel>
           <FormControl>
             <div className="space-y-2.5">
@@ -47,28 +48,26 @@ const CustomTextInputList = ({ name, form, label }) => {
                         value={item}
                         onChange={(e) => handleChange(e, field, index)}
                       />
-                      <Button
-                        className="w-fit h-fit p-2.5 rounded-full"
+                      <CustomButton
+                        containerStyles="w-fit h-fit p-2.5 rounded-full"
                         variant="destructive"
-                        type="button"
-                        onClick={() => handleRemove(field, index)}
+                        handleClick={() => handleRemove(field, index)}
                       >
-                        <Trash2 size={16} />
-                      </Button>
+                        <Trash2 size={17} />
+                      </CustomButton>
                     </div>
                   ))
                 : null}
             </div>
           </FormControl>
           <FormMessage />
-          <Button
-            className="w-fit inline-flex items-center font-bold"
-            type="button"
-            onClick={() => handleAdd(field)}
+          <CustomButton
+            containerStyles="w-fit inline-flex items-center gap-1 font-bold"
+            handleClick={() => handleAdd(field)}
           >
             افزودن
             <Plus size={16} strokeWidth={3} />
-          </Button>
+          </CustomButton>
         </FormItem>
       )}
     />

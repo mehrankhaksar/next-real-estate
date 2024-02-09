@@ -25,6 +25,7 @@ const CustomImageInput = ({
             <Input
               className={inputStyles}
               type="file"
+              accept="image/*"
               onChange={(e) => {
                 if (e?.target?.files?.[0]) {
                   const file = e.target.files[0];

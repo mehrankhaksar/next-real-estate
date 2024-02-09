@@ -13,6 +13,7 @@ import { dashboardLinks } from "@/constants/lists";
 import HeaderNav from "./HeaderNav";
 import CustomDropdownMenu from "./modules/CustomDropdownMenu";
 import CustomAvatar from "./modules/CustomAvatar";
+import CustomButton from "./modules/CustomButton";
 
 const Header = ({ user }) => {
   const [scroll, setScroll] = React.useState(false);
@@ -36,22 +37,23 @@ const Header = ({ user }) => {
           <HeaderNav />
           {user ? (
             <CustomDropdownMenu user={user} links={dashboardLinks}>
-              <CustomAvatar
-                badgeStyles="hidden"
-                user={user}
-                avatarStyles="text-muted-foreground"
-              />
+              <Button className="w-fit p-0 rounded-full focus-visible:ring-offset-0">
+                <CustomAvatar
+                  badgeStyles="hidden"
+                  user={user}
+                  avatarStyles="text-muted-foreground"
+                />
+              </Button>
             </CustomDropdownMenu>
           ) : (
             <Link href="/sign-in">
-              <Button
-                className="flex items-center gap-1.5 text-base font-bold"
+              <CustomButton
+                containerStyles="inline-flex items-center gap-1.5"
                 variant="secondary"
-                type="button"
               >
                 ورود
                 <LogIn size={17} />
-              </Button>
+              </CustomButton>
             </Link>
           )}
         </div>

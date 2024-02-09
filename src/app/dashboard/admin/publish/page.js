@@ -22,8 +22,8 @@ export default async function Publish() {
 
     return (
       <PublishPage
-        role={user.role}
         advertisements={JSON.parse(JSON.stringify(advertisements))}
+        role={user.role}
       />
     );
   } catch (err) {

@@ -13,13 +13,13 @@ import {
   SelectItem,
 } from "../ui/select";
 
-const CustomSelect = ({ name, form, label, list }) => {
+const CustomSelect = ({ name, form, containerStyles, label, list }) => {
   return (
     <FormField
       name={name}
       control={form.control}
       render={({ field }) => (
-        <FormItem className={`${!label && "space-y-0"}`}>
+        <FormItem className={containerStyles}>
           <FormLabel className="text-base font-semibold">{label}</FormLabel>
           <FormControl>
             <Select

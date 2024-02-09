@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import UserCard from "../modules/UserCard";
 
-const layoutVariants = {
+const listVariants = {
   initial: {
     opacity: 0,
   },
@@ -20,7 +20,7 @@ const layoutVariants = {
   },
 };
 
-const userVariants = {
+const itemVariants = {
   initial: { opacity: 0 },
   animate: {
     opacity: 1,
@@ -32,12 +32,9 @@ const userVariants = {
 
 const UsersList = ({ users }) => {
   return (
-    <motion.div
-      className="w-full grid grid-cols-5 gap-5"
-      variants={layoutVariants}
-    >
+    <motion.div className="list-container" variants={listVariants}>
       {users.map((item, index) => (
-        <motion.div variants={userVariants} key={index}>
+        <motion.div variants={itemVariants} key={index}>
           <UserCard user={item} />
         </motion.div>
       ))}

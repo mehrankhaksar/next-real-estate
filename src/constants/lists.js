@@ -121,13 +121,6 @@ const categoriesLink = [
   },
 ];
 
-const categoriesIcons = {
-  villa: { icon: <Home size={25} />, label: "ویلا" },
-  apartment: { icon: <Building size={25} />, label: "آپارتمان" },
-  store: { icon: <Store size={25} />, label: "مغازه" },
-  office: { icon: <Building2 size={25} />, label: "دفتر" },
-};
-
 const provinces = [
   {
     id: 1,
@@ -7003,7 +6996,7 @@ const cities = [
   },
 ];
 
-const radioItemsList = [
+const categories = [
   {
     label: "ویلا",
     value: "villa",
@@ -7027,8 +7020,7 @@ export {
   dashboardLinks,
   roles,
   categoriesLink,
-  categoriesIcons,
   provinces,
   cities,
-  radioItemsList,
+  categories,
 };

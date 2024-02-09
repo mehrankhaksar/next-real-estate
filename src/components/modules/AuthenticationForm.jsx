@@ -3,21 +3,21 @@
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 
+import { signIn } from "next-auth/react";
+
 import { motion } from "framer-motion";
 
 import { Form } from "../ui/form";
 
 import { useForm } from "react-hook-form";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpFormSchema, signInFormSchema } from "@/schemas/formValidations";
-
-import { signIn } from "next-auth/react";
 
 import toast from "react-hot-toast";
 
 import CustomTextInput from "./CustomTextInput";
 import CustomButton from "./CustomButton";
+import { DotsLoader } from "./CustomLoaders";
 
 const formVariants = {
   initial: { opacity: 0 },
@@ -84,11 +84,11 @@ const AuthenticationForm = ({ signUp = false }) => {
   return (
     <Form {...form}>
       <motion.form
-        className="max-w-[300px] space-y-4 bg-white mx-auto p-5 border-2 border-solid border-primary rounded-md shadow shadow-primary"
+        className="max-w-[300px] space-y-5 bg-white mx-auto p-5 border-2 border-solid border-primary rounded-md shadow shadow-primary"
         variants={formVariants}
-        key={pathname}
         noValidate
         onSubmit={form.handleSubmit(onSubmit)}
+        key={pathname}
       >
         <h2 className="h2 text-primary text-center">
           فرم {signUp ? "ثبت نام" : "ورود"}
@@ -106,8 +106,18 @@ const AuthenticationForm = ({ signUp = false }) => {
           label="رمز عبور"
           type="password"
         />
-        <CustomButton disabled={form.formState.isSubmitting}>
-          {signUp ? "ثبت نام" : "ورود"}
+        <CustomButton
+          containerStyles="w-full"
+          type="submit"
+          disabled={form.formState.isSubmitting}
+        >
+          {form.formState.isSubmitting ? (
+            <DotsLoader />
+          ) : signUp ? (
+            "ثبت نام"
+          ) : (
+            "ورود"
+          )}
         </CustomButton>
         <div className="flex justify-center items-center gap-1 font-medium">
           حساب {signUp ? "دارید" : "ندارید"}؟

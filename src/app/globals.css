@@ -94,6 +94,10 @@
   @apply inline-block text-primary bg-primary/25 py-1.5 px-3 rounded-md shadow-lg shadow-primary/50;
 }
 
+.list-container {
+  @apply grid gap-y-10 gap-x-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+
 .description {
   @apply text-sm font-semibold text-justify;
 }

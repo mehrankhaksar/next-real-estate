@@ -9,20 +9,15 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
 } from "../ui/dropdown-menu";
-import { Button } from "../ui/button";
 
 import SignOutButton from "./SignOutButton";
 
 const CustomDropdownMenu = ({ children, user, links }) => {
   return (
     <DropdownMenu dir="rtl">
-      <DropdownMenuTrigger asChild>
-        <Button className="w-fit p-0 rounded-full focus-visible:ring-offset-0">
-          {children}
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="text-center">
-        <DropdownMenuLabel>{`${user.firstName} ${user.lastName}`}</DropdownMenuLabel>
+      <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuLabel className="font-extrabold text-center">{`${user.firstName} ${user.lastName}`}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           {links.map((item, index) => (
@@ -35,7 +30,7 @@ const CustomDropdownMenu = ({ children, user, links }) => {
               href={item.href}
               key={index}
             >
-              <DropdownMenuItem className="cursor-pointer">
+              <DropdownMenuItem className="font-bold cursor-pointer">
                 {item.label}
               </DropdownMenuItem>
             </Link>

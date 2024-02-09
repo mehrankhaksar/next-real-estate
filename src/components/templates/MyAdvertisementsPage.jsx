@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-import DashboardAdvertisementCard from "../modules/DashboardAdvertisementCard";
+import DashboardCard from "../modules/DashboardCard";
 
 const listVariants = {
   initial: {
@@ -34,13 +34,10 @@ const MyAdvertisementsPage = ({ userAdvertisements }) => {
   return (
     <div>
       {userAdvertisements.length ? (
-        <motion.div
-          variants={listVariants}
-          className="grid grid-cols-3 gap-y-10 gap-x-5"
-        >
+        <motion.div variants={listVariants} className="list-container">
           {userAdvertisements.map((item) => (
             <motion.div variants={itemVariants} key={item._id}>
-              <DashboardAdvertisementCard advertisement={item} />
+              <DashboardCard advertisement={item} />
             </motion.div>
           ))}
         </motion.div>

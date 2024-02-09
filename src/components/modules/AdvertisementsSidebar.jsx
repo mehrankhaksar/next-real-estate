@@ -32,7 +32,7 @@ const AdvertisementsSidebar = ({ category }) => {
               />
             )}
             <div
-              className={`flex justify-center items-center gap-1.5 relative z-10 ${
+              className={`sm:flex sm:justify-center sm:items-center sm:gap-1.5 relative z-10 ${
                 Object.values(item.href.query).toString() === category &&
                 "text-primary-foreground"
               }`}

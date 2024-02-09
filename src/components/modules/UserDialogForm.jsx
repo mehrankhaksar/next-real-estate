@@ -12,13 +12,15 @@ import { useForm } from "react-hook-form";
 
 import toast from "react-hot-toast";
 
+import { Trash } from "lucide-react";
+
 import { roles } from "@/constants/lists";
 
-import RemoveButton from "./RemoveButton";
 import CustomImageInput from "./CustomImageInput";
 import CustomTextInput from "./CustomTextInput";
 import CustomSelect from "./CustomSelect";
 import CustomButton from "./CustomButton";
+import { DotsLoader } from "./CustomLoaders";
 
 const UserDialogForm = ({ user, setOpen }) => {
   const [avatar, setAvatar] = React.useState("");
@@ -66,16 +68,19 @@ const UserDialogForm = ({ user, setOpen }) => {
       >
         <div className="col-span-full flex items-center gap-5">
           <div className="relative">
-            <RemoveButton
-              containerStyles="absolute top-0 left-0 z-20"
-              handleRemove={() => form.setValue("avatar", "")}
-            />
+            <CustomButton
+              containerStyles="w-8 h-8 absolute top-0 left-0 p-1.5 rounded-full z-10"
+              variant="destructive"
+              handleClick={() => form.setValue("avatar", "")}
+            >
+              <Trash size={15} />
+            </CustomButton>
             <Avatar className="w-36 h-36 relative">
               <CustomImageInput
                 name="avatar"
                 form={form}
                 containerStyles="space-y-0"
-                inputStyles="w-full h-full absolute opacity-0 cursor-pointer z-10"
+                inputStyles="w-full h-full absolute opacity-0 cursor-pointer"
               />
               <AvatarImage
                 src={avatar}
@@ -96,10 +101,11 @@ const UserDialogForm = ({ user, setOpen }) => {
         ) : null}
         <DialogFooter className="col-span-full">
           <CustomButton
-            containerStyles="bg-green-500 hover:bg-green-600"
+            containerStyles="w-full bg-green-500 hover:bg-green-600"
+            type="submit"
             disabled={form.formState.isSubmitting}
           >
-            ذخیره
+            {form.formState.isSubmitting ? <DotsLoader /> : "ذخیره"}
           </CustomButton>
         </DialogFooter>
       </form>
