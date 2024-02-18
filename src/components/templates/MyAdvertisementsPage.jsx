@@ -1,42 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { parentVariants, childVariants } from "@/utils/variants";
 
 import DashboardCard from "../modules/DashboardCard";
 
-const listVariants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-    transition: {
-      when: "beforeChildren",
-      staggerChildren: 0.25,
-      ease: "linear",
-    },
-  },
-};
-
-const itemVariants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-    transition: {
-      ease: "easeIn",
-    },
-  },
-};
-
 const MyAdvertisementsPage = ({ userAdvertisements }) => {
   return (
-    <div>
+    <div className="flex flex-col items-start gap-8">
+      <h3 className="h3 dashboard-section-title">آگهی‌های من</h3>
       {userAdvertisements.length ? (
-        <motion.div variants={listVariants} className="list-container">
+        <motion.div className="list-container" variants={parentVariants}>
           {userAdvertisements.map((item) => (
-            <motion.div variants={itemVariants} key={item._id}>
+            <motion.div variants={childVariants} key={item._id}>
               <DashboardCard advertisement={item} />
             </motion.div>
           ))}

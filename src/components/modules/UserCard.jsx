@@ -88,15 +88,15 @@ const UserCard = ({ user }) => {
         {loading ? (
           <SpinnerLoader color="border-t-destructive" />
         ) : (
-          <Trash size={15} />
+          <Trash size={16} strokeWidth={2.5} />
         )}
       </CustomButton>
       <CardHeader>
         <div className="flex flex-col items-center gap-1.5">
           <CustomAvatar
-            badgeStyles="-top-2.5 -left-2.5 text-sm"
+            badgeStyles="-top-1.5 -left-1.5 text-sm"
             user={user}
-            avatarStyles="w-20 h-20 text-2xl"
+            avatarStyles="w-24 h-24 text-2xl"
           />
           <CardTitle className="flex items-center gap-1.5 font-extrabold text-primary">
             {user.firstName} {user.lastName}

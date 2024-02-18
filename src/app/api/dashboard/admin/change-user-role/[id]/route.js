@@ -38,7 +38,7 @@ export async function PATCH(req, context) {
 
     user.save();
     return NextResponse.json(
-      { message: "نقش کاربر با موفقیت تغییر کرد" },
+      { message: "نقش کاربر با موفقیت ویرایش شد" },
       { status: 200 }
     );
   } catch (err) {

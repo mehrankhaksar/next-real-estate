@@ -9,7 +9,7 @@ import CustomButton from "./CustomButton";
 const SignOutButton = () => {
   return (
     <CustomButton
-      containerStyles="flex items-center gap-1.5"
+      containerStyles="flex items-center gap-1 font-extrabold"
       variant="destructive"
       handleClick={signOut}
     >

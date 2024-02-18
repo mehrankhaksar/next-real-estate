@@ -26,7 +26,7 @@ const AdvertisementDetailsPage = ({ advertisement }) => {
             ))}
           </ul>
         ) : (
-          <p className="not-found text-sm">موردی ذکر نشده است</p>
+          <p className="not-found !text-sm">موردی ذکر نشده است</p>
         )}
       </div>
     );

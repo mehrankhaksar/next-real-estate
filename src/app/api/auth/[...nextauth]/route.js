@@ -7,7 +7,6 @@ import User from "@/models/User";
 import { verifyPassword } from "@/utils/auth";
 
 export const authOptions = {
-  session: { strategy: "jwt" },
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
@@ -26,12 +25,35 @@ export const authOptions = {
         const isValid = await verifyPassword(password, user.password);
         if (!isValid) throw new Error("ایمیل یا رمز عبور اشتباه است");
 
-        return {
-          email,
-        };
+        return user;
       },
     }),
   ],
+  callbacks: {
+    async jwt({ user, token }) {
+      if (user) {
+        return {
+          ...token,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          role: user.role,
+        };
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          firstName: token.firstName,
+          lastName: token.lastName,
+          role: token.role,
+        },
+      };
+    },
+  },
+  session: { strategy: "jwt" },
 };
 
 const handler = NextAuth(authOptions);

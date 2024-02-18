@@ -12,7 +12,7 @@ import { Separator } from "../ui/separator";
 import { Home, Building, Store, Building2, MapPin } from "lucide-react";
 
 import { e2p, findName, sp } from "@/utils/helperFunctions";
-import { provinces } from "@/constants/lists";
+import { provinces, cities } from "@/constants/lists";
 
 import CustomButton from "./CustomButton";
 
@@ -26,9 +26,9 @@ const AdvertisementCard = ({ title, category, province, city, price, _id }) => {
 
   return (
     <Card className="shadow shadow-primary">
-      <CardHeader>
+      <CardHeader className="px-3 sm:px-6">
         <div className="flex justify-between items-center gap-5 text-primary">
-          <CardTitle className="text-lg font-extrabold">{e2p(title)}</CardTitle>
+          <CardTitle className="font-extrabold">{e2p(title)}</CardTitle>
           <span className="bg-primary/25 p-1.5 rounded-md">
             {categoriesIcons[category]}
           </span>
@@ -38,7 +38,7 @@ const AdvertisementCard = ({ title, category, province, city, price, _id }) => {
       <CardContent className="font-semibold text-muted-foreground p-2.5">
         <div className="flex items-center gap-1">
           <MapPin size={18} />
-          {findName(provinces, province)}, {city}
+          {findName(provinces, province)}, {findName(cities, city)}
         </div>
         <div className="flex items-center gap-1">
           <span className="font-extrabold text-secondary-foreground">

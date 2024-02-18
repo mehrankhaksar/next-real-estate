@@ -14,27 +14,21 @@ import toast from "react-hot-toast";
 
 import { Trash } from "lucide-react";
 
-import { roles } from "@/constants/lists";
-
-import CustomImageInput from "./CustomImageInput";
-import CustomTextInput from "./CustomTextInput";
-import CustomSelect from "./CustomSelect";
 import CustomButton from "./CustomButton";
 import { DotsLoader } from "./CustomLoaders";
+import CustomImageInput from "./CustomImageInput";
+import CustomTextInput from "./CustomTextInput";
 
 const UserDialogForm = ({ user, setOpen }) => {
   const [avatar, setAvatar] = React.useState("");
 
   const router = useRouter();
-  const pathname = usePathname();
 
   const form = useForm({
     defaultValues: {
       avatar: user.avatar,
       firstName: user.firstName,
       lastName: user.lastName,
-      email: user.email,
-      role: user.role,
     },
   });
 
@@ -48,8 +42,8 @@ const UserDialogForm = ({ user, setOpen }) => {
       body: JSON.stringify(values),
       headers: { "Content-Type": "application/json" },
     });
+    
     const data = await res.json();
-
     if (data.message) {
       toast.success(data.message);
       setOpen(false);
@@ -79,7 +73,6 @@ const UserDialogForm = ({ user, setOpen }) => {
               <CustomImageInput
                 name="avatar"
                 form={form}
-                containerStyles="space-y-0"
                 inputStyles="w-full h-full absolute opacity-0 cursor-pointer"
               />
               <AvatarImage
@@ -96,12 +89,9 @@ const UserDialogForm = ({ user, setOpen }) => {
             <CustomTextInput name="lastName" form={form} label="نام خانوادگی" />
           </div>
         </div>
-        {pathname === "/dashboard/admin/users" ? (
-          <CustomSelect name="role" form={form} label="نقش" list={roles} />
-        ) : null}
-        <DialogFooter className="col-span-full">
+        <DialogFooter>
           <CustomButton
-            containerStyles="w-full bg-green-500 hover:bg-green-600"
+            containerStyles="bg-green-500 hover:bg-green-600"
             type="submit"
             disabled={form.formState.isSubmitting}
           >

@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 import { dashboardLinks } from "@/constants/lists";
 
-const DashboardSidebarNavbar = ({ role }) => {
+const DashboardSidebarNav = ({ role }) => {
   const pathname = usePathname();
 
   return (
@@ -42,4 +42,4 @@ const DashboardSidebarNavbar = ({ role }) => {
   );
 };
 
-export default DashboardSidebarNavbar;
+export default DashboardSidebarNav;

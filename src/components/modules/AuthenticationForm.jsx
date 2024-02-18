@@ -6,6 +6,7 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 
 import { motion } from "framer-motion";
+import { containerVariants } from "@/utils/variants";
 
 import { Form } from "../ui/form";
 
@@ -18,21 +19,6 @@ import toast from "react-hot-toast";
 import CustomTextInput from "./CustomTextInput";
 import CustomButton from "./CustomButton";
 import { DotsLoader } from "./CustomLoaders";
-
-const formVariants = {
-  initial: { opacity: 0 },
-  animate: {
-    opacity: 1,
-    transition: {
-      delay: 0.4,
-      duration: 0.4,
-      ease: "linear",
-    },
-  },
-  exit: {
-    opacity: 0,
-  },
-};
 
 const AuthenticationForm = ({ signUp = false }) => {
   const router = useRouter();
@@ -55,8 +41,8 @@ const AuthenticationForm = ({ signUp = false }) => {
         body: JSON.stringify(values),
         headers: { "Content-Type": "application/json" },
       });
-      const data = await res.json();
 
+      const data = await res.json();
       if (data.message) {
         form.reset();
         toast.success(data.message);
@@ -70,13 +56,13 @@ const AuthenticationForm = ({ signUp = false }) => {
         password: values.password,
         redirect: false,
       });
-
       if (res.error) {
         toast.error(res.error);
       } else {
         form.reset();
         toast.success("با موفقیت وارد حساب خود شدید");
         router.replace("/dashboard");
+        router.refresh();
       }
     }
   };
@@ -84,8 +70,8 @@ const AuthenticationForm = ({ signUp = false }) => {
   return (
     <Form {...form}>
       <motion.form
-        className="max-w-[300px] space-y-5 bg-white mx-auto p-5 border-2 border-solid border-primary rounded-md shadow shadow-primary"
-        variants={formVariants}
+        className="max-w-[300px] space-y-5 bg-white mx-auto p-2.5 border-2 border-solid border-primary rounded-md shadow shadow-primary"
+        variants={containerVariants}
         noValidate
         onSubmit={form.handleSubmit(onSubmit)}
         key={pathname}
@@ -106,11 +92,7 @@ const AuthenticationForm = ({ signUp = false }) => {
           label="رمز عبور"
           type="password"
         />
-        <CustomButton
-          containerStyles="w-full"
-          type="submit"
-          disabled={form.formState.isSubmitting}
-        >
+        <CustomButton type="submit" disabled={form.formState.isSubmitting}>
           {form.formState.isSubmitting ? (
             <DotsLoader />
           ) : signUp ? (

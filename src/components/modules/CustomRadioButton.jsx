@@ -7,7 +7,7 @@ import {
 } from "../ui/form";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 
-const CustomRadioButton = ({ name, form, label, radioItemsList }) => {
+const CustomRadioButton = ({ name, form, label, list }) => {
   return (
     <FormField
       name={name}
@@ -22,7 +22,7 @@ const CustomRadioButton = ({ name, form, label, radioItemsList }) => {
               defaultValue={field.value}
               onValueChange={field.onChange}
             >
-              {radioItemsList.map((item, index) => (
+              {list.map((item, index) => (
                 <div
                   className="flex justify-center items-center gap-1.5 text-primary bg-primary/20 p-3 rounded"
                   key={index}

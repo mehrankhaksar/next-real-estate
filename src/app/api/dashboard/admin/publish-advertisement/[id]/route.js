@@ -17,8 +17,6 @@ export async function PATCH(req, context) {
   try {
     await connectDB();
 
-    const { id } = context.params;
-
     const user = await User.findOne({ email: session.user.email });
     if (!user)
       return NextResponse.json(
@@ -32,7 +30,14 @@ export async function PATCH(req, context) {
         { status: 403 }
       );
 
+    const { id } = context.params;
+
     const advertisement = await Advertisement.findOne({ _id: id });
+    if (!advertisement)
+      return NextResponse.json(
+        { error: "آگهی مورد نظر یافت نشد" },
+        { status: 404 }
+      );
 
     advertisement.isPublished = true;
 

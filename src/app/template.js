@@ -1,23 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { templateVariants } from "@/utils/variants";
 
 import { Toaster } from "react-hot-toast";
 
 import useProgressScroll from "@/hooks/useProgressScroll";
-
-const templateVariants = {
-  initial: { opacity: 0 },
-  animate: {
-    opacity: 1,
-    transition: {
-      when: "beforeChildren",
-      delay: 0.2,
-      duration: 0.4,
-      ease: "easeIn",
-    },
-  },
-};
 
 export default function template({ children }) {
   const completion = useProgressScroll();

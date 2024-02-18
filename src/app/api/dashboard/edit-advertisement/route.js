@@ -17,6 +17,13 @@ export async function PATCH(req) {
   try {
     await connectDB();
 
+    const user = await User.findOne({ email: session.user.email });
+    if (!user)
+      return NextResponse.json(
+        { error: "حساب کاربری یافت نشد" },
+        { status: 404 }
+      );
+
     const {
       _id,
       title,
@@ -33,15 +40,8 @@ export async function PATCH(req) {
       rules,
     } = await req.json();
 
-    const user = await User.findOne({ email: session.user.email });
-    if (!user)
-      return NextResponse.json(
-        { error: "حساب کاربری یافت نشد" },
-        { status: 404 }
-      );
-
     const advertisement = await Advertisement.findOne({ _id });
-    if (user.role !== "ADMIN" && !user._id.equals(advertisement.userId))
+    if (!user._id.equals(advertisement.userId))
       return NextResponse.json(
         { error: "دسترسی شما به این آگهی محدود شده است" },
         { status: 401 }

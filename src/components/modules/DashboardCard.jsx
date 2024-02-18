@@ -13,7 +13,7 @@ import CustomButton from "./CustomButton";
 import { SpinnerLoader } from "./CustomLoaders";
 import AdvertisementCard from "./AdvertisementCard";
 
-const DashboardCard = ({ role, advertisement }) => {
+const DashboardCard = ({ advertisement, role }) => {
   const [loading, setLoading] = React.useState({
     publish: false,
     remove: false,
@@ -88,12 +88,12 @@ const DashboardCard = ({ role, advertisement }) => {
           {loading.remove ? (
             <SpinnerLoader color="border-t-destructive" />
           ) : (
-            <Trash size={15} />
+            <Trash size={16} strokeWidth={2.5} />
           )}
         </CustomButton>
         <Link href={`/dashboard/edit-advertisement/${advertisement._id}`}>
           <CustomButton containerStyles="w-8 h-8 p-1.5 rounded-full">
-            <PenSquare size={15} />
+            <PenSquare size={16} strokeWidth={2.5} />
           </CustomButton>
         </Link>
       </div>

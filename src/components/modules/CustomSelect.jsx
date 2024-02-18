@@ -32,7 +32,11 @@ const CustomSelect = ({ name, form, containerStyles, label, list }) => {
               </SelectTrigger>
               <SelectContent>
                 {list.map((item) => (
-                  <SelectItem value={item.value} key={item.id}>
+                  <SelectItem
+                    className="cursor-pointer"
+                    value={item.value}
+                    key={item.id}
+                  >
                     {item.name}
                   </SelectItem>
                 ))}

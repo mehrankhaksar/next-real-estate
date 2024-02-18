@@ -7,9 +7,10 @@ import NextAuthProvider from "@/providers/NextAuthProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-import "./globals.css";
 import connectDB from "@/utils/connectDB";
 import User from "@/models/User";
+
+import "./globals.css";
 
 export const metadata = {
   title: "Create Next App",
@@ -21,24 +22,24 @@ export default async function RootLayout({ children }) {
 
   try {
     await connectDB();
+
+    const user = await User.findOne({ email: session?.user.email });
+
+    return (
+      <html dir="rtl" lang="fa">
+        <body
+          className={`w-full h-screen flex flex-col justify-between overflow-y-auto overflow-x-hidden ${YekanBakh.className}`}
+          suppressHydrationWarning={true}
+        >
+          <NextAuthProvider>
+            <Header user={JSON.parse(JSON.stringify(user))} />
+            {children}
+            <Footer />
+          </NextAuthProvider>
+        </body>
+      </html>
+    );
   } catch (err) {
     console.log(err);
   }
-
-  const user = await User.findOne({ email: session?.user.email });
-
-  return (
-    <html dir="rtl" lang="fa">
-      <body
-        className={`w-full h-screen flex flex-col justify-between overflow-y-auto overflow-x-hidden ${YekanBakh.className}`}
-        suppressHydrationWarning={true}
-      >
-        <NextAuthProvider>
-          <Header user={JSON.parse(JSON.stringify(user))} />
-          {children}
-          <Footer />
-        </NextAuthProvider>
-      </body>
-    </html>
-  );
 }

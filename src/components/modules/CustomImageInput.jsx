@@ -7,19 +7,13 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 
-const CustomImageInput = ({
-  name,
-  form,
-  containerStyles,
-  label,
-  inputStyles,
-}) => {
+const CustomImageInput = ({ name, form, label, inputStyles }) => {
   return (
     <FormField
       name={name}
       control={form.control}
       render={({ field }) => (
-        <FormItem className={containerStyles}>
+        <FormItem>
           <FormLabel className="text-base font-semibold">{label}</FormLabel>
           <FormControl className="shadow shadow-primary">
             <Input

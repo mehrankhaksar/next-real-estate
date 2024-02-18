@@ -70,11 +70,12 @@ const AdvertisementForm = ({ advertisement }) => {
         body: JSON.stringify(values),
         headers: { "Content-Type": "application/json" },
       });
-      const data = await res.json();
 
+      const data = await res.json();
       if (data.message) {
         form.reset();
         toast.success(data.message);
+        router.push("/dashboard/my-advertisements");
         router.refresh();
       } else {
         toast.error(data.error);
@@ -85,8 +86,8 @@ const AdvertisementForm = ({ advertisement }) => {
         body: JSON.stringify(values),
         headers: { "Content-Type": "application/json" },
       });
-      const data = await res.json();
 
+      const data = await res.json();
       if (data.message) {
         form.reset();
         toast.success(data.message);
@@ -135,7 +136,7 @@ const AdvertisementForm = ({ advertisement }) => {
           name="category"
           form={form}
           label="دسته بندی"
-          radioItemsList={categories}
+          list={categories}
         />
         <CustomDatePicker
           name="constructionDate"

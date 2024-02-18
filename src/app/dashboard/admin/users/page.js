@@ -21,11 +21,11 @@ export default async function Users() {
       email: { $ne: session.user.email },
     });
 
-    const finalUsers = filteredUsers.sort((a, b) =>
+    const sortedUsers = filteredUsers.sort((a, b) =>
       a.role === "ADMIN" ? -1 : b.role === "ADMIN" ? 1 : 0
     );
 
-    return <UsersPage users={JSON.parse(JSON.stringify(finalUsers))} />;
+    return <UsersPage users={JSON.parse(JSON.stringify(sortedUsers))} />;
   } catch (err) {
     console.log(err);
   }

@@ -2,15 +2,17 @@
 
 import React from "react";
 
+import { usePathname } from "next/navigation";
 import Link from "next/link";
+
+import { motion } from "framer-motion";
 
 import { Button } from "./ui/button";
 
 import { LogIn } from "lucide-react";
 
-import { dashboardLinks } from "@/constants/lists";
+import { headerLinks, dashboardLinks } from "@/constants/lists";
 
-import HeaderNav from "./HeaderNav";
 import CustomDropdownMenu from "./modules/CustomDropdownMenu";
 import CustomAvatar from "./modules/CustomAvatar";
 import CustomButton from "./modules/CustomButton";
@@ -26,6 +28,8 @@ const Header = ({ user }) => {
     return window.removeEventListener("scroll", isScrolled);
   }, []);
 
+  const pathname = usePathname();
+
   return (
     <header
       className={`flex items-center sticky top-0 text-primary-foreground bg-primary transition-all duration-300 z-40 ${
@@ -34,10 +38,25 @@ const Header = ({ user }) => {
     >
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
-          <HeaderNav />
+          <nav className="flex items-center gap-5">
+            {headerLinks.map((item, index) => (
+              <Link className="relative font-bold" href={item.href} key={index}>
+                {item.href.pathname === pathname && (
+                  <motion.span
+                    className="w-full h-0.5 absolute bottom-0 bg-primary-foreground rounded-sm"
+                    layoutId="active-underline"
+                  />
+                )}
+                {item.label}
+              </Link>
+            ))}
+          </nav>
           {user ? (
             <CustomDropdownMenu user={user} links={dashboardLinks}>
-              <Button className="w-fit p-0 rounded-full focus-visible:ring-offset-0">
+              <Button
+                className="w-fit p-0 rounded-full focus-visible:ring-offset-0"
+                type="button"
+              >
                 <CustomAvatar
                   badgeStyles="hidden"
                   user={user}

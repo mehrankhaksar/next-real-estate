@@ -14,8 +14,7 @@ const sp = (number) => {
   return e2p(joinedNumber);
 };
 
-const findName = (list, value) => {
-  return list.find((item) => item.value === value).name;
-};
+const findName = (list, value) =>
+  list.find((item) => item.value === value).name;
 
 export { e2p, p2e, sp, findName };

@@ -2,7 +2,7 @@ import UserDialog from "../modules/UserDialog";
 
 const DashboardPage = ({ user }) => {
   return (
-    <div className="flex flex-col gap-10">
+    <div className="space-y-10">
       <div className="space-y-2.5">
         <h2 className="h2">
           سلام <span className="text-primary">{user.firstName}</span> 👋

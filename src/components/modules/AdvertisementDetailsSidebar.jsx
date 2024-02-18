@@ -25,11 +25,6 @@ const AdvertisementDetailsSidebar = ({
   price,
   constructionDate,
 }) => {
-  const classNames = [
-    "flex flex-col items-center font-semibold text-muted-foreground bg-white p-5 rounded-xl shadow shadow-primary",
-    "flex flex-col items-center gap-1 font-extrabold text-black",
-  ];
-
   const categoriesIcons = {
     villa: { icon: <Home size={25} />, label: "ویلا" },
     apartment: { icon: <Building size={25} />, label: "آپارتمان" },
@@ -42,8 +37,11 @@ const AdvertisementDetailsSidebar = ({
       className="h-fit grid max-sm:grid-cols-2 gap-2.5 bg-primary-foreground p-2.5 rounded-xl shadow shadow-primary"
       variants={parentVariants}
     >
-      <motion.div className={classNames[0]} variants={childVariants}>
-        <div className={classNames[1]}>
+      <motion.div
+        className="flex flex-col items-center font-semibold text-muted-foreground bg-white p-5 rounded-xl shadow shadow-primary"
+        variants={childVariants}
+      >
+        <div className="flex flex-col items-center gap-1 font-extrabold text-black">
           <Avatar className="w-16 h-16">
             <AvatarImage />
             <AvatarFallback className="text-primary-foreground bg-primary">
@@ -57,8 +55,11 @@ const AdvertisementDetailsSidebar = ({
           {e2p(phoneNumber)}
         </div>
       </motion.div>
-      <motion.div className={classNames[0]} variants={childVariants}>
-        <div className={classNames[1]}>
+      <motion.div
+        className="flex flex-col items-center font-semibold text-muted-foreground bg-white p-5 rounded-xl shadow shadow-primary"
+        variants={childVariants}
+      >
+        <div className="flex flex-col items-center gap-1 font-extrabold text-black">
           <span className="text-primary">{categoriesIcons[category].icon}</span>
           {categoriesIcons[category].label}
         </div>

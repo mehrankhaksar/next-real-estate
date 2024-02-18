@@ -19,6 +19,13 @@ export async function POST(req) {
   try {
     await connectDB();
 
+    const user = await User.findOne({ email: session.user.email });
+    if (!user)
+      return NextResponse.json(
+        { error: "حساب کاربری یافت نشد" },
+        { status: 404 }
+      );
+      
     const {
       title,
       price,
@@ -33,13 +40,6 @@ export async function POST(req) {
       amenities,
       rules,
     } = await req.json();
-
-    const user = await User.findOne({ email: session.user.email });
-    if (!user)
-      return NextResponse.json(
-        { error: "حساب کاربری یافت نشد" },
-        { status: 404 }
-      );
 
     const newAmenities = amenities.filter((item) => item !== "");
     const newRule = rules.filter((item) => item !== "");

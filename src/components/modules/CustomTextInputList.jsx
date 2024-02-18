@@ -53,7 +53,7 @@ const CustomTextInputList = ({ name, form, containerStyles, label }) => {
                         variant="destructive"
                         handleClick={() => handleRemove(field, index)}
                       >
-                        <Trash2 size={17} />
+                        <Trash2 size={18} />
                       </CustomButton>
                     </div>
                   ))
@@ -62,7 +62,7 @@ const CustomTextInputList = ({ name, form, containerStyles, label }) => {
           </FormControl>
           <FormMessage />
           <CustomButton
-            containerStyles="w-fit inline-flex items-center gap-1 font-bold"
+            containerStyles="w-fit inline-flex items-center gap-0.5 text-sm"
             handleClick={() => handleAdd(field)}
           >
             افزودن

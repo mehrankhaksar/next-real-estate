@@ -17,7 +17,7 @@ const CustomDropdownMenu = ({ children, user, links }) => {
     <DropdownMenu dir="rtl">
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel className="font-extrabold text-center">{`${user.firstName} ${user.lastName}`}</DropdownMenuLabel>
+        <DropdownMenuLabel className="text-base font-extrabold text-center">{`${user.firstName} ${user.lastName}`}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           {links.map((item, index) => (

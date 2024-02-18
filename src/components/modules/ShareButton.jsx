@@ -18,10 +18,10 @@ const ShareButton = () => {
   return (
     <CopyToClipboard text={URL}>
       <CustomButton
-        containerStyles="flex items-center gap-1 font-bold rounded-lg"
+        containerStyles="flex items-center gap-1 rounded-lg"
         handleClick={() => toast.success("کپی شد")}
       >
-        <Share2 size={20} />
+        <Share2 size={18} strokeWidth={2.5} />
         اشتراک گذاری
       </CustomButton>
     </CopyToClipboard>

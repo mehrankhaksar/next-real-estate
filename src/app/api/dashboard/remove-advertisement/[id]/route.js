@@ -27,7 +27,7 @@ export async function DELETE(req, context) {
     const { id } = context.params;
 
     const advertisement = await Advertisement.findOne({ _id: id });
-    if (user.role !== "ADMIN" && !user._id.equals(advertisement.userId))
+    if (!user._id.equals(advertisement.userId))
       return NextResponse.json(
         { error: "دسترسی شما به این آگهی محدود شده است" },
         { status: 403 }

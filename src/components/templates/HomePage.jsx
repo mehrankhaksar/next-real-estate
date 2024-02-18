@@ -46,14 +46,13 @@ const HomePage = () => {
               href={item.href}
               key={index}
             >
-              <div className="w-full h-[250px] md:h-[150px] relative rounded-md overflow-hidden">
+              <div className="w-full h-[200px] md:h-[150px] relative rounded-md overflow-hidden">
                 <Image
                   className="object-cover"
                   src={`/assets/images/${Object.values(
                     item.href.query
                   ).toString()}.png`}
                   fill
-                  sizes="100%"
                   priority
                   alt={item.label}
                 />

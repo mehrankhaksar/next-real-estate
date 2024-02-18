@@ -7,7 +7,7 @@ import connectDB from "@/utils/connectDB";
 import User from "@/models/User";
 import Advertisement from "@/models/Advertisement";
 
-import PublishPage from "@/components/templates/PublishPage";
+import PublishAdvertisementPage from "@/components/templates/PublishAdvertisementPage";
 
 export default async function Publish() {
   const session = await getServerSession(authOptions);
@@ -21,7 +21,7 @@ export default async function Publish() {
     const advertisements = await Advertisement.find({ isPublished: false });
 
     return (
-      <PublishPage
+      <PublishAdvertisementPage
         advertisements={JSON.parse(JSON.stringify(advertisements))}
         role={user.role}
       />

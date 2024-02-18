@@ -1,40 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { parentVariants, childVariants } from "@/utils/variants";
 
 import UserCard from "../modules/UserCard";
 
-const listVariants = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-    transition: {
-      when: "beforeChildren",
-      staggerChildren: 0.25,
-      delay: 0.25,
-      duration: 0.5,
-      ease: "linear",
-    },
-  },
-};
-
-const itemVariants = {
-  initial: { opacity: 0 },
-  animate: {
-    opacity: 1,
-    transition: {
-      ease: "easeIn",
-    },
-  },
-};
-
 const UsersList = ({ users }) => {
   return (
-    <motion.div className="list-container" variants={listVariants}>
-      {users.map((item, index) => (
-        <motion.div variants={itemVariants} key={index}>
+    <motion.div className="list-container" variants={parentVariants}>
+      {users.map((item) => (
+        <motion.div variants={childVariants} key={item._id}>
           <UserCard user={item} />
         </motion.div>
       ))}
