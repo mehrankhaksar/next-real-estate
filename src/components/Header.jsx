@@ -52,7 +52,7 @@ const Header = ({ user }) => {
             ))}
           </nav>
           {user ? (
-            <CustomDropdownMenu user={user} links={dashboardLinks}>
+            <CustomDropdownMenu user={user} links={dashboardLinks[user.role]}>
               <Button
                 className="w-fit p-0 rounded-full focus-visible:ring-offset-0"
                 type="button"

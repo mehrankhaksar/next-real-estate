@@ -9,7 +9,7 @@ import Advertisement from "@/models/Advertisement";
 
 import PublishAdvertisementPage from "@/components/templates/PublishAdvertisementPage";
 
-export default async function Publish() {
+export default async function PublishAdvertisement() {
   const session = await getServerSession(authOptions);
 
   try {

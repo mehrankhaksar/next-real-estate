@@ -12,13 +12,9 @@ const DashboardSidebarNav = ({ role }) => {
 
   return (
     <nav className="space-y-1.5">
-      {dashboardLinks.map((item, index) => (
+      {dashboardLinks[role].map((item, index) => (
         <Link
-          className={`relative text-sm font-semibold py-2 sm:px-4 rounded-md overflow-hidden ${
-            (item.label === "انتشار آگهی" || item.label === "کاربران") &&
-            role !== "ADMIN" &&
-            "hidden"
-          }`}
+          className="relative text-sm font-semibold py-2 sm:px-4 rounded-md overflow-hidden"
           href={item.href}
           key={index}
         >

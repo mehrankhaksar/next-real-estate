@@ -3,12 +3,12 @@
 import { motion } from "framer-motion";
 import { parentVariants, childVariants } from "@/utils/variants";
 
-import UserCard from "../modules/UserCard";
+import UserCard from "./UserCard";
 
-const UsersList = ({ users }) => {
+const AllUsersList = ({ allUsers }) => {
   return (
     <motion.div className="list-container" variants={parentVariants}>
-      {users.map((item) => (
+      {allUsers.map((item) => (
         <motion.div variants={childVariants} key={item._id}>
           <UserCard user={item} />
         </motion.div>
@@ -17,4 +17,4 @@ const UsersList = ({ users }) => {
   );
 };
 
-export default UsersList;
+export default AllUsersList;

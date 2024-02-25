@@ -1,11 +1,11 @@
-import UsersList from "../modules/UsersList";
+import AllUsersList from "../modules/AllUsersList";
 
-const UsersPage = ({ users }) => {
+const AllUsersPage = ({ allUsers }) => {
   return (
     <div className="flex flex-col items-start gap-5">
       <h3 className="h3 dashboard-section-title">کاربران</h3>
-      {users.length ? (
-        <UsersList users={users} />
+      {allUsers.length ? (
+        <AllUsersList allUsers={allUsers} />
       ) : (
         <p className="not-found">کاربری یافت نشد</p>
       )}
@@ -13,4 +13,4 @@ const UsersPage = ({ users }) => {
   );
 };
 
-export default UsersPage;
+export default AllUsersPage;

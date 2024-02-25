@@ -6,9 +6,9 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import connectDB from "@/utils/connectDB";
 import User from "@/models/User";
 
-import UsersPage from "@/components/templates/UsersPage";
+import AllUsersPage from "@/components/templates/AllUsersPage";
 
-export default async function Users() {
+export default async function AllUsers() {
   const session = await getServerSession(authOptions);
 
   try {
@@ -25,7 +25,7 @@ export default async function Users() {
       a.role === "ADMIN" ? -1 : b.role === "ADMIN" ? 1 : 0
     );
 
-    return <UsersPage users={JSON.parse(JSON.stringify(sortedUsers))} />;
+    return <AllUsersPage allUsers={JSON.parse(JSON.stringify(sortedUsers))} />;
   } catch (err) {
     console.log(err);
   }

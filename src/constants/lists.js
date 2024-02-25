@@ -40,86 +40,68 @@ const roles = [
   },
 ];
 
-const dashboardLinks = [
-  {
-    href: {
-      pathname: "/dashboard",
+const dashboardLinks = {
+  ADMIN: [
+    {
+      href: {
+        pathname: "/dashboard",
+      },
+      icon: <UserCircle />,
+      label: "حساب کاربری",
     },
-    icon: <UserCircle />,
-    label: "حساب کاربری",
-  },
-  {
-    href: {
-      pathname: "/dashboard/my-advertisements",
+    {
+      href: {
+        pathname: "/dashboard/admin/all-advertisements",
+      },
+      icon: <Bookmark />,
+      label: "آگهی‌ها",
     },
-    icon: <Bookmark />,
-    label: "آگهی‌های من",
-  },
-  {
-    href: {
-      pathname: "/dashboard/add-advertisement",
+    {
+      href: {
+        pathname: "/dashboard/add-advertisement",
+      },
+      icon: <BookmarkPlus />,
+      label: "ثبت آگهی",
     },
-    icon: <BookmarkPlus />,
-    label: "ثبت آگهی",
-  },
-  {
-    href: {
-      pathname: "/dashboard/admin/publish",
+    {
+      href: {
+        pathname: "/dashboard/admin/publish-advertisement",
+      },
+      icon: <ListChecks />,
+      label: "انتشار آگهی",
     },
-    icon: <ListChecks />,
-    label: "انتشار آگهی",
-  },
-  {
-    href: {
-      pathname: "/dashboard/admin/users",
+    {
+      href: {
+        pathname: "/dashboard/admin/all-users",
+      },
+      icon: <Users />,
+      label: "کاربران",
     },
-    icon: <Users />,
-    label: "کاربران",
-  },
-];
-
-const categoriesLink = [
-  {
-    href: {
-      pathname: "/advertisements",
-      query: { category: "all" },
+  ],
+  USER: [
+    {
+      href: {
+        pathname: "/dashboard",
+      },
+      icon: <UserCircle />,
+      label: "حساب کاربری",
     },
-    icon: <List />,
-    label: "همه",
-  },
-  {
-    href: {
-      pathname: "/advertisements",
-      query: { category: "villa" },
+    {
+      href: {
+        pathname: "/dashboard/my-advertisements",
+      },
+      icon: <Bookmark />,
+      label: "آگهی‌های من",
     },
-    icon: <Home />,
-    label: "ویلا",
-  },
-  {
-    href: {
-      pathname: "/advertisements",
-      query: { category: "apartment" },
+    {
+      href: {
+        pathname: "/dashboard/add-advertisement",
+      },
+      icon: <BookmarkPlus />,
+      label: "ثبت آگهی",
     },
-    icon: <Building />,
-    label: "آپارتمان",
-  },
-  {
-    href: {
-      pathname: "/advertisements",
-      query: { category: "store" },
-    },
-    icon: <Store />,
-    label: "مغازه",
-  },
-  {
-    href: {
-      pathname: "/advertisements",
-      query: { category: "office" },
-    },
-    icon: <Building2 />,
-    label: "دفتر",
-  },
-];
+  ],
+};
 
 const provinces = [
   {
@@ -7015,12 +6997,55 @@ const categories = [
   },
 ];
 
+const categoriesLink = [
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "all" },
+    },
+    icon: <List />,
+    label: "همه",
+  },
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "villa" },
+    },
+    icon: <Home />,
+    label: "ویلا",
+  },
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "apartment" },
+    },
+    icon: <Building />,
+    label: "آپارتمان",
+  },
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "store" },
+    },
+    icon: <Store />,
+    label: "مغازه",
+  },
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "office" },
+    },
+    icon: <Building2 />,
+    label: "دفتر",
+  },
+];
+
 export {
   headerLinks,
-  dashboardLinks,
   roles,
-  categoriesLink,
+  dashboardLinks,
   provinces,
   cities,
   categories,
+  categoriesLink,
 };
