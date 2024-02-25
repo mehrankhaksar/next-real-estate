@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import connectDB from "@/utils/connectDB";
 import Advertisement from "@/models/Advertisement";
 
