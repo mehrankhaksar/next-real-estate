@@ -1,4 +1,5 @@
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
+export const dynamicParams = true;
 
 import connectDB from "@/utils/connectDB";
 import Advertisement from "@/models/Advertisement";
