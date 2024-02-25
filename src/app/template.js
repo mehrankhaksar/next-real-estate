@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 
 import useProgressScroll from "@/hooks/useProgressScroll";
 
-export default function template({ children }) {
+export default function Template({ children }) {
   const completion = useProgressScroll();
 
   return (
