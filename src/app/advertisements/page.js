@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+export const dynamic = "auto";
 
 import connectDB from "@/utils/connectDB";
 import Advertisement from "@/models/Advertisement";
