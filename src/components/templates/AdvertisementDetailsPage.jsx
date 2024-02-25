@@ -47,7 +47,9 @@ const AdvertisementDetailsPage = ({ advertisement }) => {
             <div>
               <h4 className="h4 text-primary">توضیحات</h4>
               <Separator className="bg-secondary-foreground mt-1.5 mb-3" />
-              <p className="description break-all">{description}</p>
+              <p className="description whitespace-pre-line break-all">
+                {description}
+              </p>
             </div>
             <div>
               <h4 className="h4 text-primary">امکانات</h4>

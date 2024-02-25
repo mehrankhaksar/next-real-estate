@@ -8,6 +8,10 @@ import User from "@/models/User";
 
 import DashboardSidebar from "@/components/DashboardSidebar";
 
+export const metadata = {
+  title: "پنل | پروژه بوتواستارت",
+};
+
 export default async function Layout({ children }) {
   const session = await getServerSession(authOptions);
   if (!session) redirect("/sign-in");
