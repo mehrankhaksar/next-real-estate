@@ -58,10 +58,6 @@
     @apply bg-background text-foreground;
   }
 
-  section {
-    @apply h-full;
-  }
-
   a {
     @apply block;
   }
@@ -95,15 +91,15 @@
 }
 
 .list-container {
-  @apply w-full grid gap-y-8 gap-x-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+  @apply grid gap-y-8 gap-x-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
 }
 
 .description {
-  @apply text-sm font-medium sm:text-base;
+  @apply text-sm font-medium whitespace-pre-line sm:text-base;
 }
 
 .not-found {
-  @apply inline-block font-bold text-destructive-foreground bg-destructive py-1.5 px-3 rounded-md shadow-md shadow-destructive;
+  @apply inline-block font-semibold text-destructive-foreground bg-destructive py-1.5 px-3 rounded-md shadow-md shadow-destructive;
 }
 
 .dot {

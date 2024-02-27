@@ -53,6 +53,7 @@ const HomePage = () => {
                     item.href.query
                   ).toString()}.png`}
                   fill
+                  sizes="100%"
                   priority
                   alt={item.label}
                 />
@@ -62,7 +63,7 @@ const HomePage = () => {
           ))}
         </div>
         <div className="space-y-5">
-          <h3 className="h2 text-primary text-center">شهر‌های پر بازدید</h3>
+          <h2 className="h2 text-primary text-center">شهر‌های پر بازدید</h2>
           <ul className="grid grid-cols-4 gap-1.5 font-bold">
             {cities.map((item, index) => (
               <li

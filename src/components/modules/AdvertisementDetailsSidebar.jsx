@@ -51,6 +51,7 @@ const AdvertisementDetailsSidebar = ({
                 className="object-contain"
                 src="/assets/images/real-estate.png"
                 fill
+                sizes="100%"
                 priority
                 alt="مشاور املاک"
               />
