@@ -24,6 +24,7 @@ import { headerLinks, dashboardLinks } from "@/constants/lists";
 
 import CustomAvatar from "./modules/CustomAvatar";
 import Logout from "./modules/Logout";
+import ThemeToggler from "./modules/ThemeToggler";
 
 const Header = ({ user }) => {
   const [header, setHeader] = React.useState(false);
@@ -66,49 +67,52 @@ const Header = ({ user }) => {
               </Link>
             ))}
           </nav>
-          {user ? (
-            <DropdownMenu dir="rtl">
-              <DropdownMenuTrigger asChild>
+          <div className="flex items-center gap-1.5">
+            {user ? (
+              <DropdownMenu dir="rtl">
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    className="rounded-full focus-visible:ring-offset-0"
+                    size="icon"
+                    type="button"
+                  >
+                    <CustomAvatar
+                      badgeStyles="hidden"
+                      user={user}
+                      avatarStyles="text-muted-foreground"
+                    />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel className="font-extrabold text-center">{`${user.firstName} ${user.lastName}`}</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuGroup>
+                    {dashboardLinks[user.role].map((item, index) => (
+                      <Link href={item.href} key={index}>
+                        <DropdownMenuItem className="font-bold cursor-pointer">
+                          {item.label}
+                        </DropdownMenuItem>
+                      </Link>
+                    ))}
+                  </DropdownMenuGroup>
+                  <DropdownMenuSeparator />
+                  <Logout />
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link href="/sign-in">
                 <Button
-                  className="rounded-full focus-visible:ring-offset-0"
-                  size="icon"
+                  className="flex items-center gap-0.5 font-bold"
+                  variant="secondary"
                   type="button"
                 >
-                  <CustomAvatar
-                    badgeStyles="hidden"
-                    user={user}
-                    avatarStyles="text-muted-foreground"
-                  />
+                  ورود
+                  <RiLoginBoxLine size={17.5} />
                 </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel className="font-extrabold text-center">{`${user.firstName} ${user.lastName}`}</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                  {dashboardLinks[user.role].map((item, index) => (
-                    <Link href={item.href} key={index}>
-                      <DropdownMenuItem className="font-bold cursor-pointer">
-                        {item.label}
-                      </DropdownMenuItem>
-                    </Link>
-                  ))}
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <Logout />
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <Link href="/sign-in">
-              <Button
-                className="flex items-center gap-0.5 font-bold"
-                variant="secondary"
-                type="button"
-              >
-                ورود
-                <RiLoginBoxLine size={17.5} />
-              </Button>
-            </Link>
-          )}
+              </Link>
+            )}
+            <ThemeToggler />
+          </div>
         </div>
       </div>
     </header>

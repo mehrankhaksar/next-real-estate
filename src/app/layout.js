@@ -11,6 +11,7 @@ import connectDB from "@/utils/connectDB";
 import User from "@/models/User";
 
 import "./globals.css";
+import ThemeProvider from "@/providers/ThemeProvider";
 
 export const metadata = {
   title: "املاک | پروژه بوتواستارت",
@@ -33,9 +34,11 @@ export default async function RootLayout({ children }) {
           suppressHydrationWarning
         >
           <NextAuthProvider>
-            <Header user={JSON.parse(JSON.stringify(user))} />
-            {children}
-            <Footer />
+            <ThemeProvider defaultTheme="light" attribute="class">
+              <Header user={JSON.parse(JSON.stringify(user))} />
+              {children}
+              <Footer />
+            </ThemeProvider>
           </NextAuthProvider>
         </body>
       </html>
