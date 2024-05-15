@@ -1,21 +1,21 @@
 const templateVariants = {
-  initial: { opacity: 0 },
-  animate: {
+  hidden: { opacity: 0 },
+  enter: {
     opacity: 1,
     transition: {
       when: "beforeChildren",
-      delay: 0.2,
-      duration: 0.4,
-      ease: "easeIn",
+      type: "linear",
+      delay: 0.25,
+      duration: 0.5,
     },
   },
 };
 
 const containerVariants = {
-  initial: {
+  hidden: {
     opacity: 0,
   },
-  animate: {
+  enter: {
     opacity: 1,
     transition: {
       ease: "easeInOut",
@@ -25,10 +25,10 @@ const containerVariants = {
 };
 
 const parentVariants = {
-  initial: {
+  hidden: {
     opacity: 0,
   },
-  animate: {
+  enter: {
     opacity: 1,
     transition: {
       when: "beforeChildren",
@@ -39,8 +39,8 @@ const parentVariants = {
 };
 
 const childVariants = {
-  initial: { opacity: 0 },
-  animate: {
+  hidden: { opacity: 0 },
+  enter: {
     opacity: 1,
     transition: {
       ease: "easeIn",

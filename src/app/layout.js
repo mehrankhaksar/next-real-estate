@@ -27,10 +27,10 @@ export default async function RootLayout({ children }) {
     const user = await User.findOne({ email: session?.user.email });
 
     return (
-      <html dir="rtl" lang="fa">
+      <html lang="fa" dir="rtl">
         <body
-          className={`w-full h-screen flex flex-col justify-between overflow-y-auto overflow-x-hidden ${YekanBakh.className}`}
-          suppressHydrationWarning={true}
+          className={`min-h-screen flex flex-col overflow-x-hidden ${YekanBakh.className}`}
+          suppressHydrationWarning
         >
           <NextAuthProvider>
             <Header user={JSON.parse(JSON.stringify(user))} />
