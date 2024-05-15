@@ -2,7 +2,7 @@ import { Separator } from "./ui/separator";
 
 import CustomAvatar from "./modules/CustomAvatar";
 import DashboardSidebarNav from "./DashboardSidebarNav";
-import SignOutButton from "./modules/SignOutButton";
+import Logout from "./modules/Logout";
 
 const DashboardSidebar = ({ user }) => {
   return (
@@ -23,7 +23,7 @@ const DashboardSidebar = ({ user }) => {
       <Separator className="hidden sm:block bg-secondary-foreground my-2.5" />
       <DashboardSidebarNav role={user.role} />
       <Separator className="bg-secondary-foreground my-2.5" />
-      <SignOutButton />
+      <Logout />
     </aside>
   );
 };
