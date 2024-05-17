@@ -42,7 +42,7 @@ const Header = ({ user }) => {
   return (
     <header
       className={`sticky top-0 text-primary-foreground bg-primary z-40 transition-all dark:text-accent-foreground dark:bg-accent ${
-        header ? "py-2.5 shadow-lg" : "py-5"
+        header ? "py-4 shadow-lg" : "py-6"
       }`}
     >
       <div className="container mx-auto">
@@ -56,7 +56,7 @@ const Header = ({ user }) => {
               >
                 {pathname === item.href.pathname && (
                   <motion.span
-                    className="w-full h-[1.5px] absolute top-full left-0 bg-primary-foreground rounded-sm dark:bg-accent-foreground"
+                    className="w-full h-[1.5px] absolute top-full left-0 bg-secondary rounded-sm dark:bg-accent-foreground"
                     layoutId="underline"
                     initial={{ y: "-100%" }}
                     animate={{ y: 0 }}
