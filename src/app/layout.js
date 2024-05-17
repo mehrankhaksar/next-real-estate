@@ -1,17 +1,17 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 
-import { YekanBakh } from "@/utils/fonts";
-
-import NextAuthProvider from "@/providers/NextAuthProvider";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-
 import connectDB from "@/utils/connectDB";
 import User from "@/models/User";
 
-import "./globals.css";
+import { YekanBakh } from "@/utils/fonts";
+
+import NextAuthProvider from "@/providers/NextAuthProvider";
 import ThemeProvider from "@/providers/ThemeProvider";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
+import "./globals.css";
 
 export const metadata = {
   title: "املاک | پروژه بوتواستارت",

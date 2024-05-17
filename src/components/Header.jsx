@@ -41,7 +41,7 @@ const Header = ({ user }) => {
 
   return (
     <header
-      className={`sticky top-0 text-primary-foreground bg-primary z-40 transition-all ${
+      className={`sticky top-0 text-primary-foreground bg-primary z-40 transition-all dark:text-accent-foreground dark:bg-accent ${
         header ? "py-2.5 shadow-lg" : "py-5"
       }`}
     >
@@ -56,7 +56,7 @@ const Header = ({ user }) => {
               >
                 {pathname === item.href.pathname && (
                   <motion.span
-                    className="w-full h-[2.5px] absolute top-full left-0 bg-primary-foreground rounded-sm"
+                    className="w-full h-[1.5px] absolute top-full left-0 bg-primary-foreground rounded-sm dark:bg-accent-foreground"
                     layoutId="underline"
                     initial={{ y: "-100%" }}
                     animate={{ y: 0 }}
@@ -67,7 +67,7 @@ const Header = ({ user }) => {
               </Link>
             ))}
           </nav>
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-2.5">
             {user ? (
               <DropdownMenu dir="rtl">
                 <DropdownMenuTrigger asChild>
@@ -100,16 +100,17 @@ const Header = ({ user }) => {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Link href="/sign-in">
-                <Button
-                  className="flex items-center gap-0.5 font-bold"
-                  variant="secondary"
-                  type="button"
-                >
-                  ورود
-                  <RiLoginBoxLine size={17.5} />
-                </Button>
-              </Link>
+              <Button
+                asChild
+                className="border-2 border-solid border-transparent dark:border-secondary-foreground"
+                variant="secondary"
+                size="icon"
+                type="button"
+              >
+                <Link href="/sign-in">
+                  <RiLoginBoxLine />
+                </Link>
+              </Button>
             )}
             <ThemeToggler />
           </div>
