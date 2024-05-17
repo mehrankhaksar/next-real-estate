@@ -7,9 +7,9 @@ const advantages = [
 
 const Footer = () => {
   return (
-    <footer className="text-primary-foreground bg-primary py-5">
+    <footer className="text-primary-foreground bg-primary py-10 dark:text-accent-foreground dark:bg-accent">
       <div className="container mx-auto">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-20">
+        <div className="flex flex-col sm:flex-row gap-5 sm:gap-10 sm:items-center">
           <div className="space-y-2.5">
             <h2 className="h2">سامانه خرید و اجاره ملک</h2>
             <p className="description">
