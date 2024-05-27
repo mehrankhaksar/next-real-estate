@@ -102,7 +102,7 @@ const Header = ({ user }) => {
             ) : (
               <Button
                 asChild
-                className="border-2 border-solid border-transparent dark:border-secondary-foreground"
+                className="bg-background"
                 variant="secondary"
                 size="icon"
                 type="button"

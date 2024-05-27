@@ -21,7 +21,7 @@ export default function Template({ children }) {
         {children}
       </motion.main>
       <span
-        className="w-1 fixed top-0 right-0 bottom-0 bg-primary transition-all duration-700 ease-in-out"
+        className="w-1 fixed top-0 right-0 bottom-0 bg-primary z-50 transition-all duration-700 ease-in-out"
         style={{ transform: `translateY(${scrollProgress - 100}%)` }}
       />
       <Toaster />
