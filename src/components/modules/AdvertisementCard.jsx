@@ -24,10 +24,12 @@ const AdvertisementCard = ({ title, category, province, city, price, _id }) => {
   };
 
   return (
-    <Card className="shadow-md shadow-primary">
+    <Card className="shadow-md shadow-primary dark:bg-accent">
       <CardHeader>
         <div className="flex justify-between items-center gap-5 text-primary">
-          <CardTitle className="font-extrabold">{e2p(title)}</CardTitle>
+          <CardTitle className="font-extrabold dark:text-secondary-foreground">
+            {e2p(title)}
+          </CardTitle>
           <span className="bg-primary/25 p-1.5 rounded-md">
             {categoriesIcons[category]}
           </span>

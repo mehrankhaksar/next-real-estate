@@ -9,9 +9,9 @@ import toast from "react-hot-toast";
 
 import { CheckCircle2, Trash, PenSquare } from "lucide-react";
 
-import CustomButton from "./CustomButton";
 import { SpinnerLoader } from "./CustomLoaders";
 import AdvertisementCard from "./AdvertisementCard";
+import { Button } from "../ui/button";
 
 const DashboardCard = ({ advertisement, role }) => {
   const [loading, setLoading] = React.useState({
@@ -67,35 +67,41 @@ const DashboardCard = ({ advertisement, role }) => {
     <div className="relative">
       <div className="flex items-center gap-1.5 absolute -top-4 -left-2">
         {role === "ADMIN" ? (
-          <CustomButton
-            containerStyles="w-8 h-8 bg-green-500 p-1.5 rounded-full hover:bg-green-600"
+          <Button
+            className="w-8 h-8 text-secondary-foreground bg-green-500 p-1.5 rounded-full hover:bg-green-600"
+            type="button"
             disabled={loading.publish}
-            handleClick={handlePublish}
+            onClick={handlePublish}
           >
             {loading.publish ? (
               <SpinnerLoader color="border-t-green-500" />
             ) : (
               <CheckCircle2 size={20} />
             )}
-          </CustomButton>
+          </Button>
         ) : null}
-        <CustomButton
-          containerStyles="w-8 h-8 p-1.5 rounded-full"
+        <Button
+          className="w-8 h-8 p-1.5 rounded-full"
           variant="destructive"
+          type="button"
           disabled={loading.remove}
-          handleClick={handleRemove}
+          onClick={handleRemove}
         >
           {loading.remove ? (
             <SpinnerLoader color="border-t-destructive" />
           ) : (
             <Trash size={16} strokeWidth={2.5} />
           )}
-        </CustomButton>
-        <Link href={`/dashboard/edit-advertisement/${advertisement._id}`}>
-          <CustomButton containerStyles="w-8 h-8 p-1.5 rounded-full">
+        </Button>
+        <Button
+          asChild
+          className="w-8 h-8 text-secondary p-1.5 rounded-full dark:text-secondary-foreground"
+          type="button"
+        >
+          <Link href={`/dashboard/edit-advertisement/${advertisement._id}`}>
             <PenSquare size={16} strokeWidth={2.5} />
-          </CustomButton>
-        </Link>
+          </Link>
+        </Button>
       </div>
       <AdvertisementCard {...advertisement} />
     </div>

@@ -1,7 +1,7 @@
 import connectDB from "@/utils/connectDB";
 import Advertisement from "@/models/Advertisement";
 
-import AllAdvertisementsPage from "@/components/templates/AllAdvertisementsPage";
+import AdvertisementsList from "@/components/modules/AdvertisementsList";
 
 export default async function AllAdvertisements() {
   try {
@@ -12,8 +12,8 @@ export default async function AllAdvertisements() {
     }).select("-userId");
 
     return (
-      <AllAdvertisementsPage
-        allAdvertisements={JSON.parse(JSON.stringify(advertisements))}
+      <AdvertisementsList
+        advertisementsList={JSON.parse(JSON.stringify(advertisements))}
       />
     );
   } catch (err) {

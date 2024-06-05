@@ -48,7 +48,7 @@ const SpinnerLoader = ({ color }) => {
           ease: "linear",
         },
       }}
-      className={`w-full h-full border-4 border-solid border-white ${color} rounded-full`}
+      className={`w-full h-full border-4 border-solid border-white rounded-full ${color}`}
     />
   );
 };

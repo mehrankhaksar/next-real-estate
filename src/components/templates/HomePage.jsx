@@ -1,79 +1,54 @@
-import Link from "next/link";
-import Image from "next/image";
+import AdvertisementsList from "../modules/AdvertisementsList";
 
-import { categoriesLink } from "@/constants/lists";
+const services = ["خرید", "فروش", "رهن", "اجاره"];
 
-const HomePage = () => {
-  const services = ["خرید", "فروش", "رهن", "اجاره"];
+const cities = [
+  "تهران",
+  "سنندج",
+  "کرمانشاه",
+  "اهواز",
+  "مشهد",
+  "اصفهان",
+  "شیراز",
+  "خرم آباد",
+];
 
-  const cities = [
-    "تهران",
-    "سنندج",
-    "کرمانشاه",
-    "اهواز",
-    "مشهد",
-    "اصفهان",
-    "شیراز",
-    "خرم آباد",
-  ];
-
-  const newCategoriesLink = categoriesLink.filter(
-    (item) => item.label !== "همه"
-  );
-
+const HomePage = ({ advertisementsList }) => {
   return (
-    <section className="py-10">
+    <section className="my-10 md:my-20">
       <div className="container mx-auto">
         <div className="space-y-5">
-          <h1 className="h1 text-primary text-center">
+          <h1 className="h1 text-primary text-center dark:text-secondary-foreground">
             سامانه خرید و اجاره ملک
           </h1>
-          <ul className="flex justify-center items-center gap-2.5 text-sm font-bold">
+          <div className="flex justify-center items-center gap-2.5">
             {services.map((item, index) => (
-              <li
-                className="text-primary-foreground bg-primary py-1.5 px-3 rounded"
+              <span
+                className="text-sm font-bold text-secondary-foreground bg-primary py-1.5 px-3 rounded dark:text-secondary-foreground dark:bg-accent"
                 key={index}
               >
                 {item}
-              </li>
+              </span>
             ))}
-          </ul>
+          </div>
         </div>
-        <div className="w-[85%] grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-10 mb-20 mx-auto">
-          {newCategoriesLink.map((item, index) => (
-            <Link
-              className="flex flex-col items-center gap-2.5 p-1.5 rounded-md shadow-md shadow-primary"
-              href={item.href}
-              key={index}
-            >
-              <div className="w-full h-[200px] md:h-[150px] relative rounded-md overflow-hidden">
-                <Image
-                  className="object-cover"
-                  src={`/assets/images/${Object.values(
-                    item.href.query
-                  ).toString()}.png`}
-                  fill
-                  sizes="100%"
-                  priority
-                  alt={item.label}
-                />
-              </div>
-              <h4 className="h4 !font-bold">{item.label}</h4>
-            </Link>
-          ))}
+        <div className="my-24">
+          <AdvertisementsList advertisementsList={advertisementsList} />
         </div>
         <div className="space-y-5">
-          <h2 className="h2 text-primary text-center">شهر‌های پر بازدید</h2>
-          <ul className="grid grid-cols-4 gap-1.5 font-bold">
+          <h2 className="h2 text-primary text-center dark:text-secondary-foreground">
+            شهر‌های پر بازدید
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 md:max-w-[50%] md:mx-auto">
             {cities.map((item, index) => (
-              <li
-                className="text-primary-foreground text-center bg-primary py-3 rounded-md"
+              <span
+                className="font-medium text-secondary text-center bg-primary py-3 rounded-md dark:text-secondary-foreground dark:bg-accent"
                 key={index}
               >
                 {item}
-              </li>
+              </span>
             ))}
-          </ul>
+          </div>
         </div>
       </div>
     </section>
