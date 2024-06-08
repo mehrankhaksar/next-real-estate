@@ -4,7 +4,7 @@ import { authOptions } from "./api/auth/[...nextauth]/route";
 import connectDB from "@/utils/connectDB";
 import User from "@/models/User";
 
-import { YekanBakh } from "@/utils/fonts";
+import { Vazir } from "@/utils/fonts";
 
 import NextAuthProvider from "@/providers/NextAuthProvider";
 import ThemeProvider from "@/providers/ThemeProvider";
@@ -30,7 +30,7 @@ export default async function RootLayout({ children }) {
     return (
       <html lang="fa" dir="rtl">
         <body
-          className={`min-h-screen flex flex-col overflow-x-hidden ${YekanBakh.className}`}
+          className={`font-Vazir ${Vazir.variable}`}
           suppressHydrationWarning
         >
           <NextAuthProvider>
