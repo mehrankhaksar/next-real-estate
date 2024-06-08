@@ -33,10 +33,5 @@ export const Vazir = localFont({
       weight: "800",
       style: "normal",
     },
-    {
-      path: "../../public/assets/fonts/Vazir/Vazir-Black.woff2",
-      weight: "900",
-      style: "normal",
-    },
   ],
 });

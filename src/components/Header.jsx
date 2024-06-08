@@ -74,7 +74,7 @@ const Header = ({ user }) => {
                   <CustomAvatar
                     badgeStyles="hidden"
                     user={user}
-                    avatarStyles="text-muted-foreground"
+                    avatarStyles="text-black dark:text-accent-foreground"
                   />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
