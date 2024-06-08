@@ -41,8 +41,8 @@ const Header = ({ user }) => {
 
   return (
     <header
-      className={`sticky top-0 text-primary-foreground bg-primary z-40 transition-all dark:text-accent-foreground dark:bg-accent ${
-        header ? "py-4 shadow-lg" : "py-6"
+      className={`sticky top-0 text-primary-foreground bg-primary z-40 transition-spacing duration-300 dark:text-accent-foreground dark:bg-accent ${
+        header ? "py-4 shadow-xl dark:shadow-none" : "py-6"
       }`}
     >
       <div className="container mx-auto">
@@ -56,7 +56,7 @@ const Header = ({ user }) => {
               >
                 {pathname === item.href.pathname && (
                   <motion.span
-                    className="w-full h-[1.5px] absolute top-full left-0 bg-secondary rounded-sm dark:bg-accent-foreground"
+                    className="w-full h-0.5 absolute top-full left-0 bg-primary-foreground rounded-sm dark:bg-accent-foreground"
                     layoutId="underline"
                     initial={{ y: "-100%" }}
                     animate={{ y: 0 }}
@@ -70,7 +70,7 @@ const Header = ({ user }) => {
           <div className="flex items-center gap-2.5">
             {user ? (
               <DropdownMenu dir="rtl">
-                <DropdownMenuTrigger>
+                <DropdownMenuTrigger className="outline-none">
                   <CustomAvatar
                     badgeStyles="hidden"
                     user={user}
@@ -78,12 +78,12 @@ const Header = ({ user }) => {
                   />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                  <DropdownMenuLabel className="font-extrabold text-center">{`${user.firstName} ${user.lastName}`}</DropdownMenuLabel>
+                  <DropdownMenuLabel className="text-base font-bold text-center">{`${user.firstName} ${user.lastName}`}</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuGroup>
                     {dashboardLinks[user.role].map((item, index) => (
                       <Link href={item.href} key={index}>
-                        <DropdownMenuItem className="font-bold cursor-pointer">
+                        <DropdownMenuItem className="font-semibold cursor-pointer">
                           {item.label}
                         </DropdownMenuItem>
                       </Link>
@@ -96,7 +96,7 @@ const Header = ({ user }) => {
             ) : (
               <Button
                 asChild
-                className="bg-background"
+                className="dark:bg-background dark:hover:bg-background/70"
                 variant="secondary"
                 size="icon"
                 type="button"

@@ -11,7 +11,7 @@ const ThemeToggler = () => {
 
   return (
     <Button
-      className="bg-background rounded-full"
+      className="rounded-full dark:bg-background dark:hover:bg-background/70"
       variant="secondary"
       size="icon"
       type="button"

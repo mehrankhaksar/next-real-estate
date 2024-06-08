@@ -1,15 +1,12 @@
+import { Home, Building, Store, Building2, List } from "lucide-react";
+
 import {
-  UserCircle,
-  Bookmark,
-  BookmarkPlus,
-  ListChecks,
-  Users,
-  Home,
-  Building,
-  Store,
-  Building2,
-  List,
-} from "lucide-react";
+  RiUserLine,
+  RiListCheck,
+  RiAddBoxLine,
+  RiListCheck3,
+  RiGroupLine,
+} from "@remixicon/react";
 
 const headerLinks = [
   {
@@ -46,35 +43,35 @@ const dashboardLinks = {
       href: {
         pathname: "/dashboard",
       },
-      icon: <UserCircle />,
+      icon: <RiUserLine />,
       label: "حساب کاربری",
     },
     {
       href: {
         pathname: "/dashboard/admin/all-advertisements",
       },
-      icon: <Bookmark />,
+      icon: <RiListCheck />,
       label: "آگهی‌ها",
     },
     {
       href: {
         pathname: "/dashboard/add-advertisement",
       },
-      icon: <BookmarkPlus />,
+      icon: <RiAddBoxLine />,
       label: "ثبت آگهی",
     },
     {
       href: {
         pathname: "/dashboard/admin/publish-advertisement",
       },
-      icon: <ListChecks />,
+      icon: <RiListCheck3 />,
       label: "انتشار آگهی",
     },
     {
       href: {
         pathname: "/dashboard/admin/all-users",
       },
-      icon: <Users />,
+      icon: <RiGroupLine />,
       label: "کاربران",
     },
   ],
@@ -83,21 +80,21 @@ const dashboardLinks = {
       href: {
         pathname: "/dashboard",
       },
-      icon: <UserCircle />,
+      icon: <RiUserLine />,
       label: "حساب کاربری",
     },
     {
       href: {
         pathname: "/dashboard/my-advertisements",
       },
-      icon: <Bookmark />,
+      icon: <RiListCheck />,
       label: "آگهی‌های من",
     },
     {
       href: {
         pathname: "/dashboard/add-advertisement",
       },
-      icon: <BookmarkPlus />,
+      icon: <RiAddBoxLine />,
       label: "ثبت آگهی",
     },
   ],

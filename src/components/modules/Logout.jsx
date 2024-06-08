@@ -9,7 +9,7 @@ import { RiLogoutBoxLine } from "@remixicon/react";
 const Logout = () => {
   return (
     <Button
-      className="flex items-center gap-0.5 font-bold"
+      className="flex items-center gap-0.5 font-semibold"
       variant="destructive"
       type="button"
       onClick={signOut}
