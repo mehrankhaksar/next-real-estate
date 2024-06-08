@@ -70,18 +70,12 @@ const Header = ({ user }) => {
           <div className="flex items-center gap-2.5">
             {user ? (
               <DropdownMenu dir="rtl">
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    className="rounded-full focus-visible:ring-offset-0"
-                    size="icon"
-                    type="button"
-                  >
-                    <CustomAvatar
-                      badgeStyles="hidden"
-                      user={user}
-                      avatarStyles="text-muted-foreground"
-                    />
-                  </Button>
+                <DropdownMenuTrigger>
+                  <CustomAvatar
+                    badgeStyles="hidden"
+                    user={user}
+                    avatarStyles="text-muted-foreground"
+                  />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuLabel className="font-extrabold text-center">{`${user.firstName} ${user.lastName}`}</DropdownMenuLabel>

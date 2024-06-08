@@ -20,7 +20,7 @@ const CustomAvatar = ({
       </Badge>
       <Avatar className={`font-extrabold ${avatarStyles}`}>
         <AvatarImage src={avatar} alt={`${firstName} ${lastName}`} />
-        <AvatarFallback>
+        <AvatarFallback className="dark:bg-background">
           {firstName[0]} {lastName[0]}
         </AvatarFallback>
       </Avatar>
