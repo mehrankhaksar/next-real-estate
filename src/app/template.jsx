@@ -13,7 +13,7 @@ export default function Template({ children }) {
   return (
     <>
       <motion.main
-        className="flex-1"
+        className="min-h-screen"
         variants={templateVariants}
         initial="hidden"
         animate="enter"

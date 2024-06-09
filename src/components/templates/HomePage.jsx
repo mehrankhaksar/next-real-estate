@@ -13,7 +13,7 @@ const cities = [
   "خرم آباد",
 ];
 
-const HomePage = ({ advertisementsList }) => {
+const HomePage = ({ advertisements }) => {
   return (
     <section className="my-10 md:my-20">
       <div className="container mx-auto">
@@ -33,7 +33,7 @@ const HomePage = ({ advertisementsList }) => {
           </div>
         </div>
         <div className="my-24">
-          <AdvertisementsList advertisementsList={advertisementsList} />
+          <AdvertisementsList advertisements={advertisements} />
         </div>
         <div className="space-y-5">
           <h2 className="h2 text-primary text-center dark:text-accent-foreground">

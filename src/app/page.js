@@ -7,14 +7,12 @@ export default async function Home() {
   try {
     await connectDB();
 
-    const advertisementsList = await Advertisement.find({
+    const advertisements = await Advertisement.find({
       isPublished: true,
     }).select("-userId");
 
     return (
-      <HomePage
-        advertisementsList={JSON.parse(JSON.stringify(advertisementsList))}
-      />
+      <HomePage advertisements={JSON.parse(JSON.stringify(advertisements))} />
     );
   } catch (err) {
     console.log(err);

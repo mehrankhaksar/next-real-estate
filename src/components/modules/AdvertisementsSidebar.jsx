@@ -6,39 +6,90 @@ import { motion } from "framer-motion";
 
 import { Separator } from "../ui/separator";
 
-import { Filter } from "lucide-react";
+import {
+  RiListCheck,
+  RiHome4Line,
+  RiBuilding4Line,
+  RiStore2Line,
+  RiBuildingLine,
+  RiFilter2Line,
+} from "@remixicon/react";
 
-import { categoriesLink } from "@/constants/lists";
+const categoriesLink = [
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "all" },
+    },
+    icon: <RiListCheck />,
+    label: "همه",
+  },
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "villa" },
+    },
+    icon: <RiHome4Line />,
+    label: "ویلا",
+  },
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "apartment" },
+    },
+    icon: <RiBuilding4Line />,
+    label: "آپارتمان",
+  },
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "store" },
+    },
+    icon: <RiStore2Line />,
+    label: "مغازه",
+  },
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "office" },
+    },
+    icon: <RiBuildingLine />,
+    label: "دفتر",
+  },
+];
 
 const AdvertisementsSidebar = ({ category }) => {
   return (
-    <aside className="w-fit h-fit space-y-2.5 bg-primary-foreground p-2.5 sm:p-5 rounded-xl shadow shadow-primary">
-      <h3 className="h3 flex max-sm:justify-center sm:items-center sm:gap-1.5">
-        <Filter className="text-primary" size={30} />
-        <span className="hidden sm:inline-block">دسته بندی</span>
-      </h3>
-      <Separator className="bg-secondary-foreground" />
-      <nav className="space-y-1.5">
+    <aside className="max-w-fit w-full h-fit bg-white p-2.5 sm:p-5 rounded-lg shadow-md shadow-primary sm:space-y-2.5 dark:bg-accent">
+      <h4 className="h4 hidden sm:flex sm:items-center">
+        <RiFilter2Line className="text-primary" size={30} />
+        دسته بندی
+      </h4>
+      <Separator className="hidden sm:block bg-black dark:bg-accent-foreground" />
+      <nav className="flex justify-between items-center gap-1.5 sm:flex-col sm:items-stretch">
         {categoriesLink.map((item, index) => (
           <Link
-            className="relative text-sm font-semibold p-2 sm:px-4 rounded-md overflow-hidden"
+            className="relative font-semibold p-2.5 rounded-full sm:rounded-md overflow-hidden"
             href={item.href}
             key={index}
           >
-            {Object.values(item.href.query).toString() === category && (
+            {item.href.query.category === category && (
               <motion.div
                 className="absolute inset-0 bg-primary"
-                layoutId="active-pill"
+                layoutId="pill"
+                transition={{ type: "spring" }}
               />
             )}
             <div
-              className={`sm:flex sm:justify-center sm:items-center sm:gap-1.5 relative z-10 ${
-                Object.values(item.href.query).toString() === category &&
-                "text-primary-foreground"
+              className={`relative sm:flex sm:items-center ${
+                item.href.query.category === category &&
+                "text-primary-foreground dark:text-accent-foreground"
               }`}
             >
               {item.icon}
-              <span className="hidden sm:inline-block">{item.label}</span>
+              <span className="flex-1 hidden sm:inline-block text-center">
+                {item.label}
+              </span>
             </div>
           </Link>
         ))}

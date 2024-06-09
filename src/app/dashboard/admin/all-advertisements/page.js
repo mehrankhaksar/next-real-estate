@@ -13,7 +13,7 @@ export default async function AllAdvertisements() {
 
     return (
       <AdvertisementsList
-        advertisementsList={JSON.parse(JSON.stringify(advertisements))}
+        advertisements={JSON.parse(JSON.stringify(advertisements))}
       />
     );
   } catch (err) {

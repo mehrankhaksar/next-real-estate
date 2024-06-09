@@ -7,10 +7,10 @@ const advantages = [
 
 const Footer = () => {
   return (
-    <footer className="text-primary-foreground bg-primary py-10 dark:text-accent-foreground dark:bg-accent">
+    <footer className="bg-muted py-10 shadow-inner dark:text-accent-foreground dark:bg-accent">
       <div className="container mx-auto">
-        <div className="flex flex-col sm:flex-row gap-5 sm:gap-10 sm:items-center">
-          <div className="space-y-2.5">
+        <div className="flex flex-col sm:flex-row gap-10 sm:items-center">
+          <div className="space-y-2.5 sm:flex-1">
             <h2 className="h2">سامانه خرید و اجاره ملک</h2>
             <p className="description">
               لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
@@ -23,7 +23,7 @@ const Footer = () => {
               فارسی ایجاد کرد.
             </p>
           </div>
-          <ul className="min-w-fit list-disc">
+          <ul className="w-fit list-disc">
             {advantages.map((item, index) => (
               <li className="font-semibold" key={index}>
                 {item}

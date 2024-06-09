@@ -41,7 +41,7 @@ const Header = ({ user }) => {
 
   return (
     <header
-      className={`sticky top-0 text-primary-foreground bg-primary z-40 transition-spacing duration-300 dark:text-accent-foreground dark:bg-accent ${
+      className={`sticky top-0 text-primary-foreground bg-primary z-40 transition-all duration-300 dark:text-accent-foreground dark:bg-accent ${
         header ? "py-4 shadow-xl dark:shadow-none" : "py-6"
       }`}
     >

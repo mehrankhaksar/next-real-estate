@@ -1,5 +1,3 @@
-import { Home, Building, Store, Building2, List } from "lucide-react";
-
 import {
   RiUserLine,
   RiListCheck,
@@ -6994,55 +6992,4 @@ const categories = [
   },
 ];
 
-const categoriesLink = [
-  {
-    href: {
-      pathname: "/advertisements",
-      query: { category: "all" },
-    },
-    icon: <List />,
-    label: "همه",
-  },
-  {
-    href: {
-      pathname: "/advertisements",
-      query: { category: "villa" },
-    },
-    icon: <Home />,
-    label: "ویلا",
-  },
-  {
-    href: {
-      pathname: "/advertisements",
-      query: { category: "apartment" },
-    },
-    icon: <Building />,
-    label: "آپارتمان",
-  },
-  {
-    href: {
-      pathname: "/advertisements",
-      query: { category: "store" },
-    },
-    icon: <Store />,
-    label: "مغازه",
-  },
-  {
-    href: {
-      pathname: "/advertisements",
-      query: { category: "office" },
-    },
-    icon: <Building2 />,
-    label: "دفتر",
-  },
-];
-
-export {
-  headerLinks,
-  roles,
-  dashboardLinks,
-  provinces,
-  cities,
-  categories,
-  categoriesLink,
-};
+export { headerLinks, roles, dashboardLinks, provinces, cities, categories };

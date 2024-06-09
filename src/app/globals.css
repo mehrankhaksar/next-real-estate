@@ -57,6 +57,10 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  a {
+    @apply block;
+  }
 }
 
 .h1 {
@@ -86,11 +90,11 @@
 }
 
 .list-container {
-  @apply max-w-fit grid gap-y-10 gap-x-5 mx-auto md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+  @apply grid gap-y-10 gap-x-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
 }
 
 .description {
-  @apply text-sm font-medium whitespace-pre-line sm:text-base;
+  @apply text-sm font-medium text-justify whitespace-pre-line;
 }
 
 .not-found {

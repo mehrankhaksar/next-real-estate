@@ -8,14 +8,14 @@ import { parentVariants, childVariants } from "@/utils/variants";
 import DashboardCard from "./DashboardCard";
 import AdvertisementCard from "./AdvertisementCard";
 
-const AdvertisementsList = ({ advertisementsList }) => {
+const AdvertisementsList = ({ advertisements }) => {
   const pathname = usePathname();
 
   return (
     <>
-      {advertisementsList.length ? (
+      {advertisements.length ? (
         <motion.div className="list-container" variants={parentVariants}>
-          {advertisementsList.map((item) =>
+          {advertisements.map((item) =>
             pathname.includes("/dashboard") ? (
               <motion.div variants={childVariants} key={item._id}>
                 <DashboardCard advertisement={item} />
