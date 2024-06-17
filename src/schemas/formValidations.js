@@ -18,4 +18,50 @@ const signInFormSchema = z.object({
     .refine((value) => value !== "", { message: "رمز عبور الزامی است" }),
 });
 
-export { signUpFormSchema, signInFormSchema };
+const userFormSchema = z.object({
+  avatar: z
+    .string()
+    .optional()
+    .superRefine((value = "", ctx) => {
+      const buffer = Buffer.from(value.substring(value.indexOf(",") + 1));
+
+      if (buffer.length / 1e6 >= 5) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "حجم عکس باید کمتر از 5 مگابایت باشد",
+        });
+      }
+    }),
+  firstName: z.string().superRefine((value, ctx) => {
+    if (!value) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "نام الزامی است",
+      });
+    }
+
+    if (value.length < 3) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "نام باید حداقل دارای 3 کاراکتر باشد",
+      });
+    }
+  }),
+  lastName: z.string().superRefine((value, ctx) => {
+    if (!value) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "نام خانوادگی الزامی است",
+      });
+    }
+
+    if (value.length < 3) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "نام خانوادگی باید حداقل دارای 3 کاراکتر باشد",
+      });
+    }
+  }),
+});
+
+export { signUpFormSchema, signInFormSchema, userFormSchema };
