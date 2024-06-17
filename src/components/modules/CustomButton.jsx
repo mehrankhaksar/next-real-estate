@@ -10,7 +10,7 @@ const CustomButton = ({
 }) => {
   return (
     <Button
-      className={`text-base font-bold ${containerStyles}`}
+      className={`${containerStyles}`}
       variant={variant}
       type={type}
       disabled={disabled}

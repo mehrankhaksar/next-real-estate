@@ -23,7 +23,7 @@ export default async function Layout({ children }) {
 
     return (
       <div className="container mx-auto">
-        <div className="flex gap-2.5 sm:gap-5">
+        <div className="flex gap-2.5 my-10 sm:gap-5">
           <DashboardSidebar user={JSON.parse(JSON.stringify(user))} />
           {children}
         </div>

@@ -21,16 +21,16 @@ const UserDialog = ({ user }) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="font-bold" type="button">
+        <Button className="w-fit dark:text-accent-foreground" type="button">
           ویرایش اطلاعات
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="text-xl font-extrabold">
+          <DialogTitle className="text-xl font-bold">
             ویرایش اطلاعات
           </DialogTitle>
-          <DialogDescription className="font-medium">
+          <DialogDescription className="description">
             در اینجا تغییرات دلخواه را اعمال و در نهایت بر روی دخیره کلیک کنید.
           </DialogDescription>
         </DialogHeader>

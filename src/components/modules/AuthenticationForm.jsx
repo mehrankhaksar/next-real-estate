@@ -142,7 +142,7 @@ const AuthenticationForm = ({ signUp = false }) => {
           placeholder="رمز عبور خود را وارد کنید"
         />
         <Button
-          className="text-lg font-semibold dark:text-accent-foreground"
+          className="dark:text-accent-foreground"
           type="submit"
           disabled={form.formState.isSubmitting}
         >

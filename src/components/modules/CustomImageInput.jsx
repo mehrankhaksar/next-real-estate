@@ -1,10 +1,4 @@
-import {
-  FormField,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormMessage,
-} from "../ui/form";
+import { FormField, FormItem, FormLabel, FormControl } from "../ui/form";
 import { Input } from "../ui/input";
 
 const CustomImageInput = ({ name, form, label, inputStyles }) => {
@@ -15,16 +9,17 @@ const CustomImageInput = ({ name, form, label, inputStyles }) => {
       render={({ field }) => (
         <FormItem>
           <FormLabel className="text-base font-semibold">{label}</FormLabel>
-          <FormControl className="shadow shadow-primary">
+          <FormControl>
             <Input
               className={inputStyles}
               type="file"
               accept="image/*"
               onChange={(e) => {
-                if (e?.target?.files?.[0]) {
+                if (e.target.files?.[0]) {
                   const file = e.target.files[0];
 
                   const reader = new FileReader();
+
                   reader.onloadend = () => {
                     field.onChange(reader.result);
                   };
@@ -33,7 +28,6 @@ const CustomImageInput = ({ name, form, label, inputStyles }) => {
               }}
             />
           </FormControl>
-          <FormMessage />
         </FormItem>
       )}
     />

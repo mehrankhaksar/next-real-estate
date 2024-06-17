@@ -2,22 +2,24 @@
 
 import React from "react";
 
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import { Form } from "../ui/form";
 import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 import { DialogFooter } from "../ui/dialog";
 
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { userFormSchema } from "@/schemas/formValidations";
 
 import toast from "react-hot-toast";
 
 import { Trash } from "lucide-react";
 
-import CustomButton from "./CustomButton";
 import { DotsLoader } from "./CustomLoaders";
 import CustomImageInput from "./CustomImageInput";
 import CustomTextInput from "./CustomTextInput";
+import { Button } from "../ui/button";
 
 const UserDialogForm = ({ user, setOpen }) => {
   const [avatar, setAvatar] = React.useState("");
@@ -30,10 +32,22 @@ const UserDialogForm = ({ user, setOpen }) => {
       firstName: user.firstName,
       lastName: user.lastName,
     },
+    mode: "onChange",
+    resolver: zodResolver(userFormSchema),
   });
 
   React.useEffect(() => {
-    setAvatar(form.getValues("avatar"));
+    if (form.formState.errors?.avatar) {
+      toast.error(form.formState.errors?.avatar.message, {
+        style: {
+          color: "hsl(var(--foreground))",
+          backgroundColor: "hsl(var(--background))",
+        },
+        duration: 1500,
+      });
+    } else {
+      setAvatar(form.getValues("avatar"));
+    }
   }, [form.watch("avatar")]);
 
   const onSubmit = async (values) => {
@@ -42,7 +56,7 @@ const UserDialogForm = ({ user, setOpen }) => {
       body: JSON.stringify(values),
       headers: { "Content-Type": "application/json" },
     });
-    
+
     const data = await res.json();
     if (data.message) {
       toast.success(data.message);
@@ -61,14 +75,22 @@ const UserDialogForm = ({ user, setOpen }) => {
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <div className="col-span-full flex items-center gap-5">
-          <div className="relative">
-            <CustomButton
-              containerStyles="w-8 h-8 absolute top-0 left-0 p-1.5 rounded-full z-10"
+          <div
+            className={`relative border-2 border-solid rounded-full ${
+              form.formState.errors?.avatar
+                ? "border-destructive dark:border-red-500"
+                : "border-transparent"
+            }`}
+          >
+            <Button
+              className="absolute left-0 rounded-full z-10 dark:bg-red-500 dark:hover:bg-red-600"
               variant="destructive"
-              handleClick={() => form.setValue("avatar", "")}
+              size="icon"
+              type="button"
+              onClick={() => form.setValue("avatar", "")}
             >
-              <Trash size={15} />
-            </CustomButton>
+              <Trash size={17.5} />
+            </Button>
             <Avatar className="w-36 h-36 relative">
               <CustomImageInput
                 name="avatar"
@@ -76,6 +98,7 @@ const UserDialogForm = ({ user, setOpen }) => {
                 inputStyles="w-full h-full absolute opacity-0 cursor-pointer"
               />
               <AvatarImage
+                className="object-cover"
                 src={avatar}
                 alt={`${user.firstName} ${user.lastName}`}
               />
@@ -84,19 +107,19 @@ const UserDialogForm = ({ user, setOpen }) => {
               </AvatarFallback>
             </Avatar>
           </div>
-          <div className="w-full space-y-2.5">
+          <div className="flex-1 space-y-2.5">
             <CustomTextInput name="firstName" form={form} label="نام" />
             <CustomTextInput name="lastName" form={form} label="نام خانوادگی" />
           </div>
         </div>
         <DialogFooter>
-          <CustomButton
-            containerStyles="bg-green-500 hover:bg-green-600"
+          <Button
+            className="bg-green-500 hover:bg-green-600 dark:text-accent-foreground"
             type="submit"
             disabled={form.formState.isSubmitting}
           >
             {form.formState.isSubmitting ? <DotsLoader /> : "ذخیره"}
-          </CustomButton>
+          </Button>
         </DialogFooter>
       </form>
     </Form>

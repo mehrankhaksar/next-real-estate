@@ -5,7 +5,7 @@ import { templateVariants } from "@/utils/variants";
 
 export default function Template({ children }) {
   return (
-    <main className="flex-1 bg-primary-foreground p-5 rounded-xl shadow shadow-primary">
+    <main className="flex-1 bg-background p-5 rounded-md shadow-md shadow-primary dark:bg-accent">
       <motion.section variants={templateVariants}>{children}</motion.section>
     </main>
   );

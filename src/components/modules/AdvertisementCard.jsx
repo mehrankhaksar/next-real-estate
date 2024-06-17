@@ -55,11 +55,7 @@ const AdvertisementCard = ({ title, category, province, city, price, _id }) => {
         </div>
       </CardContent>
       <CardFooter className="pb-5 px-5">
-        <Button
-          asChild
-          className="font-semibold dark:text-accent-foreground"
-          type="button"
-        >
+        <Button asChild className="dark:text-accent-foreground" type="button">
           <Link href={`/advertisements/${_id}`}>مشاهده آگهی</Link>
         </Button>
       </CardFooter>
