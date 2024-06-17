@@ -102,7 +102,7 @@
 }
 
 .dot {
-  @apply w-3 h-3 inline-block bg-primary-foreground rounded-full;
+  @apply w-3 h-3 inline-block bg-primary-foreground rounded-full dark:bg-accent-foreground;
 }
 
 ::-webkit-scrollbar {

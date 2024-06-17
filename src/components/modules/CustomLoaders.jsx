@@ -11,7 +11,7 @@ const DotsLoader = () => {
   };
 
   return (
-    <div className="inline-flex items-center gap-1.5">
+    <div className="flex items-center gap-1.5">
       <motion.span
         className="dot"
         animate={{

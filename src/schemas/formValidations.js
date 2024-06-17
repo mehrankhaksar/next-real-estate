@@ -7,7 +7,7 @@ const signUpFormSchema = z.object({
   lastName: z.string().min(3, "نام خانوادگی الزامی است"),
   email: z.string().email("آدرس ایمیل نامعتبر است"),
   password: z.string().regex(passwordRegex, {
-    message: "رمز عبور باید حداقل ۸ کاراکتر و شامل حروف و اعداد باشد",
+    message: "رمز عبور باید حداقل دارای ۸ کاراکتر و شامل حروف و اعداد باشد",
   }),
 });
 

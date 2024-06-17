@@ -96,7 +96,7 @@ const Header = ({ user }) => {
             ) : (
               <Button
                 asChild
-                className="dark:bg-background dark:hover:bg-background/70"
+                className="dark:bg-background dark:hover:bg-background/50"
                 variant="secondary"
                 size="icon"
                 type="button"
