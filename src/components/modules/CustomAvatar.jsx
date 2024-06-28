@@ -12,8 +12,8 @@ const CustomAvatar = ({
   return (
     <div className="relative">
       <Badge
-        className={`absolute px-1.5 z-10 ${badgeStyles} ${
-          role === "ADMIN" && "bg-yellow-400 hover:bg-yellow-500"
+        className={`absolute text-xs z-10 dark:text-accent-foreground ${badgeStyles} ${
+          role === "ADMIN" && "bg-yellow-500 hover:bg-yellow-600"
         }`}
       >
         {findName(roles, role)}

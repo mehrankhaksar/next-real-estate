@@ -13,37 +13,33 @@ import {
   SelectItem,
 } from "../ui/select";
 
-const CustomSelect = ({ name, form, containerStyles, label, list }) => {
+const CustomSelect = ({ name, form, label, list }) => {
   return (
     <FormField
       name={name}
       control={form.control}
       render={({ field }) => (
-        <FormItem className={containerStyles}>
+        <FormItem>
           <FormLabel className="text-base font-semibold">{label}</FormLabel>
-          <FormControl>
-            <Select
-              dir="rtl"
-              defaultValue={field.value}
-              onValueChange={field.onChange}
-            >
-              <SelectTrigger className="shadow shadow-primary">
+          <Select dir="rtl" value={field.value} onValueChange={field.onChange}>
+            <FormControl>
+              <SelectTrigger>
                 <SelectValue placeholder={label} />
               </SelectTrigger>
-              <SelectContent>
-                {list.map((item) => (
-                  <SelectItem
-                    className="cursor-pointer"
-                    value={item.value}
-                    key={item.id}
-                  >
-                    {item.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </FormControl>
-          <FormMessage />
+            </FormControl>
+            <SelectContent>
+              {list.map((item) => (
+                <SelectItem
+                  className="cursor-pointer"
+                  value={item.value}
+                  key={item.id}
+                >
+                  {item.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <FormMessage className="text-xs" />
         </FormItem>
       )}
     />

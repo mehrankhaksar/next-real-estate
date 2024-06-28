@@ -81,14 +81,15 @@ const DashboardCard = ({ advertisement, role }) => {
           </Button>
         ) : null}
         <Button
-          className="w-8 h-8 p-1.5 rounded-full"
+          className="rounded-full dark:bg-red-500 dark:hover:bg-red-600"
           variant="destructive"
+          size="icon"
           type="button"
           disabled={loading.remove}
           onClick={handleRemove}
         >
           {loading.remove ? (
-            <SpinnerLoader color="border-t-destructive" />
+            <SpinnerLoader color="border-t-destructive dark:border-t-red-500" />
           ) : (
             <Trash size={16} strokeWidth={2.5} />
           )}

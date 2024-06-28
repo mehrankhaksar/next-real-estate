@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { Form } from "../ui/form";
 import { Separator } from "../ui/separator";
+import { Button } from "../ui/button";
 
 import { useForm } from "react-hook-form";
 
@@ -18,10 +19,10 @@ import CustomSelect from "./CustomSelect";
 import CustomRadioButton from "./CustomRadioButton";
 import CustomDatePicker from "./CustomDatePicker";
 import CustomTextInputList from "./CustomTextInputList";
-import CustomButton from "./CustomButton";
 import { DotsLoader } from "./CustomLoaders";
 
 const AdvertisementForm = ({ advertisement }) => {
+  const [ad, setAd] = React.useState(null);
   const [filteredCities, setFilteredCities] = React.useState([]);
 
   const router = useRouter();
@@ -31,7 +32,7 @@ const AdvertisementForm = ({ advertisement }) => {
       title: "",
       price: "",
       phoneNumber: "",
-      province: advertisement?.province || provinces[0].value,
+      province: "",
       city: "",
       address: "",
       realEstate: "",
@@ -45,12 +46,16 @@ const AdvertisementForm = ({ advertisement }) => {
 
   React.useEffect(() => {
     if (advertisement) {
-      form.reset({
-        ...advertisement,
-        constructionDate: new Date(advertisement.constructionDate),
-      });
+      setAd(advertisement);
     }
   }, []);
+
+  React.useEffect(() => {
+    form.reset({
+      ...ad,
+      constructionDate: new Date(advertisement?.constructionDate),
+    });
+  }, [ad]);
 
   React.useEffect(() => {
     const province = provinces.find(
@@ -72,13 +77,28 @@ const AdvertisementForm = ({ advertisement }) => {
       });
 
       const data = await res.json();
+
       if (data.message) {
-        form.reset();
-        toast.success(data.message);
-        router.push("/dashboard/my-advertisements");
-        router.refresh();
+        toast.success(data.message, {
+          style: {
+            color: "hsl(var(--foreground))",
+            backgroundColor: "hsl(var(--background))",
+          },
+          duration: 1500,
+        });
+
+        setTimeout(() => {
+          router.push("/dashboard/my-advertisements");
+          router.refresh();
+        }, 1500);
       } else {
-        toast.error(data.error);
+        toast.error(data.error, {
+          style: {
+            color: "hsl(var(--foreground))",
+            backgroundColor: "hsl(var(--background))",
+          },
+          duration: 1500,
+        });
       }
     } else {
       const res = await fetch("/api/dashboard/add-advertisement", {
@@ -88,13 +108,28 @@ const AdvertisementForm = ({ advertisement }) => {
       });
 
       const data = await res.json();
+
       if (data.message) {
-        form.reset();
-        toast.success(data.message);
-        router.push("/dashboard/my-advertisements");
-        router.refresh();
+        toast.success(data.message, {
+          style: {
+            color: "hsl(var(--foreground))",
+            backgroundColor: "hsl(var(--background))",
+          },
+          duration: 1500,
+        });
+
+        setTimeout(() => {
+          router.push("/dashboard/my-advertisements");
+          router.refresh();
+        }, 1500);
       } else {
-        toast.error(data.error);
+        toast.error(data.error, {
+          style: {
+            color: "hsl(var(--foreground))",
+            backgroundColor: "hsl(var(--background))",
+          },
+          duration: 1500,
+        });
       }
     }
   };
@@ -102,12 +137,12 @@ const AdvertisementForm = ({ advertisement }) => {
   return (
     <Form {...form}>
       <form
-        className="grid gap-2.5 sm:grid-cols-2 sm:gap-5"
+        className="grid gap-2.5 sm:gap-5 sm:grid-cols-2"
         noValidate
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <CustomTextInput name="title" form={form} label="عنوان آگهی" />
-        <CustomTextInput name="price" form={form} label="قیمت (تومان)" />
+        <CustomTextInput name="price" form={form} label="قیمت" />
         <CustomTextInput name="phoneNumber" form={form} label="شماره تماس" />
         <CustomSelect
           name="province"
@@ -125,13 +160,14 @@ const AdvertisementForm = ({ advertisement }) => {
         ) : null}
         <CustomTextInput name="address" form={form} label="آدرس" />
         <CustomTextInput name="realEstate" form={form} label="بنگاه" />
-        <CustomTextInput
-          name="description"
-          form={form}
-          containerStyles="col-span-full"
-          label="توضیخات"
-          textarea
-        />
+        <div className="col-span-full">
+          <CustomTextInput
+            name="description"
+            form={form}
+            label="توضیحات"
+            textarea
+          />
+        </div>
         <CustomRadioButton
           name="category"
           form={form}
@@ -147,19 +183,14 @@ const AdvertisementForm = ({ advertisement }) => {
           <CustomTextInputList
             name="amenities"
             form={form}
-            containerStyles="flex-1"
             label="امکانات رفاهی"
           />
           <Separator className="hidden sm:block" orientation="vertical" />
-          <CustomTextInputList
-            name="rules"
-            form={form}
-            containerStyles="flex-1"
-            label="قوانین"
-          />
+          <CustomTextInputList name="rules" form={form} label="قوانین" />
         </div>
-        <CustomButton
-          containerStyles="col-span-full"
+
+        <Button
+          className="col-span-full font-semibold dark:text-accent-foreground"
           type="submit"
           disabled={form.formState.isSubmitting}
         >
@@ -168,7 +199,7 @@ const AdvertisementForm = ({ advertisement }) => {
           ) : (
             `${advertisement ? "ویرایش" : "ثبت"} آگهی`
           )}
-        </CustomButton>
+        </Button>
       </form>
     </Form>
   );

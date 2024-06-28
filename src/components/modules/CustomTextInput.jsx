@@ -25,7 +25,7 @@ const CustomTextInput = ({
           <FormLabel className="text-base font-semibold">{label}</FormLabel>
           <FormControl>
             {textarea ? (
-              <Textarea {...field} />
+              <Textarea className="h-32 resize-none" {...field} />
             ) : (
               <Input type={type} placeholder={placeholder} {...field} />
             )}

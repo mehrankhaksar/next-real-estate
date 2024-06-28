@@ -11,20 +11,20 @@ import {
   CardDescription,
   CardContent,
 } from "../ui/card";
+import { Button } from "../ui/button";
 import { Form } from "../ui/form";
 
 import { useForm } from "react-hook-form";
 
 import toast from "react-hot-toast";
 
-import { Trash } from "lucide-react";
+import { RiDeleteBinLine } from "@remixicon/react";
 
 import { roles } from "@/constants/lists";
 
+import { SpinnerLoader } from "./CustomLoaders";
 import CustomAvatar from "./CustomAvatar";
 import CustomSelect from "./CustomSelect";
-import CustomButton from "./CustomButton";
-import { SpinnerLoader } from "./CustomLoaders";
 
 const UserCard = ({ user }) => {
   const [loading, setLoading] = React.useState(false);
@@ -49,11 +49,27 @@ const UserCard = ({ user }) => {
       );
 
       const data = await res.json();
+
       if (data.message) {
-        toast.success(data.message);
-        router.refresh();
+        toast.success(data.message, {
+          style: {
+            color: "hsl(var(--foreground))",
+            backgroundColor: "hsl(var(--background))",
+          },
+          duration: 1500,
+        });
+
+        setTimeout(() => {
+          router.refresh();
+        }, 1500);
       } else {
-        toast.error(data.error);
+        toast.error(data.error, {
+          style: {
+            color: "hsl(var(--foreground))",
+            backgroundColor: "hsl(var(--background))",
+          },
+          duration: 1500,
+        });
       }
     };
 
@@ -66,39 +82,57 @@ const UserCard = ({ user }) => {
     const res = await fetch(`/api/dashboard/admin/remove-user/${user._id}`, {
       method: "DELETE",
     });
+
     const data = await res.json();
 
     setLoading(false);
 
     if (data.message) {
-      toast.success(data.message);
-      router.refresh();
+      toast.success(data.message, {
+        style: {
+          color: "hsl(var(--foreground))",
+          backgroundColor: "hsl(var(--background))",
+        },
+        duration: 1500,
+      });
+
+      setTimeout(() => {
+        router.refresh();
+      }, 1500);
     } else {
-      toast.error(data.error);
+      toast.error(data.error, {
+        style: {
+          color: "hsl(var(--foreground))",
+          backgroundColor: "hsl(var(--background))",
+        },
+        duration: 1500,
+      });
     }
   };
 
   return (
-    <Card className="relative">
-      <CustomButton
-        containerStyles="w-8 h-8 absolute -top-2.5 -left-2.5 p-1.5 rounded-full"
+    <Card className="relative shadow-md shadow-primary dark:bg-accent">
+      <Button
+        className="absolute -top-2.5 -left-2.5 rounded-full dark:bg-red-500 dark:hover:bg-red-600"
         variant="destructive"
-        handleClick={handleRemove}
+        size="icon"
+        type="button"
+        onClick={handleRemove}
       >
         {loading ? (
-          <SpinnerLoader color="border-t-destructive" />
+          <SpinnerLoader color="border-t-destructive dark:border-t-red-500" />
         ) : (
-          <Trash size={16} strokeWidth={2.5} />
+          <RiDeleteBinLine size={20} />
         )}
-      </CustomButton>
+      </Button>
       <CardHeader>
-        <div className="flex flex-col items-center gap-1.5">
+        <div className="flex flex-col items-center gap-2.5">
           <CustomAvatar
-            badgeStyles="-top-1.5 -left-1.5 text-sm"
+            badgeStyles="left-0"
             user={user}
-            avatarStyles="w-24 h-24 text-2xl"
+            avatarStyles="w-24 h-24 text-xl"
           />
-          <CardTitle className="flex items-center gap-1.5 font-extrabold text-primary">
+          <CardTitle className="flex items-center gap-1.5 font-bold text-primary dark:text-accent-foreground">
             {user.firstName} {user.lastName}
           </CardTitle>
           <CardDescription className="font-semibold">
@@ -108,12 +142,7 @@ const UserCard = ({ user }) => {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <CustomSelect
-            name="role"
-            form={form}
-            containerStyles="space-y-0"
-            list={roles}
-          />
+          <CustomSelect name="role" form={form} list={roles} />
         </Form>
       </CardContent>
     </Card>

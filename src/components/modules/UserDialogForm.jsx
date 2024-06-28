@@ -5,6 +5,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 
 import { Form } from "../ui/form";
+import { Button } from "../ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 import { DialogFooter } from "../ui/dialog";
 
@@ -16,10 +17,9 @@ import toast from "react-hot-toast";
 
 import { Trash } from "lucide-react";
 
-import { DotsLoader } from "./CustomLoaders";
 import CustomImageInput from "./CustomImageInput";
 import CustomTextInput from "./CustomTextInput";
-import { Button } from "../ui/button";
+import { DotsLoader } from "./CustomLoaders";
 
 const UserDialogForm = ({ user, setOpen }) => {
   const [avatar, setAvatar] = React.useState("");
@@ -58,12 +58,29 @@ const UserDialogForm = ({ user, setOpen }) => {
     });
 
     const data = await res.json();
+
     if (data.message) {
-      toast.success(data.message);
       setOpen(false);
-      router.refresh();
+
+      toast.success(data.message, {
+        style: {
+          color: "hsl(var(--foreground))",
+          backgroundColor: "hsl(var(--background))",
+        },
+        duration: 1500,
+      });
+
+      setTimeout(() => {
+        router.refresh();
+      }, 1500);
     } else {
-      toast.error(data.error);
+      toast.error(data.error, {
+        style: {
+          color: "hsl(var(--foreground))",
+          backgroundColor: "hsl(var(--background))",
+        },
+        duration: 1500,
+      });
     }
   };
 
@@ -74,7 +91,7 @@ const UserDialogForm = ({ user, setOpen }) => {
         noValidate
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        <div className="col-span-full flex items-center gap-5">
+        <div className="flex flex-col sm:flex-row items-center gap-5">
           <div
             className={`relative border-2 border-solid rounded-full ${
               form.formState.errors?.avatar
@@ -107,7 +124,7 @@ const UserDialogForm = ({ user, setOpen }) => {
               </AvatarFallback>
             </Avatar>
           </div>
-          <div className="flex-1 space-y-2.5">
+          <div className="w-full space-y-2.5">
             <CustomTextInput name="firstName" form={form} label="نام" />
             <CustomTextInput name="lastName" form={form} label="نام خانوادگی" />
           </div>

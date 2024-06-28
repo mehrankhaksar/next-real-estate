@@ -98,7 +98,7 @@
 }
 
 .not-found {
-  @apply inline-block font-semibold text-destructive-foreground bg-destructive py-1.5 px-3 rounded-md shadow-md shadow-destructive;
+  @apply inline-block font-semibold text-destructive-foreground bg-destructive py-1.5 px-3 rounded-md shadow-md shadow-destructive dark:bg-red-500 dark:shadow-red-500;
 }
 
 .dot {
