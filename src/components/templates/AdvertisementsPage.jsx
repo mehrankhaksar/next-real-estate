@@ -1,12 +1,12 @@
 import AdvertisementsSidebar from "../modules/AdvertisementsSidebar";
 import AdvertisementsList from "../modules/AdvertisementsList";
 
-const AdvertisementsPage = ({ category, advertisements }) => {
+const AdvertisementsPage = ({ query, advertisements }) => {
   return (
     <section className="my-10">
       <div className="container mx-auto">
         <div className="flex flex-col sm:flex-row gap-5">
-          <AdvertisementsSidebar category={category} />
+          <AdvertisementsSidebar query={query} />
           <div className="flex-1">
             <AdvertisementsList advertisements={advertisements} />
           </div>

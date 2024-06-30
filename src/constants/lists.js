@@ -40,6 +40,7 @@ const dashboardLinks = {
     {
       href: {
         pathname: "/dashboard",
+        query: {},
       },
       icon: <RiUserLine />,
       label: "حساب کاربری",
@@ -47,6 +48,7 @@ const dashboardLinks = {
     {
       href: {
         pathname: "/dashboard/admin/all-advertisements",
+        query: {},
       },
       icon: <RiListCheck />,
       label: "آگهی‌ها",
@@ -54,6 +56,7 @@ const dashboardLinks = {
     {
       href: {
         pathname: "/dashboard/add-advertisement",
+        query: {},
       },
       icon: <RiAddBoxLine />,
       label: "ثبت آگهی",
@@ -61,6 +64,7 @@ const dashboardLinks = {
     {
       href: {
         pathname: "/dashboard/admin/publish-advertisement",
+        query: {},
       },
       icon: <RiListCheck3 />,
       label: "انتشار آگهی",
@@ -68,6 +72,7 @@ const dashboardLinks = {
     {
       href: {
         pathname: "/dashboard/admin/all-users",
+        query: {},
       },
       icon: <RiGroupLine />,
       label: "کاربران",

@@ -1,29 +1,33 @@
 import { Separator } from "./ui/separator";
 
+import { dashboardLinks } from "@/constants/lists";
+
 import CustomAvatar from "./modules/CustomAvatar";
-import DashboardSidebarNav from "./DashboardSidebarNav";
+import SidebarNav from "./SidebarNav";
 import Logout from "./modules/Logout";
 
 const DashboardSidebar = ({ user }) => {
   return (
-    <aside className="w-fit h-fit bg-primary-foreground p-1.5 sm:p-2.5 rounded-lg shadow shadow-primary">
-      <div className="hidden sm:flex flex-col items-center gap-0.5">
+    <aside className="w-fit h-fit bg-background p-2.5 sm:p-5 rounded-lg shadow-md shadow-primary dark:bg-accent">
+      <div className="hidden sm:flex flex-col items-center gap-1.5">
         <CustomAvatar
-          badgeStyles="top-0 -left-4"
+          badgeStyles="-left-5"
           user={user}
-          avatarStyles="w-20 h-20"
+          avatarStyles="w-24 h-24"
         />
-        <span className="text-lg font-extrabold text-black">
+        <h4 className="h4">
           {user.firstName} {user.lastName}
-        </span>
+        </h4>
         <span className="text-sm font-semibold text-muted-foreground underline">
           {user.email}
         </span>
       </div>
-      <Separator className="hidden sm:block bg-secondary-foreground my-2.5" />
-      <DashboardSidebarNav role={user.role} />
-      <Separator className="bg-secondary-foreground my-2.5" />
-      <Logout />
+      <Separator className="hidden sm:block bg-muted-foreground my-2.5" />
+      <SidebarNav list={dashboardLinks[user.role]} />
+      <Separator className="hidden sm:block bg-muted-foreground my-2.5" />
+      <div className="hidden sm:block">
+        <Logout />
+      </div>
     </aside>
   );
 };

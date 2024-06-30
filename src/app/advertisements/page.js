@@ -24,7 +24,7 @@ export default async function Advertisements({ searchParams }) {
 
     return (
       <AdvertisementsPage
-        category={searchParams.category}
+        query={{ category: searchParams.category }}
         advertisements={JSON.parse(JSON.stringify(finalData))}
       />
     );
