@@ -2,13 +2,13 @@
 
 import React from "react";
 
+import { Button } from "../ui/button";
+
 import CopyToClipboard from "react-copy-to-clipboard";
 
 import toast from "react-hot-toast";
 
-import { Share2 } from "lucide-react";
-
-import CustomButton from "./CustomButton";
+import { RiShareLine } from "@remixicon/react";
 
 const ShareButton = () => {
   const [URL, setURL] = React.useState("");
@@ -17,13 +17,22 @@ const ShareButton = () => {
 
   return (
     <CopyToClipboard text={URL}>
-      <CustomButton
-        containerStyles="flex items-center gap-1 rounded-lg"
-        handleClick={() => toast.success("کپی شد")}
+      <Button
+        className="flex items-center gap-1.5 dark:text-accent-foreground"
+        type="button"
+        onClick={() =>
+          toast.success("کپی شد", {
+            style: {
+              color: "hsl(var(--foreground))",
+              backgroundColor: "hsl(var(--background))",
+            },
+            duration: 1500,
+          })
+        }
       >
-        <Share2 size={18} strokeWidth={2.5} />
+        <RiShareLine size={20} />
         اشتراک گذاری
-      </CustomButton>
+      </Button>
     </CopyToClipboard>
   );
 };

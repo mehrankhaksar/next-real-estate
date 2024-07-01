@@ -19,7 +19,11 @@ const CustomAvatar = ({
         {findName(roles, role)}
       </Badge>
       <Avatar className={`text-sm font-semibold ${avatarStyles}`}>
-        <AvatarImage src={avatar} alt={`${firstName} ${lastName}`} />
+        <AvatarImage
+          className="object-cover"
+          src={avatar}
+          alt={`${firstName} ${lastName}`}
+        />
         <AvatarFallback className="dark:bg-background">
           {firstName[0]} {lastName[0]}
         </AvatarFallback>

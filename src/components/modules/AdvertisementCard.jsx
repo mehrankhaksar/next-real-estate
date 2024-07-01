@@ -10,34 +10,21 @@ import {
 import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
 
-import {
-  RiHome4Line,
-  RiBuilding4Line,
-  RiStore2Line,
-  RiBuildingLine,
-  RiMapPinLine,
-} from "@remixicon/react";
+import { RiMapPinLine } from "@remixicon/react";
 
 import { e2p, findName, sp } from "@/utils/helperFunctions";
-import { provinces, cities } from "@/constants/lists";
-
-const categoriesIcons = {
-  villa: <RiHome4Line />,
-  apartment: <RiBuilding4Line />,
-  store: <RiStore2Line />,
-  office: <RiBuildingLine />,
-};
+import { categoriesIcons, provinces, cities } from "@/constants/lists";
 
 const AdvertisementCard = ({ title, category, province, city, price, _id }) => {
   return (
     <Card className="shadow-md shadow-primary dark:bg-accent">
-      <CardHeader className="p-5">
+      <CardHeader className="h-[125px] p-5">
         <div className="flex justify-between items-center gap-5">
           <CardTitle className="text-lg font-bold text-primary dark:text-accent-foreground">
             {e2p(title)}
           </CardTitle>
           <span className="bg-primary/25 p-1.5 rounded-md">
-            {categoriesIcons[category]}
+            {categoriesIcons[category].icon}
           </span>
         </div>
       </CardHeader>

@@ -7047,6 +7047,13 @@ const categories = [
   },
 ];
 
+const categoriesIcons = {
+  villa: { icon: <RiHome4Line />, label: "ویلا" },
+  apartment: { icon: <RiBuilding4Line />, label: "آپارتمان" },
+  store: { icon: <RiStore2Line />, label: "مغازه" },
+  office: { icon: <RiBuildingLine />, label: "دفتر" },
+};
+
 export {
   headerLinks,
   roles,
@@ -7055,4 +7062,5 @@ export {
   provinces,
   cities,
   categories,
+  categoriesIcons,
 };

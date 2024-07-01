@@ -7,17 +7,11 @@ import { parentVariants, childVariants } from "@/utils/variants";
 
 import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 
-import {
-  Home,
-  Building,
-  Store,
-  Building2,
-  Phone,
-  Calendar,
-} from "lucide-react";
+import { RiCalendarLine, RiPhoneLine } from "@remixicon/react";
 
 import { e2p, sp } from "@/utils/helperFunctions";
 
+import { categoriesIcons } from "@/constants/lists";
 import ShareButton from "./ShareButton";
 
 const AdvertisementDetailsSidebar = ({
@@ -27,56 +21,46 @@ const AdvertisementDetailsSidebar = ({
   price,
   constructionDate,
 }) => {
-  const categoriesIcons = {
-    villa: { icon: <Home size={35} />, label: "ویلا" },
-    apartment: { icon: <Building size={35} />, label: "آپارتمان" },
-    store: { icon: <Store size={35} />, label: "مغازه" },
-    office: { icon: <Building2 size={35} />, label: "دفتر" },
-  };
-
   return (
     <motion.aside
-      className="h-fit grid max-sm:grid-cols-2 gap-2.5 bg-primary-foreground p-2.5 rounded-xl shadow shadow-primary"
+      className="h-fit grid grid-cols-2 sm:grid-cols-1 gap-2.5"
       variants={parentVariants}
     >
       <motion.div
-        className="flex flex-col justify-center items-center text-lg bg-white p-5 rounded-xl shadow shadow-primary"
+        className="flex flex-col justify-center items-center gap-0.5 p-5 rounded-xl shadow-md shadow-primary dark:bg-accent"
         variants={childVariants}
       >
-        <div className="flex flex-col items-center gap-1 font-extrabold">
-          <Avatar className="w-20 h-20">
-            <AvatarImage />
-            <AvatarFallback className="relative">
-              <Image
-                className="object-contain"
-                src="/assets/images/real-estate.png"
-                fill
-                sizes="100%"
-                priority
-                alt="مشاور املاک"
-              />
-            </AvatarFallback>
-          </Avatar>
-          {e2p(realEstate)}
-        </div>
-        <div className="flex items-center gap-1 text-base font-semibold">
-          <Phone className="text-primary" size={18} strokeWidth={2.5} />
+        <Avatar className="w-24 h-24 text-2xl">
+          <AvatarImage className="object-cover" />
+          <AvatarFallback className="relative">
+            <Image
+              className="object-cover"
+              src="/assets/images/real-estate.png"
+              fill
+            />
+          </AvatarFallback>
+        </Avatar>
+        <h4 className="h4">{realEstate}</h4>
+        <div className="flex items-center gap-0.5 text-sm font-semibold">
+          <RiPhoneLine className="text-primary" size={20} />
           {e2p(phoneNumber)}
         </div>
       </motion.div>
       <motion.div
-        className="flex flex-col justify-center items-center font-semibold bg-white p-5 rounded-xl shadow shadow-primary"
+        className="flex flex-col justify-center items-center gap-1.5 font-semibold p-5 rounded-xl shadow shadow-primary dark:bg-accent"
         variants={childVariants}
       >
-        <div className="flex flex-col items-center gap-1.5 font-extrabold">
-          <span className="text-primary">{categoriesIcons[category].icon}</span>
+        <div className="flex items-center gap-1.5">
+          <span className="bg-primary/25 p-1.5 rounded-md">
+            {categoriesIcons[category].icon}
+          </span>
           {categoriesIcons[category].label}
         </div>
-        <div className="flex items-center gap-1">
-          <span>{sp(price)}</span>تومان
+        <div className="flex items-center gap-0.5">
+          <span className="font-bold">{sp(price)}</span>تومان
         </div>
-        <div className="flex items-center gap-1">
-          <Calendar className="text-primary" size={18} strokeWidth={2.5} />
+        <div className="flex items-center gap-0.5">
+          <RiCalendarLine className="text-primary" size={20} />
           {new Date(constructionDate).toLocaleDateString("fa-IR")}
         </div>
       </motion.div>
