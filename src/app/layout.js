@@ -28,7 +28,7 @@ export default async function RootLayout({ children }) {
     const user = await User.findOne({ email: session?.user.email });
 
     return (
-      <html lang="fa" dir="rtl">
+      <html lang="fa" dir="rtl" suppressHydrationWarning>
         <body
           className={`font-Vazir ${Vazir.variable}`}
           suppressHydrationWarning
