@@ -1,14 +1,10 @@
 import AllUsersList from "../modules/AllUsersList";
 
-const AllUsersPage = ({ allUsers }) => {
+const AllUsersPage = ({ users }) => {
   return (
-    <div className="flex flex-col items-start gap-5">
+    <div className="space-y-10">
       <h3 className="h3 dashboard-section-title">کاربران</h3>
-      {allUsers.length ? (
-        <AllUsersList allUsers={allUsers} />
-      ) : (
-        <p className="not-found">کاربری یافت نشد</p>
-      )}
+      <AllUsersList users={users} />
     </div>
   );
 };

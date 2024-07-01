@@ -21,7 +21,7 @@ import CustomDatePicker from "./CustomDatePicker";
 import CustomTextInputList from "./CustomTextInputList";
 import { DotsLoader } from "./CustomLoaders";
 
-const AdvertisementForm = ({ advertisement }) => {
+const AdvertisementForm = ({ role, advertisement }) => {
   const [ad, setAd] = React.useState(null);
   const [filteredCities, setFilteredCities] = React.useState([]);
 
@@ -70,11 +70,14 @@ const AdvertisementForm = ({ advertisement }) => {
 
   const onSubmit = async (values) => {
     if (advertisement) {
-      const res = await fetch("/api/dashboard/edit-advertisement", {
-        method: "PATCH",
-        body: JSON.stringify(values),
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await fetch(
+        `/api/dashboard/${role === "ADMIN" ? "admin/" : ""}edit-advertisement`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(values),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
       const data = await res.json();
 
@@ -88,7 +91,13 @@ const AdvertisementForm = ({ advertisement }) => {
         });
 
         setTimeout(() => {
-          router.push("/dashboard/my-advertisements");
+          router.push(
+            `/dashboard/${
+              role === "ADMIN"
+                ? "admin/all-advertisements"
+                : "my-advertisements"
+            }`
+          );
           router.refresh();
         }, 1500);
       } else {

@@ -27,7 +27,7 @@ const CustomDatePicker = ({ name, form, label }) => {
               <DatePicker
                 className="rmdp-mobile"
                 containerClassName="w-full h-10"
-                inputClass="w-[50%] bg-inherit py-2 px-3 border border-solid border-input rounded-md"
+                inputClass="w-[50%] sm:w-full md:w-[50%] text-left bg-inherit py-2 px-3 border border-solid border-input rounded-md"
                 calendarPosition="bottom-right"
                 calendar={persian}
                 locale={persian_fa}

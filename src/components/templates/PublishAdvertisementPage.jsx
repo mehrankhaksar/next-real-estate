@@ -1,18 +1,10 @@
-import DashboardCard from "../modules/DashboardCard";
+import AdvertisementsList from "../modules/AdvertisementsList";
 
 const PublishAdvertisementPage = ({ advertisements, role }) => {
   return (
-    <div className="flex flex-col items-start gap-8">
+    <div className="space-y-10">
       <h3 className="h3 dashboard-section-title">انتشار آگهی</h3>
-      {advertisements.length ? (
-        <div className="list-container">
-          {advertisements.map((item) => (
-            <DashboardCard role={role} advertisement={item} key={item._id} />
-          ))}
-        </div>
-      ) : (
-        <p className="not-found">آگهی ثبت نشده است</p>
-      )}
+      <AdvertisementsList advertisements={advertisements} role={role} />
     </div>
   );
 };

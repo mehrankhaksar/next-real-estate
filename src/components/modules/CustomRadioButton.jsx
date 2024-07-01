@@ -17,26 +17,26 @@ const CustomRadioButton = ({ name, form, label, list }) => {
           <FormLabel className="text-base font-semibold">{label}</FormLabel>
           <FormControl>
             <RadioGroup
-              className="grid grid-cols-2 sm:grid-cols-4"
+              className="grid grid-cols-2 lg:grid-cols-4"
               dir="rtl"
-              defaultValue={field.value}
+              value={field.value}
               onValueChange={field.onChange}
             >
               {list.map((item, index) => (
-                <div
+                <FormItem
                   className="flex justify-center items-center gap-1.5 text-primary bg-primary/20 p-2.5 rounded dark:text-accent-foreground dark:bg-accent"
                   key={index}
                 >
-                  <RadioGroupItem
-                    id={index}
-                    className="border-[1.5px]"
-                    value={item.value}
-                    checked={item.value === field.value}
-                  />
-                  <label className="text-sm font-semibold" htmlFor={index}>
+                  <FormControl>
+                    <RadioGroupItem
+                      className="border-[1.5px]"
+                      value={item.value}
+                    />
+                  </FormControl>
+                  <FormLabel className="text-sm font-semibold">
                     {item.label}
-                  </label>
-                </div>
+                  </FormLabel>
+                </FormItem>
               ))}
             </RadioGroup>
           </FormControl>

@@ -5,15 +5,16 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+import { Button } from "../ui/button";
+
 import toast from "react-hot-toast";
 
-import { CheckCircle2, Trash, PenSquare } from "lucide-react";
+import { RiCheckLine, RiDeleteBinLine, RiEditBoxLine } from "@remixicon/react";
 
 import { SpinnerLoader } from "./CustomLoaders";
 import AdvertisementCard from "./AdvertisementCard";
-import { Button } from "../ui/button";
 
-const DashboardCard = ({ advertisement, role }) => {
+const DashboardCard = ({ role = "USER", advertisement }) => {
   const [loading, setLoading] = React.useState({
     publish: false,
     remove: false,
@@ -30,15 +31,31 @@ const DashboardCard = ({ advertisement, role }) => {
         method: "PATCH",
       }
     );
+
     const data = await res.json();
 
     setLoading({ ...loading, publish: false });
 
     if (data.message) {
-      toast.success(data.message);
-      router.refresh();
+      toast.success(data.message, {
+        style: {
+          color: "hsl(var(--foreground))",
+          backgroundColor: "hsl(var(--background))",
+        },
+        duration: 1500,
+      });
+
+      setTimeout(() => {
+        router.refresh();
+      }, 1500);
     } else {
-      toast.error(data.error);
+      toast.error(data.error, {
+        style: {
+          color: "hsl(var(--foreground))",
+          backgroundColor: "hsl(var(--background))",
+        },
+        duration: 1500,
+      });
     }
   };
 
@@ -51,24 +68,41 @@ const DashboardCard = ({ advertisement, role }) => {
         method: "DELETE",
       }
     );
+
     const data = await res.json();
 
     setLoading({ ...loading, remove: false });
 
     if (data.message) {
-      toast.success(data.message);
-      router.refresh();
+      toast.success(data.message, {
+        style: {
+          color: "hsl(var(--foreground))",
+          backgroundColor: "hsl(var(--background))",
+        },
+        duration: 1500,
+      });
+
+      setTimeout(() => {
+        router.refresh();
+      }, 1500);
     } else {
-      toast.error(data.error);
+      toast.error(data.error, {
+        style: {
+          color: "hsl(var(--foreground))",
+          backgroundColor: "hsl(var(--background))",
+        },
+        duration: 1500,
+      });
     }
   };
 
   return (
     <div className="relative">
-      <div className="flex items-center gap-1.5 absolute -top-4 -left-2">
+      <div className="flex items-center gap-1.5 absolute -top-[25px] -left-5">
         {role === "ADMIN" ? (
           <Button
-            className="w-8 h-8 text-secondary-foreground bg-green-500 p-1.5 rounded-full hover:bg-green-600"
+            className="bg-green-500 rounded-full hover:bg-green-600 dark:text-accent-foreground"
+            size="icon"
             type="button"
             disabled={loading.publish}
             onClick={handlePublish}
@@ -76,7 +110,7 @@ const DashboardCard = ({ advertisement, role }) => {
             {loading.publish ? (
               <SpinnerLoader color="border-t-green-500" />
             ) : (
-              <CheckCircle2 size={20} />
+              <RiCheckLine size={20} />
             )}
           </Button>
         ) : null}
@@ -91,16 +125,17 @@ const DashboardCard = ({ advertisement, role }) => {
           {loading.remove ? (
             <SpinnerLoader color="border-t-destructive dark:border-t-red-500" />
           ) : (
-            <Trash size={16} strokeWidth={2.5} />
+            <RiDeleteBinLine size={20} />
           )}
         </Button>
         <Button
           asChild
-          className="w-8 h-8 text-secondary p-1.5 rounded-full dark:text-secondary-foreground"
+          className="rounded-full dark:text-accent-foreground"
+          size="icon"
           type="button"
         >
           <Link href={`/dashboard/edit-advertisement/${advertisement._id}`}>
-            <PenSquare size={16} strokeWidth={2.5} />
+            <RiEditBoxLine size={20} />
           </Link>
         </Button>
       </div>

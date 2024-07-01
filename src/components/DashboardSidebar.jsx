@@ -13,7 +13,7 @@ const DashboardSidebar = ({ user }) => {
         <CustomAvatar
           badgeStyles="-left-5"
           user={user}
-          avatarStyles="w-24 h-24"
+          avatarStyles="w-24 h-24 text-2xl"
         />
         <h4 className="h4">
           {user.firstName} {user.lastName}

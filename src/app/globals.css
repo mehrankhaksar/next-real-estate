@@ -80,7 +80,7 @@
 }
 
 .h1 {
-  @apply font-extrabold leading-[65px];
+  @apply font-extrabold !leading-[60px];
 }
 
 .h2,
@@ -90,7 +90,11 @@
 }
 
 .list-container {
-  @apply grid gap-y-10 gap-x-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+  @apply grid gap-y-12 gap-x-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+
+.dashboard-section-title {
+  @apply inline-block text-primary-foreground bg-primary py-1.5 px-3 rounded-lg shadow-lg shadow-primary dark:text-accent-foreground;
 }
 
 .description {
@@ -98,7 +102,7 @@
 }
 
 .not-found {
-  @apply inline-block font-semibold text-destructive-foreground bg-destructive py-1.5 px-3 rounded-md shadow-md shadow-destructive dark:bg-red-500 dark:shadow-red-500;
+  @apply w-fit block font-semibold text-destructive-foreground bg-destructive py-1.5 px-3 rounded-md shadow-md shadow-destructive dark:bg-red-500 dark:shadow-red-500;
 }
 
 .dot {

@@ -5,14 +5,21 @@ import { parentVariants, childVariants } from "@/utils/variants";
 
 import UserCard from "./UserCard";
 
-const AllUsersList = ({ allUsers }) => {
+const AllUsersList = ({ users }) => {
   return (
-    <motion.div className="list-container" variants={parentVariants}>
-      {allUsers.map((item) => (
-        <motion.div variants={childVariants} key={item._id}>
-          <UserCard user={item} />
-        </motion.div>
-      ))}
+    <motion.div
+      className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      variants={parentVariants}
+    >
+      {users.length ? (
+        users.map((item) => (
+          <motion.div variants={childVariants} key={item._id}>
+            <UserCard user={item} />
+          </motion.div>
+        ))
+      ) : (
+        <p className="not-found">کاربری یافت نشد</p>
+      )}
     </motion.div>
   );
 };

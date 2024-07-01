@@ -14,7 +14,7 @@ const Logout = () => {
       type="button"
       onClick={signOut}
     >
-      <RiLogoutBoxLine size={17.5} />
+      <RiLogoutBoxLine size={20} />
       <span className="hidden sm:inline-block">خروج</span>
     </Button>
   );

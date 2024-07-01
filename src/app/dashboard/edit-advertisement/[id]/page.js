@@ -1,9 +1,14 @@
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 import connectDB from "@/utils/connectDB";
 import Advertisement from "@/models/Advertisement";
 
 import EditAdvertisementPage from "@/components/templates/EditAdvertisementPage";
 
 export default async function EditAdvertisement({ params: { id } }) {
+  const session = await getServerSession(authOptions);
+
   try {
     await connectDB();
 
@@ -11,6 +16,7 @@ export default async function EditAdvertisement({ params: { id } }) {
 
     return (
       <EditAdvertisementPage
+        role={session.user.role}
         advertisement={JSON.parse(JSON.stringify(advertisement))}
       />
     );

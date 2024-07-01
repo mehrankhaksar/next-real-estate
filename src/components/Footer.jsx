@@ -23,11 +23,9 @@ const Footer = () => {
               فارسی ایجاد کرد.
             </p>
           </div>
-          <ul className="w-fit list-disc">
+          <ul className="w-fit text-sm font-semibold list-disc">
             {advantages.map((item, index) => (
-              <li className="font-semibold" key={index}>
-                {item}
-              </li>
+              <li key={index}>{item}</li>
             ))}
           </ul>
         </div>

@@ -8,17 +8,22 @@ import { parentVariants, childVariants } from "@/utils/variants";
 import DashboardCard from "./DashboardCard";
 import AdvertisementCard from "./AdvertisementCard";
 
-const AdvertisementsList = ({ advertisements }) => {
+const AdvertisementsList = ({ advertisements, role }) => {
   const pathname = usePathname();
 
   return (
     <>
       {advertisements.length ? (
-        <motion.div className="list-container" variants={parentVariants}>
+        <motion.div
+          className={`list-container ${
+            !pathname.includes("/dashboard") && "!gap-5"
+          }`}
+          variants={parentVariants}
+        >
           {advertisements.map((item) =>
             pathname.includes("/dashboard") ? (
               <motion.div variants={childVariants} key={item._id}>
-                <DashboardCard advertisement={item} />
+                <DashboardCard role={role} advertisement={item} />
               </motion.div>
             ) : (
               <motion.div variants={childVariants} key={item._id}>

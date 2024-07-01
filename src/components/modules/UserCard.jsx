@@ -111,7 +111,7 @@ const UserCard = ({ user }) => {
   };
 
   return (
-    <Card className="relative shadow-md shadow-primary dark:bg-accent">
+    <Card className="relative mx-auto shadow-md shadow-primary dark:bg-accent">
       <Button
         className="absolute -top-2.5 -left-2.5 rounded-full dark:bg-red-500 dark:hover:bg-red-600"
         variant="destructive"
@@ -130,7 +130,7 @@ const UserCard = ({ user }) => {
           <CustomAvatar
             badgeStyles="left-0"
             user={user}
-            avatarStyles="w-24 h-24 text-xl"
+            avatarStyles="w-24 h-24 text-2xl"
           />
           <CardTitle className="flex items-center gap-1.5 font-bold text-primary dark:text-accent-foreground">
             {user.firstName} {user.lastName}

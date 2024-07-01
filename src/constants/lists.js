@@ -4,6 +4,10 @@ import {
   RiAddBoxLine,
   RiListCheck3,
   RiGroupLine,
+  RiHome4Line,
+  RiBuilding4Line,
+  RiStore2Line,
+  RiBuildingLine,
 } from "@remixicon/react";
 
 const headerLinks = [
@@ -82,6 +86,7 @@ const dashboardLinks = {
     {
       href: {
         pathname: "/dashboard",
+        query: {},
       },
       icon: <RiUserLine />,
       label: "حساب کاربری",
@@ -89,6 +94,7 @@ const dashboardLinks = {
     {
       href: {
         pathname: "/dashboard/my-advertisements",
+        query: {},
       },
       icon: <RiListCheck />,
       label: "آگهی‌های من",
@@ -96,12 +102,56 @@ const dashboardLinks = {
     {
       href: {
         pathname: "/dashboard/add-advertisement",
+        query: {},
       },
       icon: <RiAddBoxLine />,
       label: "ثبت آگهی",
     },
   ],
 };
+
+const categoriesLink = [
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "all" },
+    },
+    icon: <RiListCheck />,
+    label: "همه",
+  },
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "villa" },
+    },
+    icon: <RiHome4Line />,
+    label: "ویلا",
+  },
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "apartment" },
+    },
+    icon: <RiBuilding4Line />,
+    label: "آپارتمان",
+  },
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "store" },
+    },
+    icon: <RiStore2Line />,
+    label: "مغازه",
+  },
+  {
+    href: {
+      pathname: "/advertisements",
+      query: { category: "office" },
+    },
+    icon: <RiBuildingLine />,
+    label: "دفتر",
+  },
+];
 
 const provinces = [
   {
@@ -6997,4 +7047,12 @@ const categories = [
   },
 ];
 
-export { headerLinks, roles, dashboardLinks, provinces, cities, categories };
+export {
+  headerLinks,
+  roles,
+  dashboardLinks,
+  categoriesLink,
+  provinces,
+  cities,
+  categories,
+};

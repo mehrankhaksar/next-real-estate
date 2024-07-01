@@ -103,7 +103,7 @@ const AuthenticationForm = ({ signUp = false }) => {
   return (
     <Form {...form}>
       <motion.form
-        className="max-w-[400px] space-y-5 bg-white mx-auto py-5 px-2.5 rounded-md shadow-md shadow-primary dark:bg-accent"
+        className="space-y-5 bg-white mx-5 min-[400px]:mx-auto py-5 px-2.5 rounded-md shadow-md shadow-primary dark:bg-accent min-[400px]:max-w-[400px]"
         variants={containerVariants}
         noValidate
         onSubmit={form.handleSubmit(onSubmit)}

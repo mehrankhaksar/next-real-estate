@@ -1,10 +1,10 @@
 import AdvertisementForm from "../modules/AdvertisementForm";
 
-const EditAdvertisementPage = ({ advertisement }) => {
+const EditAdvertisementPage = ({ role, advertisement }) => {
   return (
-    <div className="space-y-5">
+    <div className="space-y-10">
       <h3 className="h3 dashboard-section-title">ویرایش آگهی</h3>
-      <AdvertisementForm advertisement={advertisement} />
+      <AdvertisementForm role={role} advertisement={advertisement} />
     </div>
   );
 };

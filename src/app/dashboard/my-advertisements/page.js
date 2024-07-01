@@ -19,14 +19,14 @@ export default async function MyAdvertisements() {
           from: "advertisements",
           foreignField: "userId",
           localField: "_id",
-          as: "userAdvertisements",
+          as: "advertisements",
         },
       },
     ]);
 
     return (
       <MyAdvertisementsPage
-        userAdvertisements={JSON.parse(JSON.stringify(user.userAdvertisements))}
+        advertisements={JSON.parse(JSON.stringify(user.advertisements))}
       />
     );
   } catch (err) {

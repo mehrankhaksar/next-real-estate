@@ -25,7 +25,7 @@ export default async function AllUsers() {
       a.role === "ADMIN" ? -1 : b.role === "ADMIN" ? 1 : 0
     );
 
-    return <AllUsersPage allUsers={JSON.parse(JSON.stringify(sortedUsers))} />;
+    return <AllUsersPage users={JSON.parse(JSON.stringify(sortedUsers))} />;
   } catch (err) {
     console.log(err);
   }
