@@ -29,10 +29,7 @@ export default async function RootLayout({ children }) {
 
     return (
       <html lang="fa" dir="rtl" suppressHydrationWarning>
-        <body
-          className={`font-Vazir ${Vazir.variable}`}
-          suppressHydrationWarning
-        >
+        <body className={`font-Vazir ${Vazir.variable}`}>
           <NextAuthProvider>
             <ThemeProvider defaultTheme="light" attribute="class">
               <Header user={JSON.parse(JSON.stringify(user))} />
