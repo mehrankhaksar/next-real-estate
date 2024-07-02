@@ -1,2 +1,2 @@
-# Next Real Estate
+# Real Estate
 ## https://mehran-khaksar-real-estate.vercel.app/
